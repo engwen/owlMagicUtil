@@ -10,12 +10,12 @@ import java.util.List;
 /**
  * 分頁對象
  * @author engwen
- *         email xiachanzou@outlook.com
- *         2017/9/4.
+ * email xiachanzou@outlook.com
+ * 2017/9/4.
  */
-public class PageVO<T> extends MsgResult {
+public final class PageVO<T> extends MsgResult {
     //對象集合
-    private List<T> objectList = new ArrayList<T>();
+    private List<T> objectList = new ArrayList<>();
     //縂頁數
     private Integer sumPage = 1;
     //縂條數
@@ -31,11 +31,18 @@ public class PageVO<T> extends MsgResult {
     private Integer downLimit = 0;
     //將要顯示的頁數下標
     private int[] pageList = new int[]{};
+    //是否獲取全部對象
+    private Boolean getAll = false;
+
 
     /**
      * 塞入總數，請求頁數，每頁數量
      */
     public void initPageVO(Integer sum, Integer requestPage, Integer size) {
+        if (getAll) {
+            size = sum;
+            requestPage = 1;
+        }
         if (null != sum && sum > 0) {
             this.sum = sum;
         }
@@ -105,7 +112,7 @@ public class PageVO<T> extends MsgResult {
      * @return
      */
     public PageVO setThisPageToAnotherPage(PageVO newPage) {
-        if (!RegexUtil.haveEmpty(newPage)) {
+        if (!RegexUtil.isParamsHaveEmpty(newPage)) {
             newPage.setRequestPage(this.requestPage);
             newPage.setSize(this.size);
             newPage.setSumPage(this.sumPage);
@@ -113,6 +120,7 @@ public class PageVO<T> extends MsgResult {
             newPage.setUpLimit(this.upLimit);
             newPage.setDownLimit(this.downLimit);
             newPage.setPageList(this.pageList);
+            newPage.setGetAll(this.getAll);
         }
         return newPage;
     }
@@ -180,5 +188,17 @@ public class PageVO<T> extends MsgResult {
 
     private void setPageList(int[] pageList) {
         this.pageList = pageList;
+    }
+
+    public Boolean getGetAll() {
+        return getAll;
+    }
+
+    public void setGetAll(Boolean getAll) {
+        if (null == getAll) {
+            this.getAll = false;
+        } else {
+            this.getAll = getAll;
+        }
     }
 }

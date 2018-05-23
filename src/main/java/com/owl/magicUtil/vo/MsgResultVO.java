@@ -9,6 +9,6 @@ import com.owl.magicUtil.model.MsgResult;
  * email xiachanzou@outlook.com
  * time 2017/10/23.
  */
-public class MsgResultVO extends MsgResult {
+public final class MsgResultVO extends MsgResult {
 
 }

@@ -6,16 +6,14 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 /**
+ * md5計算工具 包含密鑰，可被繼承自定義
  * @author engwen
  * email xiachanzou@outlook.com
  * 2017/4/14.
  */
-public class MD5Util {
-
-    public static MessageDigest messageDigest;
-
+public abstract class MD5Util {
     //16进制
-    private final static char[] HEX = "0123456789abcdef".toCharArray();
+    private static char[] HEX = "0123456789abcdef".toCharArray();
 
     /**
      * 获取md5
@@ -25,7 +23,7 @@ public class MD5Util {
     public static String getMD5(String inputStr) {
         String backStr = null;
         try {
-            messageDigest = MessageDigest.getInstance("MD5");
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.reset();
             backStr = bytes2Hex(messageDigest.digest(inputStr.getBytes("UTF-8")));
         } catch (Exception e) {
@@ -39,7 +37,7 @@ public class MD5Util {
      * @param inputFile 文件路径
      * @return 已经通过MD5算法加密的32位字符串
      */
-    public final static String getMD5(File inputFile) {
+    public static String getMD5(File inputFile) {
         String md5 = null;
         FileInputStream fileInputStream = null;
         try {
@@ -69,7 +67,6 @@ public class MD5Util {
 
     /**
      * 将字节数组转成 16 进制的字符串来表示，每个字节采用两个字符表表示
-     *
      * @param bys 需要转换成 16 进制的字节数组
      * @return
      */
@@ -80,5 +77,24 @@ public class MD5Util {
             chs[offset++] = HEX[bys[i] & 0xf];
         }
         return new String(chs);
+    }
+
+    /**
+     * 加密
+     * @param uuid
+     * @param psw
+     * @return
+     */
+    public static String getSecretPsw(String uuid, String psw) {
+        return getMD5(String.format("%s##%s", uuid, psw));
+    }
+
+    /**
+     * 输入至少为4位密码加密，否则将会自动补4零
+     * @param psw
+     * @return
+     */
+    public static String getSecretPsw(String psw) {
+        return psw.length() >= 4 ? getMD5(String.format("%s##%s", psw.substring(0, 4), psw)) : getSecretPsw("0000", psw);
     }
 }

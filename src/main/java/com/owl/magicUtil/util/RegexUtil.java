@@ -6,6 +6,7 @@ import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.regex.Pattern;
 
 /**
@@ -13,15 +14,15 @@ import java.util.regex.Pattern;
  * email xiachanzou@outlook.com
  * 2017/3/16.
  */
-public class RegexUtil {
+public abstract class RegexUtil {
 
     private static final String is_empty = "(\\s)";
 
     private static final String is_mobile = "^1[3456789]\\d{9}$";
 
-    private static final String is_email = "^[a-zA-Z_]{1,}[0-9]{0,}@(([a-zA-z0-9]-*){1,}\\.){1,3}[a-zA-z\\-]{1,}$ ";
+    private static final String is_email = "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
 
-    private static final String is_date = "^\\d{4}(-|/)\\d{1,2}(-|/)\\d{1,2}$";
+    private static final String is_date = "^\\d{4}[-/]\\d{1,2}[-/]\\d{1,2}$";
 
     public static boolean isEmpty(String input) {
         return null == input || "".equals(input) || Pattern.matches(is_empty, input) || "null".equals(input);
@@ -40,44 +41,88 @@ public class RegexUtil {
     }
 
     /**
-     * @param input 校验传入的参数是否有空
-     * @return
+     * 檢測所有的參數是否爲空
+     * @param inputs 未定義長度數組
+     * @return 結果
      */
-    public static boolean haveEmpty(Object... input) {
-        for (int i = 0; i < input.length; i++) {
-            if (input[i] == null || (input[i] instanceof String && isEmpty((String) input[i]))) {
-                return true;
+    public static boolean isParamsAllEmpty(Object... inputs) {
+        boolean result = true;
+        for (Object input : inputs) {
+            if (null == input || (input instanceof String && isEmpty((String) input))
+                    || (input instanceof Collection && ((Collection) input).size() <= 0)) {
+                continue;
             }
+            result = false;
+            break;
         }
-        return false;
+        return result;
     }
 
+    /**
+     * 數組對象中是否含有爲空
+     * @param inputs
+     * @return
+     */
+    public static boolean isParamsHaveEmpty(Object... inputs) {
+        boolean result = false;
+        for (Object input : inputs) {
+            if (null == input || (input instanceof String && isEmpty((String) input))
+                    || (input instanceof Collection && ((Collection) input).size() <= 0)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 檢測是否具有爲空選項,注意先後順序
+     * @param params 確保對象不能爲空
+     * @param inputs 確保對象下的屬性不能爲空
+     * @return boolean
+     */
+    public static boolean isParamsHaveEmpty(MsgResult params, Object... inputs) {
+        return null == params || isParamsHaveEmpty(inputs);
+    }
 
     /**
      * 判断一个对象是否有属性为空--有一个为空即为true，全部非空才为false
      * @param object MsgResult的子类对象
      * @return
      */
-    public static boolean isAtrHaveEmpty(MsgResult object) {
+    public static boolean isObjectHaveEmpty(MsgResult object) {
+        boolean result = false;
         if (object == null) {
-            return true;
-        }
-        try {
-            BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass(), MsgResult.class);
-            PropertyDescriptor[] descriptors = beanInfo.getPropertyDescriptors();
-            if (descriptors != null && descriptors.length > 0) {
-                for (PropertyDescriptor descriptor : descriptors) {
-                    Method method = descriptor.getReadMethod();
-                    Object obj = method.invoke(object);
-                    //如果类型是String类型,需满足正则校验
-                    if (obj == null || (obj instanceof String && isEmpty((String) obj))) {
-                        return true;
+            result = true;
+        } else {
+            try {
+                BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass(), MsgResult.class);
+                PropertyDescriptor[] descriptors = beanInfo.getPropertyDescriptors();
+                if (descriptors != null && descriptors.length > 0) {
+                    for (PropertyDescriptor descriptor : descriptors) {
+                        Method method = descriptor.getReadMethod();
+                        Object obj = method.invoke(object);
+                        //如果类型是String类型,需满足正则校验
+                        if (obj == null || (obj instanceof String && isEmpty((String) obj))) {
+                            result = true;
+                            break;
+                        }
                     }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+                result = true;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return false;
+        return result;
+    }
+
+    /**
+     * 校验单列集合是否有数据
+     * @param collection
+     * @return true 有
+     */
+    public static boolean isCollectionHaveData(Collection collection) {
+        return collection != null && collection.size() > 0;
     }
 }

@@ -2,26 +2,31 @@ package com.owl.magicUtil.model;
 
 
 import com.owl.magicUtil.constant.MsgConstantUtil;
+import com.owl.magicUtil.vo.MsgResultVO;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * 返回基礎信息類
+ * 返回基礎信息類，該類不可實例化直接使用
  * author engwen
  * email xiachanzou@outlook.com
  * 2017/10/23.
  */
-public class MsgResult implements Serializable {
-
+public abstract class MsgResult implements Serializable {
+    //序列化支持
     private static final long serialVersionUID = 1L;
 
-    //添加返回信息数据
+    //添加將要返回的基礎數據
     private Boolean result = true;
     private String resultCode = MsgConstantUtil.REQUEST_DEFAULT_ERROR_CODE;
     private String resultMsg = MsgConstantUtil.REQUEST_DEFAULT_ERROR_MSG;
 
-    //儅以上數據不能滿足時，提供另一個msgResult對象
+    //儅以上數據不能滿足需求時，提供另一個msgResult對象
     private MsgResult resultData;
+    //儅以上數據仍不能滿足時，提供Map封裝參數
+    private Map<String, Object> params = new HashMap<>();
 
     /**
      * 請求失敗
@@ -38,6 +43,7 @@ public class MsgResult implements Serializable {
      * 請求成功
      */
     public void successResult() {
+        this.result = true;
         this.resultCode = MsgConstantUtil.REQUEST_SUCCESS_CODE;
         this.resultMsg = MsgConstantUtil.REQUEST_SUCCESS_MSG;
     }
@@ -46,6 +52,7 @@ public class MsgResult implements Serializable {
      * 請求成功
      */
     public void successResult(String resultCode, String resultMsg) {
+        this.result = true;
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
     }
@@ -53,11 +60,38 @@ public class MsgResult implements Serializable {
     /**
      * 將本類中的結果信息傳遞給其他的msg
      * @param anotherMsg 另一個msgResult
+     * @return MsgResult 返回原來的引用
      */
-    public void setThisMsgToAnotherMsg(MsgResult anotherMsg) {
+    public MsgResult setThisMsgToAnotherMsg(MsgResult anotherMsg) {
         anotherMsg.setResult(this.result);
         anotherMsg.setResultCode(this.resultCode);
         anotherMsg.setResultMsg(this.resultMsg);
+        return anotherMsg;
+    }
+
+    /**
+     * 向Map中传递参数名以及值
+     * @param key 参数名称
+     * @param value 值
+     */
+    public void setParam(String key, Object value) {
+        this.params.put(key, value);
+    }
+
+    /**
+     * 移除Map中的參數
+     * @param key 參數名
+     */
+    public void removeParam(String key){
+        this.params.remove(key);
+    }
+
+    /**
+     * 生成可直接返回的目標對象，剝除多餘的對象信息
+     * @return 目标对象
+     */
+    public MsgResult aimMsg() {
+        return this.getResult() ? this : this.setThisMsgToAnotherMsg(new MsgResultVO());
     }
 
     public Boolean getResult() {
@@ -67,6 +101,7 @@ public class MsgResult implements Serializable {
     public void setResult(Boolean result) {
         this.result = result;
     }
+
     public String getResultCode() {
         return resultCode;
     }
@@ -89,6 +124,14 @@ public class MsgResult implements Serializable {
 
     public void setResultData(MsgResult resultData) {
         this.resultData = resultData;
+    }
+
+    public Map<String, Object> getParams() {
+        return params;
+    }
+
+    public void setParams(Map<String, Object> params) {
+        this.params = params;
     }
 
 }
