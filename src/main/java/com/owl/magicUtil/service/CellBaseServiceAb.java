@@ -133,4 +133,15 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
         LoggerInfo();
         return null;
     }
+
+    /**
+     * 檢查数据是否存在
+     * @param model 检索条件
+     * @return Boolean
+     */
+    @Override
+    public MsgResult isExist(T model) {
+        LoggerInfo();
+        return null;
+    }
 }

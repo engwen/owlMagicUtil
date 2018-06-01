@@ -1,5 +1,6 @@
 package com.owl.magicUtil.service;
 
+import com.owl.magicUtil.constant.MsgConstantUtil;
 import com.owl.magicUtil.model.MsgResult;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
@@ -88,4 +89,11 @@ interface CellBaseService<T> {
      * @return 對象集合
      */
     List<T> listAll(T model);
+
+    /**
+     * 檢查数据是否存在
+     * @param model 检索条件
+     * @return Boolean
+     */
+    MsgResult isExist(T model);
 }
