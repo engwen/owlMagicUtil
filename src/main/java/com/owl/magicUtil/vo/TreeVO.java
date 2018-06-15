@@ -14,14 +14,14 @@ public final class TreeVO<T extends MsgResult> extends MsgResult {
     private Long id;
     private Long pid;
 
-    private T temp;
+    private T treeObj;
 
-    public T getTemp() {
-        return temp;
+    public T getTreeObj() {
+        return treeObj;
     }
 
-    public void setTemp(T temp) {
-        this.temp = temp;
+    public void setTreeObj(T treeObj) {
+        this.treeObj = treeObj;
     }
 
     private List<TreeVO> treeVOList = new ArrayList<>();
@@ -29,13 +29,13 @@ public final class TreeVO<T extends MsgResult> extends MsgResult {
     public TreeVO(Integer id, Integer pid, T t) {
         this.id = id.longValue();
         this.pid = pid.longValue();
-        this.temp = t;
+        this.treeObj = t;
     }
 
     public TreeVO(Long id, Long pid, T t) {
         this.id = id;
         this.pid = pid;
-        this.temp = t;
+        this.treeObj = t;
     }
 
     public Long getId() {
@@ -91,5 +91,42 @@ public final class TreeVO<T extends MsgResult> extends MsgResult {
             }
         });
         return root;
+    }
+
+
+    /**
+     * 获取对应的开始节点，并返回目标节点及以下的树id集合
+     * @param aimID      目标节点
+     * @param treeVOList 所有的集合
+     * @return
+     */
+    public static List<Long> getIdTree(Long aimID, List<TreeVO> treeVOList) {
+        List<Long> result = new ArrayList<>();
+        if (null != aimID) {
+            treeVOList.forEach(treeVO -> {
+                if ((aimID == 0 && treeVO.pid == 0) || aimID.equals(treeVO.id)) {
+                    result.addAll(getIdTrees(treeVO, treeVOList));
+                }
+            });
+        }
+        //获取根
+        return result;
+    }
+
+    /**
+     * 获取节点以及以下
+     * @param root
+     * @param treeVOList
+     * @return
+     */
+    private static List<Long> getIdTrees(TreeVO root, List<TreeVO> treeVOList) {
+        List<Long> result = new ArrayList<>();
+        treeVOList.forEach(treeVO -> {
+            if (root.id.equals(treeVO.pid)) {
+                result.addAll(getIdTrees(treeVO, treeVOList));
+            }
+        });
+        result.add(root.id);
+        return result;
     }
 }
