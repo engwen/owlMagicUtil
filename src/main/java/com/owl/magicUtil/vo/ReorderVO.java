@@ -16,11 +16,6 @@ public final class ReorderVO<T extends MsgResult> extends MsgResult {
         return order;
     }
 
-    //禁止无参
-    private ReorderVO() {
-
-    }
-
     //初始化对象
     public ReorderVO(Integer order, T object) {
         this.order = order;

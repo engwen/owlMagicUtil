@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class ReorderUtil<T extends MsgResult> {
+public abstract class ReorderUtil<T extends MsgResult> {
     public List<T> getSort(List<ReorderVO<T>> reorderVOList) {
         List<T> result = new ArrayList<>();
         reorderVOList.sort(new ReorderRule());
