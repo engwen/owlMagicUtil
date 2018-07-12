@@ -20,6 +20,17 @@ public abstract class DateCountUtil {
     public static final SimpleDateFormat HHMMSS = new SimpleDateFormat("HH:mm:ss");
     public static final SimpleDateFormat HHMM = new SimpleDateFormat("HH:mm");
 
+
+    /**
+     * 获取指定的日期格式
+     * @param date
+     * @param sdf
+     * @return
+     */
+    public static String getDateFormSdf(Date date, SimpleDateFormat sdf) {
+        return sdf.format(date);
+    }
+
     /**
      * 返回指定格式的日期
      * @param date
@@ -27,24 +38,33 @@ public abstract class DateCountUtil {
      * @return
      */
     public static String getDateFormSdfStr(Date date, String sdfStr) {
-        SimpleDateFormat sdf = new SimpleDateFormat(sdfStr);
-        return sdf.format(date);
+        return getDateFormSdf(date,new SimpleDateFormat(sdfStr));
     }
+
+    /**
+     * 根据指定格式的字符串，返回指定格式的日期
+     * @param sdf
+     * @return
+     */
+    public static Date getDateFormSdf(String dateString, SimpleDateFormat sdf) {
+        Date date = null;
+        try {
+            date = sdf.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
 
     /**
      * 根据指定格式的字符串，返回指定格式的日期
      * @param sdfStr
      * @return
      */
-    public static Date getDateFormSdfStr(String dateString,String sdfStr) {
+    public static Date getDateFormSdfStr(String dateString, String sdfStr) {
         SimpleDateFormat sdf = new SimpleDateFormat(sdfStr);
-        Date date = null;
-        try {
-           date =  sdf.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
+        return getDateFormSdf(dateString, sdf);
     }
 
     /**
@@ -73,6 +93,7 @@ public abstract class DateCountUtil {
         Integer backYears = calendarNew.get(Calendar.YEAR) - calendarOld.get(Calendar.YEAR);
         return backYears > 0 ? backYears : 0;
     }
+
     /**
      * 计算两个日期之间的月份，日期不足一月按一月算
      * @param oldDate
@@ -89,7 +110,7 @@ public abstract class DateCountUtil {
         Integer backYears = calendarNew.get(Calendar.YEAR) - calendarOld.get(Calendar.YEAR);
         Integer backMonth = calendarNew.get(Calendar.MONTH) - calendarOld.get(Calendar.MONTH);
 
-        return backYears >= 0 ? ((backYears*12) + (backMonth+1) ) : 0;
+        return backYears >= 0 ? ((backYears * 12) + (backMonth + 1)) : 0;
     }
 
     /**
@@ -120,12 +141,13 @@ public abstract class DateCountUtil {
         calendar.clear();
         calendar.setTime(date);
         calendar.add(Calendar.DATE, day);
-        calendar.set(Calendar.MINUTE,59 );
+        calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.HOUR_OF_DAY, 23);
         calendar.set(Calendar.SECOND, 59);
         calendar.set(Calendar.MILLISECOND, 999);
         return calendar.getTime();
     }
+
     /**
      * 獲取指定日期指定天數後的日期
      * @param date
@@ -146,7 +168,7 @@ public abstract class DateCountUtil {
      * @param hour
      * @return
      */
-    public  static Date addHour(Date date, float hour) {
+    public static Date addHour(Date date, float hour) {
         Calendar Cal = Calendar.getInstance();
         Cal.setTime(date);
         Cal.add(Calendar.MINUTE, (int) (hour * 60));
@@ -186,7 +208,7 @@ public abstract class DateCountUtil {
 
     /**
      * 计算距离当前日期指定天数的日期，并取该日期的最小值(0时0分0秒)
-     * @param day  距离当前日期的天数，正数表示当前日期之后几天的日期，负数表示当前日期之前几天的日期
+     * @param day 距离当前日期的天数，正数表示当前日期之后几天的日期，负数表示当前日期之前几天的日期
      * @return
      */
     public static Date addDay(int day) {
@@ -200,20 +222,20 @@ public abstract class DateCountUtil {
      * @param enddate
      * @return
      */
-    public static Integer getsubDay(Date startdate,Date enddate){
+    public static Integer getsubDay(Date startdate, Date enddate) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String start = format.format(startdate);
         String end = format.format(enddate);
-        try{
+        try {
             startdate = format.parse(start);
             enddate = format.parse(end);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         long startTime = startdate.getTime();
         long endTime = enddate.getTime();
-        long sub = endTime-startTime;
-        return  (int) Math.ceil(sub*1.0/(24*60*60*1000))+1;
+        long sub = endTime - startTime;
+        return (int) Math.ceil(sub * 1.0 / (24 * 60 * 60 * 1000)) + 1;
     }
 
     /**
@@ -221,8 +243,8 @@ public abstract class DateCountUtil {
      * @param strdate
      * @return
      */
-    public static Date getHHmmDate(String strdate){
-        SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    public static Date getHHmmDate(String strdate) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = null;
         try {
             date = format.parse(strdate);
@@ -233,13 +255,19 @@ public abstract class DateCountUtil {
     }
 
     /**
+     * 将传入日期的小时和分钟和秒提取出来
+     * @return
+     */
+    public static String getHHmmss(Date date) {
+        return HHMMSS.format(date);
+    }
+
+    /**
      * 将传入日期的小时和分钟提取出来
      * @return
      */
-    public static String getHHmm(Date date){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-        String format = simpleDateFormat.format(date);
-        return format;
+    public static String getHHmm(Date date) {
+        return HHMM.format(date);
     }
 
 }

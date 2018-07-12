@@ -71,7 +71,7 @@ public abstract class MsgResult implements Serializable {
 
     /**
      * 向Map中传递参数名以及值
-     * @param key 参数名称
+     * @param key   参数名称
      * @param value 值
      */
     public void setParam(String key, Object value) {
@@ -79,10 +79,19 @@ public abstract class MsgResult implements Serializable {
     }
 
     /**
+     * 获取指定key的值
+     * @param key 参数名称
+     * @return
+     */
+    public Object getParamValue(String key) {
+        return this.params.get(key);
+    }
+
+    /**
      * 移除Map中的參數
      * @param key 參數名
      */
-    public void removeParam(String key){
+    public void removeParam(String key) {
         this.params.remove(key);
     }
 
