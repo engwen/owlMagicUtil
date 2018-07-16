@@ -1,5 +1,6 @@
 package com.owl.magicUtil.service;
 
+import com.owl.magicUtil.model.MsgResult;
 import com.owl.magicUtil.vo.MsgResultVO;
 
 import java.util.List;
@@ -11,32 +12,32 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/01/25.
  */
-interface RelationBaseService<T> {
+interface RelationBaseService<T extends MsgResult> {
     /**
      * 插入關係數據
      * @param model 汎型對象
-     * @return
+     * @return 基礎數據
      */
     MsgResultVO insert(T model);
 
     /**
      * 批量插入
      * @param modelList 汎型對象
-     * @return
+     * @return 基礎數據
      */
     MsgResultVO insertList(List<T> modelList);
 
     /**
      * 刪除關係數據
      * @param model 汎型對象
-     * @return
+     * @return 基礎數據
      */
     MsgResultVO delete(T model);
 
     /**
      * 批量刪除
      * @param modelList 汎型對象
-     * @return
+     * @return 基礎數據
      */
     MsgResultVO deleteList(List<T> modelList);
 }

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * email xiachanzou@outlook.com
  * time 2018/04/22.
  */
-public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
+public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBaseService<T> {
     private static Logger logger = Logger.getLogger(CellBaseServiceAb.class.getName());
 
     private static void LoggerInfo() {
@@ -53,6 +53,17 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
     }
 
     /**
+     * 刪除 更新前需要查询，因此可能返回对象为父类型
+     * @param model 对象
+     * @return 基礎數據
+     */
+    @Override
+    public MsgResult delete(T model) {
+        LoggerInfo();
+        return null;
+    }
+
+    /**
      * 批量刪除 更新前需要查询，因此可能返回对象为父类型
      * @param idList ID集合
      * @return 基礎數據
@@ -67,7 +78,7 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      * 批量操作 禁用或啓用
      * @param id     對象ID
      * @param status 對象狀態，可以爲空
-     * @return
+     * @return 基礎數據
      */
     @Override
     public MsgResult banOrLeave(Long id, Boolean status) {
@@ -79,7 +90,7 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      * 批量操作 禁用或啓用
      * @param idList 對象ID
      * @param status 對象狀態
-     * @return
+     * @return 基礎數據
      */
     @Override
     public MsgResult banOrLeaveList(List<Long> idList, Boolean status) {

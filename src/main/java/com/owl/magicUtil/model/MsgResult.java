@@ -70,6 +70,16 @@ public abstract class MsgResult implements Serializable {
     }
 
     /**
+     * 將其他msg的結果信息傳遞給本類
+     * @param anotherMsg 另一個msgResult
+     */
+    public void getMsgByAnotherMsg(MsgResult anotherMsg) {
+        this.result = anotherMsg.result;
+        this.resultCode = anotherMsg.resultCode;
+        this.resultMsg = anotherMsg.resultMsg;
+    }
+
+    /**
      * 向Map中传递参数名以及值
      * @param key   参数名称
      * @param value 值

@@ -40,8 +40,15 @@ public interface MsgConstantUtil {
     String REQUEST_CANT_UPDATE_ADMIN_ERROR_CODE = "0010";
     String REQUEST_CANT_UPDATE_ADMIN_ERROR_MSG = "管理员状态不可修改";
 
+    String REQUEST_METHOD_NOT_EXITS_ERROR_CODE = "0011";
+    String REQUEST_METHOD_NOT_EXITS_ERROR_MSG = "该方法（接口）不存在，请检查代码";
+
     String REQUEST_CANT_UPDATE_STATUS_ERROR_CODE = "0020";
     String REQUEST_CANT_UPDATE_STATUS_ERROR_MSG = "更新操作不能进行删除操作";
+
+
+
+
     
     String PARAM_EMAIL_ERROR_CODE = "1001";
     String PARAM_EMAIL_ERROR_MSG = "邮箱格式错误";

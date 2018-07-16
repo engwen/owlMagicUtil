@@ -1,8 +1,6 @@
 package com.owl.magicUtil.service;
 
-import com.owl.magicUtil.constant.MsgConstantUtil;
 import com.owl.magicUtil.model.MsgResult;
-import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
 
 import java.util.List;
@@ -14,7 +12,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/01/22.
  */
-interface CellBaseService<T> {
+interface CellBaseService<T extends MsgResult> {
     /**
      * 創建
      * @param model 汎型對象
@@ -35,6 +33,13 @@ interface CellBaseService<T> {
      * @return 基礎數據
      */
     MsgResult delete(Long id);
+
+    /**
+     * 刪除 更新前需要查询，因此可能返回对象为父类型
+     * @param model 对象
+     * @return 基礎數據
+     */
+    MsgResult delete(T model);
 
     /**
      * 批量刪除 更新前需要查询，因此可能返回对象为父类型
