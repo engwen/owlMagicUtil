@@ -113,6 +113,14 @@ public abstract class MsgResult implements Serializable {
         return this.getResult() ? this : this.setThisMsgToAnotherMsg(new MsgResultVO());
     }
 
+    /**
+     * 为了方便查看结果信息，直接使用JSON格式
+     * @return 字符串
+     */
+    public String toJSON() {
+        return "{result:" + this.result + ",resultCode:" + this.resultCode + ",resultMsg:" + this.resultMsg + "}";
+    }
+
     public Boolean getResult() {
         return result;
     }
