@@ -79,6 +79,13 @@ interface CellBaseService<T extends MsgResult> {
     T details(T model);
 
     /**
+     * 獲取詳情
+     * @param id 汎型對象檢索條件
+     * @return 汎型對象
+     */
+    T details(Long id);
+
+    /**
      * 獲取分頁列表，添加 model 提供檢索功能
      * @param getAll      是否獲取所有
      * @param requestPage 請求頁數
@@ -96,9 +103,23 @@ interface CellBaseService<T extends MsgResult> {
     List<T> listAll(T model);
 
     /**
+     * 獲取所有的對象
+     * @return 對象集合
+     */
+    List<T> listAll();
+
+    /**
      * 檢查数据是否存在
      * @param model 检索条件
      * @return Boolean
      */
     MsgResult isExist(T model);
+
+    /**
+     * 檢查数据是否存在
+     * @param id
+     * @return Boolean
+     */
+    MsgResult isExist(Long id);
+
 }

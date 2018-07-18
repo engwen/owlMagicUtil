@@ -121,6 +121,7 @@ public final class PageVO<T> extends MsgResult {
             newPage.setDownLimit(this.downLimit);
             newPage.setPageList(this.pageList);
             newPage.setGetAll(this.getAll);
+            newPage.getMsgByAnotherMsg(this);
         }
         return newPage;
     }

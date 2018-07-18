@@ -70,4 +70,12 @@ interface CellBaseController<T extends MsgResult> {
      * @return 结果集合
      */
     List<T> listAll(T model);
+
+
+    /**
+     * 檢查数据是否存在
+     * @param model 检索条件
+     * @return Boolean
+     */
+    MsgResult isExist(T model);
 }

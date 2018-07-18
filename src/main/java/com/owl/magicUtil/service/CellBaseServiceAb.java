@@ -121,6 +121,17 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
     }
 
     /**
+     * 獲取詳情
+     * @param id 汎型對象檢索條件
+     * @return 汎型對象
+     */
+    @Override
+    public T details(Long id) {
+        LoggerInfo();
+        return null;
+    }
+
+    /**
      * 獲取分頁列表，添加 model 提供檢索功能
      * @param getAll      是否獲取所有
      * @param requestPage 請求頁數
@@ -146,12 +157,33 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
     }
 
     /**
+     * 獲取所有的對象
+     * @return 對象集合
+     */
+    @Override
+    public List<T> listAll() {
+        LoggerInfo();
+        return null;
+    }
+
+    /**
      * 檢查数据是否存在
      * @param model 检索条件
      * @return Boolean
      */
     @Override
     public MsgResult isExist(T model) {
+        LoggerInfo();
+        return null;
+    }
+
+    /**
+     * 檢查数据是否存在
+     * @param id
+     * @return Boolean
+     */
+    @Override
+    public MsgResult isExist(Long id) {
         LoggerInfo();
         return null;
     }
