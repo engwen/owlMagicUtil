@@ -19,14 +19,45 @@ public abstract class MsgResult implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //添加將要返回的基礎數據
-    private Boolean result = true;
-    private String resultCode = MsgConstantUtil.REQUEST_DEFAULT_ERROR_CODE;
-    private String resultMsg = MsgConstantUtil.REQUEST_DEFAULT_ERROR_MSG;
+    private Boolean result;
+    private String resultCode;
+    private String resultMsg;
 
     //儅以上數據不能滿足需求時，提供另一個msgResult對象
     private MsgResult resultData;
     //儅以上數據仍不能滿足時，提供Map封裝參數
-    private Map<String, Object> params = new HashMap<>();
+    private Map<String, Object> params;
+
+    /*----------------------------  提供构造函数  --------------------------------*/
+    public MsgResult() {
+        this.result = true;
+        this.resultCode = MsgConstantUtil.REQUEST_DEFAULT_ERROR_CODE;
+        this.resultMsg = MsgConstantUtil.REQUEST_DEFAULT_ERROR_MSG;
+        this.params = new HashMap<>();
+    }
+
+
+    public MsgResult(Map<String, Object> params) {
+        this.result = true;
+        this.resultCode = MsgConstantUtil.REQUEST_DEFAULT_ERROR_CODE;
+        this.resultMsg = MsgConstantUtil.REQUEST_DEFAULT_ERROR_MSG;
+        this.params = params;
+    }
+
+    public MsgResult(Boolean result, String resultCode, String resultMsg) {
+        this.result = result;
+        this.resultCode = resultCode;
+        this.resultMsg = resultMsg;
+        this.params = new HashMap<>();
+    }
+
+    public MsgResult(Boolean result, String resultCode, String resultMsg, Map<String, Object> params) {
+        this.result = result;
+        this.resultCode = resultCode;
+        this.resultMsg = resultMsg;
+        this.params = params;
+    }
+    /*----------------------------  构造函数结束  --------------------------------*/
 
     /**
      * 請求失敗
