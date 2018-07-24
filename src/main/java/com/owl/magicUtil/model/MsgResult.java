@@ -1,6 +1,7 @@
 package com.owl.magicUtil.model;
 
 
+import com.owl.magicUtil.constant.MsgConstantEM;
 import com.owl.magicUtil.constant.MsgConstantUtil;
 import com.owl.magicUtil.vo.MsgResultVO;
 
@@ -48,6 +49,13 @@ public abstract class MsgResult implements Serializable {
         this.result = result;
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
+        this.params = new HashMap<>();
+    }
+
+    public MsgResult(Boolean result, MsgConstantEM em) {
+        this.result = result;
+        this.resultCode = em.getCode();
+        this.resultMsg = em.getMsg();
         this.params = new HashMap<>();
     }
 
