@@ -1,10 +1,14 @@
 package com.owl.magicUtil.constant;
 
 /**
+ * please use MsgConstantEM and we will remove this after some day
+ * details see {@link MsgConstantEM}
+ * 该类用于msgResult中的错误信息，提供依据code码，返回错误详情功能
  * author engwen
  * email xiachanzou@outlook.com
  * time 2017/10/26.
  */
+@Deprecated
 public interface MsgConstantUtil {
     String REQUEST_SUCCESS_CODE = "0000";
     String REQUEST_SUCCESS_MSG = "请求成功";

@@ -1,6 +1,7 @@
 package com.owl.magicUtil.constant;
 
 /**
+ * 该类用于msgResult中的错误信息，提供依据code码，返回错误详情功能
  * author engwen
  * email xiachanzou@outlook.com
  * time 2018/07/24.
@@ -35,14 +36,19 @@ public enum MsgConstantEM {
         this.msg = msg;
     }
 
-    public static MsgConstantEM getMsgConstantEM(String code) {
+    public static MsgConstantEM getMsgConstantEMByCode(String code) {
         MsgConstantEM result = null;
         for (MsgConstantEM em : MsgConstantEM.values()) {
             if (em.getCode().equals(code)) {
                 result = em;
+                break;
             }
         }
         return result;
+    }
+
+    public static String getMsgByCode(String code) {
+        return getMsgConstantEMByCode(code).getMsg();
     }
 
     public String getCode() {

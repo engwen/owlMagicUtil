@@ -1,6 +1,6 @@
 package com.owl.magicUtil.controller;
 
-import com.owl.magicUtil.constant.MsgConstantUtil;
+import com.owl.magicUtil.constant.MsgConstantEM;
 import com.owl.magicUtil.model.MsgResult;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
@@ -29,7 +29,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
     @Override
     public MsgResult create(T model) {
         LoggerInfo();
-        model.errorResult(MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_CODE, MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_MSG);
+        model.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return model;
     }
 
@@ -42,7 +42,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
     public MsgResult createList(List<T> list) {
         LoggerInfo();
         MsgResult result = new MsgResultVO();
-        result.errorResult(MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_CODE, MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_MSG);
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -55,7 +55,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
     public MsgResult delete(T model) {
         LoggerInfo();
         MsgResult result = new MsgResultVO();
-        result.errorResult(MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_CODE, MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_MSG);
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -68,7 +68,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
     public MsgResult deleteList(List<Long> idList) {
         LoggerInfo();
         MsgResult result = new MsgResultVO();
-        result.errorResult(MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_CODE, MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_MSG);
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -81,7 +81,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
     public MsgResult update(T model) {
         LoggerInfo();
         MsgResult result = new MsgResultVO();
-        result.errorResult(MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_CODE, MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_MSG);
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -93,7 +93,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
     @Override
     public MsgResult details(T model) {
         LoggerInfo();
-        model.errorResult(MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_CODE, MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_MSG);
+        model.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return model;
     }
 
@@ -108,7 +108,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
     public PageVO<T> list(Integer requestPage, Integer size, T model) {
         LoggerInfo();
         PageVO<T> pageVO = new PageVO<>();
-        pageVO.errorResult(MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_CODE, MsgConstantUtil.REQUEST_METHOD_NOT_EXITS_ERROR_MSG);
+        pageVO.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return pageVO;
     }
 

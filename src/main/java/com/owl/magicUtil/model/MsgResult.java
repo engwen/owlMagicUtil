@@ -2,7 +2,6 @@ package com.owl.magicUtil.model;
 
 
 import com.owl.magicUtil.constant.MsgConstantEM;
-import com.owl.magicUtil.constant.MsgConstantUtil;
 import com.owl.magicUtil.vo.MsgResultVO;
 
 import java.io.Serializable;
@@ -32,17 +31,14 @@ public abstract class MsgResult implements Serializable {
     /*----------------------------  提供构造函数  --------------------------------*/
     public MsgResult() {
         this.result = true;
-        this.resultCode = MsgConstantUtil.REQUEST_DEFAULT_ERROR_CODE;
-        this.resultMsg = MsgConstantUtil.REQUEST_DEFAULT_ERROR_MSG;
         this.params = new HashMap<>();
+        setMsgConstantEM(MsgConstantEM.REQUEST_DEFAULT);
     }
-
 
     public MsgResult(Map<String, Object> params) {
         this.result = true;
-        this.resultCode = MsgConstantUtil.REQUEST_DEFAULT_ERROR_CODE;
-        this.resultMsg = MsgConstantUtil.REQUEST_DEFAULT_ERROR_MSG;
         this.params = params;
+        setMsgConstantEM(MsgConstantEM.REQUEST_DEFAULT);
     }
 
     public MsgResult(Boolean result, String resultCode, String resultMsg) {
@@ -54,9 +50,8 @@ public abstract class MsgResult implements Serializable {
 
     public MsgResult(Boolean result, MsgConstantEM em) {
         this.result = result;
-        this.resultCode = em.getCode();
-        this.resultMsg = em.getMsg();
         this.params = new HashMap<>();
+        setMsgConstantEM(em);
     }
 
     public MsgResult(Boolean result, String resultCode, String resultMsg, Map<String, Object> params) {
@@ -66,6 +61,20 @@ public abstract class MsgResult implements Serializable {
         this.params = params;
     }
     /*----------------------------  构造函数结束  --------------------------------*/
+
+    private void setMsgConstantEM(MsgConstantEM msgConstantEM) {
+        this.resultCode = msgConstantEM.getCode();
+        this.resultMsg = msgConstantEM.getMsg();
+    }
+
+    /**
+     * 請求失敗
+     * @param em 枚举信息对象
+     */
+    public void errorResult(MsgConstantEM em) {
+        this.result = false;
+        setMsgConstantEM(em);
+    }
 
     /**
      * 請求失敗
@@ -83,12 +92,22 @@ public abstract class MsgResult implements Serializable {
      */
     public void successResult() {
         this.result = true;
-        this.resultCode = MsgConstantUtil.REQUEST_SUCCESS_CODE;
-        this.resultMsg = MsgConstantUtil.REQUEST_SUCCESS_MSG;
+        setMsgConstantEM(MsgConstantEM.REQUEST_SUCCESS);
     }
 
     /**
      * 請求成功
+     * @param em 枚举信息对象
+     */
+    public void successResult(MsgConstantEM em) {
+        this.result = true;
+        setMsgConstantEM(em);
+    }
+
+    /**
+     * 請求成功
+     * @param resultCode 消息代碼
+     * @param resultMsg 消息信息
      */
     public void successResult(String resultCode, String resultMsg) {
         this.result = true;
