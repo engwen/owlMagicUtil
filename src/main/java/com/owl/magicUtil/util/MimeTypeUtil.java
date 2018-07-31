@@ -11,6 +11,7 @@ import java.util.Map;
 public abstract class MimeTypeUtil {
     private static class MimeTypeMappings {
         private static Map<String, String> mappings = new HashMap<>();
+
         static {
             // applications
             mappings.put("eps", "application/postscript");
@@ -128,8 +129,38 @@ public abstract class MimeTypeUtil {
         }
     }
 
+    /**
+     * 获取通过文件后缀名称，获取详细的文件类型属性
+     * @param fileName 文件名称
+     * @return 详细的文件属性
+     */
     public static String forExtension(String fileName) {
-        String extension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()).toLowerCase();
+        String extension = getFileTypeByFileName(fileName);
         return null != MimeTypeMappings.mappings.get(extension) ? MimeTypeMappings.mappings.get(extension) : "unknown";
+    }
+
+    /**
+     * 获取文件的后缀名
+     * @param fileName 文件名称
+     * @return 文件类型
+     */
+    public static String getFileTypeByFileName(String fileName) {
+        return fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()).toLowerCase();
+    }
+
+    /**
+     * 依据file的contentType类型获取文件的类型
+     * @param contentType
+     * @return
+     */
+    public static String getFileTypeByContentType(String contentType) {
+        String result = "unknown";
+        for (String key : MimeTypeMappings.mappings.keySet()) {
+            if (MimeTypeMappings.mappings.get(key).equals(contentType)) {
+                result = key;
+                break;
+            }
+        }
+        return result;
     }
 }
