@@ -21,7 +21,7 @@ public final class PageVO<T> extends MsgResult {
     //縂條數
     private Integer sum = 0;
     //每頁顯示條數
-    private Integer size = 14;
+    private Integer rows = 14;
     //請求的頁面
     private Integer requestPage = 0;
 
@@ -38,9 +38,9 @@ public final class PageVO<T> extends MsgResult {
     /**
      * 塞入總數，請求頁數，每頁數量
      */
-    public void initPageVO(Integer sum, Integer requestPage, Integer size) {
+    public void initPageVO(Integer sum, Integer requestPage, Integer rows) {
         if (getAll) {
-            size = sum;
+            rows = sum;
             requestPage = 1;
         }
         if (null != sum && sum > 0) {
@@ -49,11 +49,11 @@ public final class PageVO<T> extends MsgResult {
         if (null != requestPage) {
             this.requestPage = requestPage;
         }
-        if (null != size && size > 0) {
-            this.size = size;
+        if (null != rows && rows > 0) {
+            this.rows = rows;
         }
         if (this.sum != 0) {
-            this.sumPage = (int) Math.ceil(this.sum * 1.0 / this.size);
+            this.sumPage = (int) Math.ceil(this.sum * 1.0 / this.rows);
         } else {
             this.sumPage = 1;
         }
@@ -62,9 +62,9 @@ public final class PageVO<T> extends MsgResult {
         if (this.requestPage <= 0 || this.requestPage > sumPage) {
             this.requestPage = 1;
         }
-        this.upLimit = (this.requestPage - 1) * this.size;
+        this.upLimit = (this.requestPage - 1) * this.rows;
         if (this.requestPage < sumPage) {
-            this.downLimit = this.requestPage * this.size;
+            this.downLimit = this.requestPage * this.rows;
         } else {
             this.downLimit = this.sum;
         }
@@ -114,7 +114,7 @@ public final class PageVO<T> extends MsgResult {
     public PageVO setThisPageToAnotherPage(PageVO newPage) {
         if (!RegexUtil.isParamsHaveEmpty(newPage)) {
             newPage.setRequestPage(this.requestPage);
-            newPage.setSize(this.size);
+            newPage.setRows(this.rows);
             newPage.setSumPage(this.sumPage);
             newPage.setSum(this.sum);
             newPage.setUpLimit(this.upLimit);
@@ -151,12 +151,12 @@ public final class PageVO<T> extends MsgResult {
         this.sum = sum;
     }
 
-    public Integer getSize() {
-        return size;
+    public Integer getRows() {
+        return rows;
     }
 
-    private void setSize(Integer size) {
-        this.size = size;
+    private void setRows(Integer rows) {
+        this.rows = rows;
     }
 
     public Integer getRequestPage() {

@@ -31,7 +31,7 @@ com.owl.magicUtil
    MsgResult banOrLeaveList(List<Long> idList, Boolean status);
    MsgResult update(T model);
    T details(T model);
-   PageVO<T> list(Boolean getAll, Integer requestPage, Integer size, T model);
+   PageVO<T> list(Boolean getAll, Integer requestPage, Integer rows, T model);
    List<T> listAll(T model);
   ```
   2. RelationBaseService：关系型业务接口  
