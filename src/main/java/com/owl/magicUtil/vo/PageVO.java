@@ -34,6 +34,24 @@ public final class PageVO<T> extends MsgResult {
     //是否獲取全部對象
     private Boolean getAll = false;
 
+    /**
+     * 塞入總數，請求頁數，每頁數量,是否获取所有
+     */
+    public void initPageVO(Integer sum, Boolean isGetAll) {
+        if (isGetAll) {
+            this.getAll = true;
+            this.rows = sum;
+            this.sum = sum;
+            this.requestPage = 1;
+            this.sumPage = 1;
+            this.upLimit = 0;
+            this.downLimit = this.sum;
+            this.pageList = new int[1];
+            this.pageList[0] = 1;
+        } else {
+            this.initPageVO(sum, this.requestPage, this.rows);
+        }
+    }
 
     /**
      * 塞入總數，請求頁數，每頁數量
