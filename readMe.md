@@ -1,6 +1,6 @@
 owlMagicUtil工具介绍
 -------
-
+ 
 *双师课堂一期中所有工具均来自自身，二期为提高相关代码重用度，转而采用引用jar的方式，用到的私有包被命名为owlMagicUtil-2.1（美容项目，owlMagicFile以及一期中均为1.0版本，后升级为1.1，1.2，2.0，2.1，但只有2.0，2.1版本被应用在二期以及owlMagicShiro中），这里只对2.1最新版的做一下基本说明*
 
 * 包名
@@ -10,15 +10,31 @@ com.owl.magicUtil
 <dependency>
     <groupId>owl.magic.util</groupId>
     <artifactId>owlMagicUtil</artifactId>
-    <version>2.1-SNAPSHOT</version>
+    <version>2.1</version>
 </dependency>
 ```
 #### *项目结构以及介绍如下*
 * **constant**  常用的常量类包，采用接口模式  
-  1. MsgConstantUtil： 常用的返回信息工具类
+  1. MsgConstantUtil: 常用的返回信息工具类(现已不推荐使用)
+  2. MsgConstantEM: 常用的返回信息枚举类（推荐使用，简化MsgResult中的error与succes方法）
+* **controller**  基础controller类
+  1. CellBaseController：model 基础类接口  
+  提供以下接口  
+  ```
+    MsgResult create(T model);
+    MsgResult createList(List<T> list);
+    MsgResult delete(T model);
+    MsgResult deleteList(List<Long> idList);
+    MsgResult update(T model);
+    MsgResult details(T model);
+    PageVO<T> list(Integer requestPage, Integer size, T model);
+    List<T> listAll(T model);
+    MsgResult isExist(T model);
+  ```
+  2. CellBaseControllerAb：抽象类，实现了上述接口，在使用时重写其中方法即可  
 * **model**  基础返回类  
   1. MsgResult： 抽象类，为所有model的基类提供基础返回消息以及序列化支持、错误消息以及成功消息初始化方法、请求参数以及返回参数的包装等等   
-  2. MenuBase： 抽象类，菜单基础类
+  2. MenuBase： 抽象类，菜单基础
 * **service**  基础service类
   1. CellBaseService：model基础业务类接口  
   提供以下接口  
