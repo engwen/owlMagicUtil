@@ -1,5 +1,7 @@
 package com.owl.magicUtil.service;
 
+import com.owl.magicUtil.dao.CellBaseDao;
+import com.owl.magicUtil.exception.CellBaseException;
 import com.owl.magicUtil.model.MsgResult;
 import com.owl.magicUtil.vo.PageVO;
 
@@ -23,55 +25,55 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * 創建
      * @param model 汎型對象
      * @return 汎型對象
+     * @throws Exception
      */
     @Override
-    public T create(T model) {
-        LoggerInfo();
-        return null;
+    public T create(T model) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
      * 批量創建
      * @param modelList 汎型對象
      * @return 汎型對象
+     * @throws Exception
      */
     @Override
-    public MsgResult createList(List<T> modelList) {
-        LoggerInfo();
-        return null;
+    public MsgResult createList(List<T> modelList) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
      * 刪除 更新前需要查询，因此可能返回对象为父类型
      * @param id 对象ID
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResult delete(Long id) {
-        LoggerInfo();
-        return null;
+    public MsgResult delete(Long id) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
      * 刪除 更新前需要查询，因此可能返回对象为父类型
      * @param model 对象
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResult delete(T model) {
-        LoggerInfo();
-        return null;
+    public MsgResult delete(T model) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
      * 批量刪除 更新前需要查询，因此可能返回对象为父类型
      * @param idList ID集合
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResult deleteList(List<Long> idList) {
-        LoggerInfo();
-        return null;
+    public MsgResult deleteList(List<Long> idList) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
@@ -79,11 +81,11 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @param id     對象ID
      * @param status 對象狀態，可以爲空
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResult banOrLeave(Long id, Boolean status) {
-        LoggerInfo();
-        return null;
+    public MsgResult banOrLeave(Long id, Boolean status) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
@@ -91,22 +93,22 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @param idList 對象ID
      * @param status 對象狀態
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResult banOrLeaveList(List<Long> idList, Boolean status) {
-        LoggerInfo();
-        return null;
+    public MsgResult banOrLeaveList(List<Long> idList, Boolean status) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
      * 更新 更新前需要查询，因此可能返回对象为父类型
      * @param model 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResult update(T model) {
-        LoggerInfo();
-        return null;
+    public MsgResult update(T model) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
@@ -179,7 +181,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
 
     /**
      * 檢查数据是否存在
-     * @param id
+     * @param id id属性
      * @return Boolean
      */
     @Override

@@ -17,27 +17,31 @@ interface RelationBaseService<T extends MsgResult> {
      * 插入關係數據
      * @param model 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
-    MsgResultVO insert(T model);
+    MsgResultVO insert(T model) throws Exception;
 
     /**
      * 批量插入
      * @param modelList 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
-    MsgResultVO insertList(List<T> modelList);
+    MsgResultVO insertList(List<T> modelList) throws Exception;
 
     /**
      * 刪除關係數據
      * @param model 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
-    MsgResultVO delete(T model);
+    MsgResultVO delete(T model) throws Exception;
 
     /**
      * 批量刪除
      * @param modelList 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
-    MsgResultVO deleteList(List<T> modelList);
+    MsgResultVO deleteList(List<T> modelList) throws Exception;
 }

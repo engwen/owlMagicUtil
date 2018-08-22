@@ -16,14 +16,6 @@ public final class TreeVO<T extends MsgResult> extends MsgResult {
 
     private T treeObj;
 
-    public T getTreeObj() {
-        return treeObj;
-    }
-
-    public void setTreeObj(T treeObj) {
-        this.treeObj = treeObj;
-    }
-
     private List<TreeVO> treeVOList = new ArrayList<>();
 
     public TreeVO(Integer id, Integer pid, T t) {
@@ -37,6 +29,15 @@ public final class TreeVO<T extends MsgResult> extends MsgResult {
         this.pid = pid;
         this.treeObj = t;
     }
+
+    public T getTreeObj() {
+        return treeObj;
+    }
+
+    public void setTreeObj(T treeObj) {
+        this.treeObj = treeObj;
+    }
+
 
     public Long getId() {
         return id;

@@ -1,5 +1,6 @@
 package com.owl.magicUtil.service;
 
+import com.owl.magicUtil.exception.CellBaseException;
 import com.owl.magicUtil.model.MsgResult;
 import com.owl.magicUtil.vo.MsgResultVO;
 
@@ -22,40 +23,43 @@ public abstract class RelationBaseServiceAb<T extends MsgResult> implements Rela
      * 插入關係數據
      * @param model 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResultVO insert(T model) {
-        LoggerInfo();
-        return null;
+    public MsgResultVO insert(T model) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
      * 批量插入
      * @param modelList 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResultVO insertList(List<T> modelList) {
-        return null;
+    public MsgResultVO insertList(List<T> modelList) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
      * 刪除關係數據
      * @param model 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResultVO delete(T model) {
-        return null;
+    public MsgResultVO delete(T model) throws Exception {
+        throw new CellBaseException();
     }
 
     /**
      * 批量刪除
      * @param modelList 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
     @Override
-    public MsgResultVO deleteList(List<T> modelList) {
-        return null;
+    public MsgResultVO deleteList(List<T> modelList) throws Exception {
+        throw new CellBaseException();
     }
 }

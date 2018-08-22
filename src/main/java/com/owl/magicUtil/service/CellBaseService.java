@@ -17,59 +17,67 @@ interface CellBaseService<T extends MsgResult> {
      * 創建
      * @param model 汎型對象
      * @return 汎型對象
+     * @throws Exception
      */
-    T create(T model);
+    T create(T model) throws Exception;
 
     /**
      * 批量創建
      * @param modelList 汎型對象
      * @return 汎型對象
+     * @throws Exception
      */
-    MsgResult createList(List<T> modelList);
+    MsgResult createList(List<T> modelList) throws Exception;
 
     /**
      * 刪除 更新前需要查询，因此可能返回对象为父类型
      * @param id 对象ID
      * @return 基礎數據
+     * @throws Exception
      */
-    MsgResult delete(Long id);
+    MsgResult delete(Long id)throws Exception;
 
     /**
      * 刪除 更新前需要查询，因此可能返回对象为父类型
      * @param model 对象
      * @return 基礎數據
+     * @throws Exception
      */
-    MsgResult delete(T model);
+    MsgResult delete(T model)throws Exception;
 
     /**
      * 批量刪除 更新前需要查询，因此可能返回对象为父类型
      * @param idList ID集合
      * @return 基礎數據
+     * @throws Exception
      */
-    MsgResult deleteList(List<Long> idList);
+    MsgResult deleteList(List<Long> idList)throws Exception;
 
     /**
      * 批量操作 禁用或啓用
      * @param id     對象ID
      * @param status 對象狀態，可以爲空
      * @return
+     * @throws Exception
      */
-    MsgResult banOrLeave(Long id, Boolean status);
+    MsgResult banOrLeave(Long id, Boolean status)throws Exception;
 
     /**
      * 批量操作 禁用或啓用
      * @param idList 對象ID
      * @param status 對象狀態
      * @return
+     * @throws Exception
      */
-    MsgResult banOrLeaveList(List<Long> idList, Boolean status);
+    MsgResult banOrLeaveList(List<Long> idList, Boolean status)throws Exception;
 
     /**
      * 更新 更新前需要查询，因此可能返回对象为父类型
      * @param model 汎型對象
      * @return 基礎數據
+     * @throws Exception
      */
-    MsgResult update(T model);
+    MsgResult update(T model)throws Exception;
 
     /**
      * 獲取詳情
@@ -117,7 +125,7 @@ interface CellBaseService<T extends MsgResult> {
 
     /**
      * 檢查数据是否存在
-     * @param id
+     * @param id id属性
      * @return Boolean
      */
     MsgResult isExist(Long id);
