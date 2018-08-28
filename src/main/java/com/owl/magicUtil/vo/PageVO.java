@@ -1,7 +1,7 @@
 package com.owl.magicUtil.vo;
 
 
-import com.owl.magicUtil.model.MsgResult;
+import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.util.RegexUtil;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * 2017/9/4.
  */
-public final class PageVO<T> extends MsgResult {
+public final class PageVO<T> extends ModelPrototype {
     //對象集合
     private List<T> objectList = new ArrayList<>();
     //縂頁數
@@ -139,7 +139,6 @@ public final class PageVO<T> extends MsgResult {
             newPage.setDownLimit(this.downLimit);
             newPage.setPageList(this.pageList);
             newPage.setGetAll(this.getAll);
-            newPage.getMsgByAnotherMsg(this);
         }
         return newPage;
     }

@@ -1,6 +1,6 @@
 package com.owl.magicUtil.dao;
 
-import com.owl.magicUtil.model.MsgResult;
+import com.owl.magicUtil.model.ModelPrototype;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/08/22.
  */
-public interface CellBaseDao<T extends MsgResult> {
+public interface CellBaseDao<T extends ModelPrototype> {
 
     /**
      * 直接插入

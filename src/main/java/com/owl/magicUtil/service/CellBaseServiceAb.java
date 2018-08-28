@@ -1,8 +1,7 @@
 package com.owl.magicUtil.service;
 
-import com.owl.magicUtil.dao.CellBaseDao;
 import com.owl.magicUtil.exception.CellBaseException;
-import com.owl.magicUtil.model.MsgResult;
+import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.vo.PageVO;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.logging.Logger;
  * email xiachanzou@outlook.com
  * time 2018/04/22.
  */
-public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBaseService<T> {
+public abstract class CellBaseServiceAb<T extends ModelPrototype> implements CellBaseService<T> {
     private static Logger logger = Logger.getLogger(CellBaseServiceAb.class.getName());
 
     private static void LoggerInfo() {
@@ -39,7 +38,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @throws Exception
      */
     @Override
-    public MsgResult createList(List<T> modelList) throws Exception {
+    public ModelPrototype createList(List<T> modelList) throws Exception {
         throw new CellBaseException();
     }
 
@@ -50,7 +49,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @throws Exception
      */
     @Override
-    public MsgResult delete(Long id) throws Exception {
+    public ModelPrototype delete(Long id) throws Exception {
         throw new CellBaseException();
     }
 
@@ -61,7 +60,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @throws Exception
      */
     @Override
-    public MsgResult delete(T model) throws Exception {
+    public ModelPrototype delete(T model) throws Exception {
         throw new CellBaseException();
     }
 
@@ -72,7 +71,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @throws Exception
      */
     @Override
-    public MsgResult deleteList(List<Long> idList) throws Exception {
+    public ModelPrototype deleteList(List<Long> idList) throws Exception {
         throw new CellBaseException();
     }
 
@@ -84,7 +83,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @throws Exception
      */
     @Override
-    public MsgResult banOrLeave(Long id, Boolean status) throws Exception {
+    public ModelPrototype banOrLeave(Long id, Boolean status) throws Exception {
         throw new CellBaseException();
     }
 
@@ -96,7 +95,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @throws Exception
      */
     @Override
-    public MsgResult banOrLeaveList(List<Long> idList, Boolean status) throws Exception {
+    public ModelPrototype banOrLeaveList(List<Long> idList, Boolean status) throws Exception {
         throw new CellBaseException();
     }
 
@@ -107,7 +106,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @throws Exception
      */
     @Override
-    public MsgResult update(T model) throws Exception {
+    public ModelPrototype update(T model) throws Exception {
         throw new CellBaseException();
     }
 
@@ -174,7 +173,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @return Boolean
      */
     @Override
-    public MsgResult isExist(T model) {
+    public ModelPrototype isExist(T model) {
         LoggerInfo();
         return null;
     }
@@ -185,7 +184,7 @@ public abstract class CellBaseServiceAb<T extends MsgResult> implements CellBase
      * @return Boolean
      */
     @Override
-    public MsgResult isExist(Long id) {
+    public ModelPrototype isExist(Long id) {
         LoggerInfo();
         return null;
     }

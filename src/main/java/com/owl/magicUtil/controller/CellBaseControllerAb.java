@@ -1,7 +1,7 @@
 package com.owl.magicUtil.controller;
 
 import com.owl.magicUtil.constant.MsgConstantEM;
-import com.owl.magicUtil.model.MsgResult;
+import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
 
@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * email xiachanzou@outlook.com
  * time 2018/07/16.
  */
-public abstract class CellBaseControllerAb<T extends MsgResult> implements CellBaseController<T> {
+public abstract class CellBaseControllerAb<T extends ModelPrototype> implements CellBaseController<T> {
     private static Logger logger = Logger.getLogger(CellBaseControllerAb.class.getName());
 
     private static void LoggerInfo() {
@@ -27,7 +27,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
      * @return 创建后的对象返回数据
      */
     @Override
-    public MsgResult create(T model) {
+    public ModelPrototype create(T model) {
         LoggerInfo();
         model.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return model;
@@ -39,9 +39,9 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
      * @return 结果
      */
     @Override
-    public MsgResult createList(List<T> list) {
+    public ModelPrototype createList(List<T> list) {
         LoggerInfo();
-        MsgResult result = new MsgResultVO();
+        ModelPrototype result = new MsgResultVO();
         result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
@@ -52,9 +52,9 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
      * @return 结果
      */
     @Override
-    public MsgResult delete(T model) {
+    public ModelPrototype delete(T model) {
         LoggerInfo();
-        MsgResult result = new MsgResultVO();
+        ModelPrototype result = new MsgResultVO();
         result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
@@ -65,9 +65,9 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
      * @return 结果
      */
     @Override
-    public MsgResult deleteList(List<Long> idList) {
+    public ModelPrototype deleteList(List<Long> idList) {
         LoggerInfo();
-        MsgResult result = new MsgResultVO();
+        ModelPrototype result = new MsgResultVO();
         result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
@@ -78,9 +78,9 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
      * @return 结果
      */
     @Override
-    public MsgResult update(T model) {
+    public ModelPrototype update(T model) {
         LoggerInfo();
-        MsgResult result = new MsgResultVO();
+        ModelPrototype result = new MsgResultVO();
         result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
@@ -91,7 +91,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
      * @return 结果对象
      */
     @Override
-    public MsgResult details(T model) {
+    public ModelPrototype details(T model) {
         LoggerInfo();
         model.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
         return model;
@@ -129,7 +129,7 @@ public abstract class CellBaseControllerAb<T extends MsgResult> implements CellB
      * @return Boolean
      */
     @Override
-    public MsgResult isExist(T model) {
+    public ModelPrototype isExist(T model) {
         LoggerInfo();
         return null;
     }

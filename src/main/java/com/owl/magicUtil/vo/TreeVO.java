@@ -1,6 +1,6 @@
 package com.owl.magicUtil.vo;
 
-import com.owl.magicUtil.model.MsgResult;
+import com.owl.magicUtil.model.ModelPrototype;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/06/15.
  */
-public final class TreeVO<T extends MsgResult> extends MsgResult {
+public final class TreeVO<T extends ModelPrototype> extends ModelPrototype {
     private Long id;
     private Long pid;
 

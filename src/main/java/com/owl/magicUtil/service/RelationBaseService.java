@@ -1,6 +1,6 @@
 package com.owl.magicUtil.service;
 
-import com.owl.magicUtil.model.MsgResult;
+import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.vo.MsgResultVO;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/01/25.
  */
-interface RelationBaseService<T extends MsgResult> {
+interface RelationBaseService<T extends ModelPrototype> {
     /**
      * 插入關係數據
      * @param model 汎型對象

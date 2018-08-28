@@ -1,6 +1,6 @@
 package com.owl.magicUtil.util;
 
-import com.owl.magicUtil.model.MsgResult;
+import com.owl.magicUtil.model.ModelPrototype;
 
 import java.beans.BeanInfo;
 import java.beans.Introspector;
@@ -81,7 +81,7 @@ public abstract class RegexUtil {
      * @param inputs 確保對象下的屬性不能爲空
      * @return boolean
      */
-    public static boolean isParamsHaveEmpty(MsgResult params, Object... inputs) {
+    public static boolean isParamsHaveEmpty(ModelPrototype params, Object... inputs) {
         return null == params || isParamsHaveEmpty(inputs);
     }
 
@@ -90,13 +90,13 @@ public abstract class RegexUtil {
      * @param object MsgResult的子类对象
      * @return
      */
-    public static boolean isObjectHaveEmpty(MsgResult object) {
+    public static boolean isObjectHaveEmpty(ModelPrototype object) {
         boolean result = false;
         if (object == null) {
             result = true;
         } else {
             try {
-                BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass(), MsgResult.class);
+                BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass(), ModelPrototype.class);
                 PropertyDescriptor[] descriptors = beanInfo.getPropertyDescriptors();
                 if (descriptors != null && descriptors.length > 0) {
                     for (PropertyDescriptor descriptor : descriptors) {

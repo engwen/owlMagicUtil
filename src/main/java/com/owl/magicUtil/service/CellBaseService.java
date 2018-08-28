@@ -1,6 +1,6 @@
 package com.owl.magicUtil.service;
 
-import com.owl.magicUtil.model.MsgResult;
+import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.vo.PageVO;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/01/22.
  */
-interface CellBaseService<T extends MsgResult> {
+interface CellBaseService<T extends ModelPrototype> {
     /**
      * 創建
      * @param model 汎型對象
@@ -27,7 +27,7 @@ interface CellBaseService<T extends MsgResult> {
      * @return 汎型對象
      * @throws Exception
      */
-    MsgResult createList(List<T> modelList) throws Exception;
+    ModelPrototype createList(List<T> modelList) throws Exception;
 
     /**
      * 刪除 更新前需要查询，因此可能返回对象为父类型
@@ -35,7 +35,7 @@ interface CellBaseService<T extends MsgResult> {
      * @return 基礎數據
      * @throws Exception
      */
-    MsgResult delete(Long id)throws Exception;
+    ModelPrototype delete(Long id)throws Exception;
 
     /**
      * 刪除 更新前需要查询，因此可能返回对象为父类型
@@ -43,7 +43,7 @@ interface CellBaseService<T extends MsgResult> {
      * @return 基礎數據
      * @throws Exception
      */
-    MsgResult delete(T model)throws Exception;
+    ModelPrototype delete(T model)throws Exception;
 
     /**
      * 批量刪除 更新前需要查询，因此可能返回对象为父类型
@@ -51,7 +51,7 @@ interface CellBaseService<T extends MsgResult> {
      * @return 基礎數據
      * @throws Exception
      */
-    MsgResult deleteList(List<Long> idList)throws Exception;
+    ModelPrototype deleteList(List<Long> idList)throws Exception;
 
     /**
      * 批量操作 禁用或啓用
@@ -60,7 +60,7 @@ interface CellBaseService<T extends MsgResult> {
      * @return
      * @throws Exception
      */
-    MsgResult banOrLeave(Long id, Boolean status)throws Exception;
+    ModelPrototype banOrLeave(Long id, Boolean status)throws Exception;
 
     /**
      * 批量操作 禁用或啓用
@@ -69,7 +69,7 @@ interface CellBaseService<T extends MsgResult> {
      * @return
      * @throws Exception
      */
-    MsgResult banOrLeaveList(List<Long> idList, Boolean status)throws Exception;
+    ModelPrototype banOrLeaveList(List<Long> idList, Boolean status)throws Exception;
 
     /**
      * 更新 更新前需要查询，因此可能返回对象为父类型
@@ -77,7 +77,7 @@ interface CellBaseService<T extends MsgResult> {
      * @return 基礎數據
      * @throws Exception
      */
-    MsgResult update(T model)throws Exception;
+    ModelPrototype update(T model)throws Exception;
 
     /**
      * 獲取詳情
@@ -121,13 +121,13 @@ interface CellBaseService<T extends MsgResult> {
      * @param model 检索条件
      * @return Boolean
      */
-    MsgResult isExist(T model);
+    ModelPrototype isExist(T model);
 
     /**
      * 檢查数据是否存在
      * @param id id属性
      * @return Boolean
      */
-    MsgResult isExist(Long id);
+    ModelPrototype isExist(Long id);
 
 }

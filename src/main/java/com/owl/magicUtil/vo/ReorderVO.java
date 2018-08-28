@@ -1,6 +1,6 @@
 package com.owl.magicUtil.vo;
 
-import com.owl.magicUtil.model.MsgResult;
+import com.owl.magicUtil.model.ModelPrototype;
 
 /**
  * 排序基类
@@ -8,7 +8,7 @@ import com.owl.magicUtil.model.MsgResult;
  * email xiachanzou@outlook.com
  * time 2018/06/15.
  */
-public final class ReorderVO<T extends MsgResult> extends MsgResult {
+public final class ReorderVO<T extends ModelPrototype> extends ModelPrototype {
     //序号
     private Integer order;
 
