@@ -20,7 +20,7 @@ public final class MsgResultVO extends ModelPrototype {
     private String resultCode;
     private String resultMsg;
 
-    //提供msgResult对對象进行封装
+    //提供 modelPrototype 对對象进行封装
     private ModelPrototype resultData;
     //儅以上數據仍不能滿足時，提供Map封裝參數
     private Map<String, Object> params;
@@ -65,6 +65,15 @@ public final class MsgResultVO extends ModelPrototype {
         this.result = false;
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
+    }
+
+
+    /**
+     * 請求成功
+     */
+    public void successResult() {
+        this.result = true;
+        setMsgConstantEM(MsgConstantEM.REQUEST_SUCCESS);
     }
 
     /**

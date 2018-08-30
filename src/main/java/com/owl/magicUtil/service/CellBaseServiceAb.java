@@ -2,6 +2,7 @@ package com.owl.magicUtil.service;
 
 import com.owl.magicUtil.exception.CellBaseException;
 import com.owl.magicUtil.model.ModelPrototype;
+import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public T create(T model) throws Exception {
+    public MsgResultVO create(T model) throws Exception {
         throw new CellBaseException();
     }
 
@@ -38,7 +39,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public ModelPrototype createList(List<T> modelList) throws Exception {
+    public MsgResultVO createList(List<T> modelList) throws Exception {
         throw new CellBaseException();
     }
 
@@ -49,7 +50,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public ModelPrototype delete(Long id) throws Exception {
+    public MsgResultVO delete(Long id) throws Exception {
         throw new CellBaseException();
     }
 
@@ -60,7 +61,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public ModelPrototype delete(T model) throws Exception {
+    public MsgResultVO delete(T model) throws Exception {
         throw new CellBaseException();
     }
 
@@ -71,7 +72,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public ModelPrototype deleteList(List<Long> idList) throws Exception {
+    public MsgResultVO deleteList(List<Long> idList) throws Exception {
         throw new CellBaseException();
     }
 
@@ -83,7 +84,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public ModelPrototype banOrLeave(Long id, Boolean status) throws Exception {
+    public MsgResultVO banOrLeave(Long id, Boolean status) throws Exception {
         throw new CellBaseException();
     }
 
@@ -95,7 +96,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public ModelPrototype banOrLeaveList(List<Long> idList, Boolean status) throws Exception {
+    public MsgResultVO banOrLeaveList(List<Long> idList, Boolean status) throws Exception {
         throw new CellBaseException();
     }
 
@@ -106,7 +107,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public ModelPrototype update(T model) throws Exception {
+    public MsgResultVO update(T model) throws Exception {
         throw new CellBaseException();
     }
 
@@ -116,7 +117,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 汎型對象
      */
     @Override
-    public T details(T model) {
+    public MsgResultVO details(T model) {
         LoggerInfo();
         return null;
     }
@@ -127,7 +128,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 汎型對象
      */
     @Override
-    public T details(Long id) {
+    public MsgResultVO details(Long id) {
         LoggerInfo();
         return null;
     }
@@ -141,7 +142,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 分頁對象
      */
     @Override
-    public PageVO<T> list(Boolean getAll, Integer requestPage, Integer size, T model) {
+    public MsgResultVO list(Boolean getAll, Integer requestPage, Integer size, T model) {
         LoggerInfo();
         return null;
     }
@@ -152,7 +153,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 對象集合
      */
     @Override
-    public List<T> listAll(T model) {
+    public MsgResultVO listAll(T model) {
         LoggerInfo();
         return null;
     }
@@ -162,7 +163,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 對象集合
      */
     @Override
-    public List<T> listAll() {
+    public MsgResultVO listAll() {
         LoggerInfo();
         return null;
     }
@@ -173,7 +174,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return Boolean
      */
     @Override
-    public ModelPrototype isExist(T model) {
+    public MsgResultVO isExist(T model) {
         LoggerInfo();
         return null;
     }
@@ -184,7 +185,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return Boolean
      */
     @Override
-    public ModelPrototype isExist(Long id) {
+    public MsgResultVO isExist(Long id) {
         LoggerInfo();
         return null;
     }
