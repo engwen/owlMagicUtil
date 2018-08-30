@@ -16,15 +16,15 @@ public final class ReorderVO<T extends ModelPrototype> extends ModelPrototype {
         return order;
     }
 
-    //初始化对象
-    public ReorderVO(Integer order, T object) {
-        this.order = order;
-        super.setResultData(object);
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public T getResultData() {
-        return null != super.getResultData() ? (T) super.getResultData() : null;
-    }
+//    //初始化对象
+//    public ReorderVO(Integer order, T object) {
+//        this.order = order;
+//        super.setResultData(object);
+//    }
+//
+//    @Override
+//    @SuppressWarnings("unchecked")
+//    public T getResultData() {
+//        return null != super.getResultData() ? (T) super.getResultData() : null;
+//    }
 }

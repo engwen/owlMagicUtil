@@ -4,6 +4,7 @@ package com.owl.magicUtil.vo;
 import com.owl.magicUtil.constant.MsgConstantEM;
 import com.owl.magicUtil.model.ModelPrototype;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -105,7 +106,7 @@ public final class MsgResultVO extends ModelPrototype {
      * @param anotherMsg 另一個msgResult
      * @return ModelPrototype 返回原來的引用
      */
-    public ModelPrototype setThisMsgToAnotherMsg(MsgResultVO anotherMsg) {
+    public MsgResultVO setThisMsgToAnotherMsg(MsgResultVO anotherMsg) {
         anotherMsg.setResult(this.result);
         anotherMsg.setResultCode(this.resultCode);
         anotherMsg.setResultMsg(this.resultMsg);
@@ -157,7 +158,7 @@ public final class MsgResultVO extends ModelPrototype {
      *
      * @return 目标对象
      */
-    public ModelPrototype aimMsg() {
+    public MsgResultVO aimMsg() {
         return this.getResult() ? this : this.setThisMsgToAnotherMsg(new MsgResultVO());
     }
 
@@ -167,6 +168,8 @@ public final class MsgResultVO extends ModelPrototype {
      * @return 字符串
      */
     public String toJSON() {
+        Field[] fields = ModelPrototype.class.getDeclaredFields();
+
         return "{result:" + this.result + ",resultCode:" + this.resultCode + ",resultMsg:" + this.resultMsg + "}";
     }
 

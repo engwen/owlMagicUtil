@@ -17,7 +17,7 @@ public class ReorderUtil<T extends ModelPrototype> {
     public List<T> getSort(List<ReorderVO<T>> reorderVOList) {
         List<T> result = new ArrayList<>();
         reorderVOList.sort(new ReorderRule());
-        reorderVOList.forEach(reorderVO -> result.add(reorderVO.getResultData()));
+//        reorderVOList.forEach(reorderVO -> result.add(reorderVO.getResultData()));
         return result;
     }
 }
