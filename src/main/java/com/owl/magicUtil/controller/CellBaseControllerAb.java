@@ -3,6 +3,7 @@ package com.owl.magicUtil.controller;
 import com.owl.magicUtil.constant.MsgConstantEM;
 import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.vo.MsgResultVO;
+import com.owl.magicUtil.vo.PageVO;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -16,11 +17,8 @@ import java.util.logging.Logger;
 public abstract class CellBaseControllerAb<T extends ModelPrototype> implements CellBaseController<T> {
     private static Logger logger = Logger.getLogger(CellBaseControllerAb.class.getName());
 
-    private static MsgResultVO defaultBack() {
+    private static void defaultBack() {
         logger.info("默认的原始输出，将不会产生任何影响");
-        MsgResultVO result = new MsgResultVO();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
-        return result;
     }
 
     /**
@@ -29,8 +27,11 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
      * @return 创建后的对象返回数据
      */
     @Override
-    public MsgResultVO create(T model) {
-        return defaultBack();
+    public MsgResultVO<T> create(T model) {
+        defaultBack();
+        MsgResultVO<T> result = new MsgResultVO<>();
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        return result;
     }
 
     /**
@@ -40,7 +41,10 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
      */
     @Override
     public MsgResultVO createList(List<T> list) {
-        return defaultBack();
+        defaultBack();
+        MsgResultVO result = new MsgResultVO();
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        return result;
     }
 
     /**
@@ -50,7 +54,10 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
      */
     @Override
     public MsgResultVO delete(T model) {
-        return defaultBack();
+        defaultBack();
+        MsgResultVO result = new MsgResultVO();
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        return result;
     }
 
     /**
@@ -60,7 +67,10 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
      */
     @Override
     public MsgResultVO deleteList(List<Long> idList) {
-        return defaultBack();
+        defaultBack();
+        MsgResultVO result = new MsgResultVO();
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        return result;
     }
 
     /**
@@ -69,8 +79,11 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
      * @return 结果
      */
     @Override
-    public MsgResultVO update(T model) {
-        return defaultBack();
+    public MsgResultVO<T> update(T model) {
+        defaultBack();
+        MsgResultVO<T> result = new MsgResultVO<>();
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        return result;
     }
 
     /**
@@ -79,8 +92,11 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
      * @return 结果对象
      */
     @Override
-    public MsgResultVO details(T model) {
-        return defaultBack();
+    public MsgResultVO<T> details(T model) {
+        defaultBack();
+        MsgResultVO<T> result = new MsgResultVO<>();
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        return result;
     }
 
     /**
@@ -91,8 +107,11 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
      * @return 分页集合
      */
     @Override
-    public MsgResultVO list(Integer requestPage, Integer size, T model) {
-        return defaultBack();
+    public MsgResultVO<PageVO<T>> list(Integer requestPage, Integer size, T model) {
+        defaultBack();
+        MsgResultVO<PageVO<T>> result = new MsgResultVO<>();
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        return result;
     }
 
     /**
@@ -101,8 +120,11 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
      * @return 结果集合
      */
     @Override
-    public MsgResultVO listAll(T model) {
-        return defaultBack();
+    public MsgResultVO<List<T>> listAll(T model) {
+        defaultBack();
+        MsgResultVO<List<T>> result = new MsgResultVO<>();
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        return result;
     }
 
     /**
@@ -112,6 +134,9 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
      */
     @Override
     public MsgResultVO isExist(T model) {
-        return defaultBack();
+        defaultBack();
+        MsgResultVO<List<T>> result = new MsgResultVO<>();
+        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        return result;
     }
 }

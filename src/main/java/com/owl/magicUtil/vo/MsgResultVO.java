@@ -14,16 +14,21 @@ import java.util.Map;
  * email xiachanzou@outlook.com
  * time 2017/10/23.
  */
-public final class MsgResultVO extends ModelPrototype {
+public final class MsgResultVO<T> extends ModelPrototype {
     //添加將要返回的基礎數據
     private Boolean result;
     private String resultCode;
     private String resultMsg;
 
-    //提供 modelPrototype 对對象进行封装
-    private ModelPrototype resultData;
-    //儅以上數據仍不能滿足時，提供Map封裝參數
+    //提供 汎型 对對象进行封装
+    private T resultData;
+    //儅以汎型數據仍不能滿足時，提供Map封裝參數
     private Map<String, Object> params;
+
+    private void setMsgConstantEM(MsgConstantEM msgConstantEM) {
+        this.resultCode = msgConstantEM.getCode();
+        this.resultMsg = msgConstantEM.getMsg();
+    }
 
     /*----------------------------  提供构造函数  --------------------------------*/
     public MsgResultVO() {
@@ -40,14 +45,8 @@ public final class MsgResultVO extends ModelPrototype {
 
     /*----------------------------  构造函数结束  --------------------------------*/
 
-    private void setMsgConstantEM(MsgConstantEM msgConstantEM) {
-        this.resultCode = msgConstantEM.getCode();
-        this.resultMsg = msgConstantEM.getMsg();
-    }
-
     /**
      * 請求失敗
-     *
      * @param em 枚举信息对象
      */
     public void errorResult(MsgConstantEM em) {
@@ -57,12 +56,35 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 請求失敗
-     *
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      */
     public void errorResult(String resultCode, String resultMsg) {
         this.result = false;
+        this.resultCode = resultCode;
+        this.resultMsg = resultMsg;
+    }
+
+    /**
+     * 請求失敗
+     * @param prototype 對象
+     * @param em        枚举信息对象
+     */
+    public void errorResult(T prototype, MsgConstantEM em) {
+        this.result = false;
+        this.resultData = prototype;
+        setMsgConstantEM(em);
+    }
+
+    /**
+     * 請求失敗
+     * @param prototype  對象
+     * @param resultCode 消息代碼
+     * @param resultMsg  消息信息
+     */
+    public void errorResult(T prototype, String resultCode, String resultMsg) {
+        this.result = false;
+        this.resultData = prototype;
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
     }
@@ -78,8 +100,29 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 請求成功
+     * @param resultCode 消息代碼
+     * @param resultMsg  消息信息
      */
-    public void successResult(ModelPrototype prototype) {
+    public void successResult(String resultCode, String resultMsg) {
+        this.result = true;
+        this.resultCode = resultCode;
+        this.resultMsg = resultMsg;
+    }
+
+    /**
+     * 請求成功
+     * @param em 枚举信息对象
+     */
+    public void successResult(MsgConstantEM em) {
+        this.result = true;
+        this.resultCode = em.getCode();
+        this.resultMsg = em.getMsg();
+    }
+
+    /**
+     * 請求成功
+     */
+    public void successResult(T prototype) {
         this.result = true;
         this.resultData = prototype;
         setMsgConstantEM(MsgConstantEM.REQUEST_SUCCESS);
@@ -87,10 +130,9 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 請求成功
-     *
      * @param em 枚举信息对象
      */
-    public void successResult(ModelPrototype prototype, MsgConstantEM em) {
+    public void successResult(T prototype, MsgConstantEM em) {
         this.result = true;
         this.resultData = prototype;
         setMsgConstantEM(em);
@@ -98,11 +140,10 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 請求成功
-     *
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      */
-    public void successResult(ModelPrototype prototype, String resultCode, String resultMsg) {
+    public void successResult(T prototype, String resultCode, String resultMsg) {
         this.result = true;
         this.resultData = prototype;
         this.resultCode = resultCode;
@@ -111,7 +152,6 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 將本類中的結果信息傳遞給其他的msg
-     *
      * @param anotherMsg 另一個msgResult
      * @return ModelPrototype 返回原來的引用
      */
@@ -124,7 +164,6 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 將其他msg的結果信息傳遞給本類
-     *
      * @param anotherMsg 另一個msgResult
      */
     public void getMsgByAnotherMsg(MsgResultVO anotherMsg) {
@@ -135,7 +174,6 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 向Map中传递参数名以及值
-     *
      * @param key   参数名称
      * @param value 值
      */
@@ -145,7 +183,6 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 获取指定key的值
-     *
      * @param key 参数名称
      * @return
      */
@@ -155,7 +192,6 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 移除Map中的參數
-     *
      * @param key 參數名
      */
     public void removeParam(String key) {
@@ -164,7 +200,6 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 生成可直接返回的目標對象，剝除多餘的對象信息
-     *
      * @return 目标对象
      */
     public MsgResultVO aimMsg() {
@@ -173,7 +208,6 @@ public final class MsgResultVO extends ModelPrototype {
 
     /**
      * 为了方便查看结果信息，直接使用JSON格式
-     *
      * @return 字符串
      */
     public String toJSON() {
@@ -206,11 +240,11 @@ public final class MsgResultVO extends ModelPrototype {
         this.resultMsg = resultMsg;
     }
 
-    public ModelPrototype getResultData() {
+    public T getResultData() {
         return resultData;
     }
 
-    public void setResultData(ModelPrototype resultData) {
+    public void setResultData(T resultData) {
         this.resultData = resultData;
     }
 

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public abstract class CellBaseServiceAb<T extends ModelPrototype> implements CellBaseService<T> {
     private static Logger logger = Logger.getLogger(CellBaseServiceAb.class.getName());
 
-    private static void LoggerInfo() {
+    private static void loggerInfo() {
         logger.info("默认的原始输出，将不会产生任何影响");
     }
 
@@ -28,7 +28,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public MsgResultVO create(T model) throws Exception {
+    public MsgResultVO<T> create(T model) throws Exception {
         throw new CellBaseException();
     }
 
@@ -107,7 +107,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @throws Exception
      */
     @Override
-    public MsgResultVO update(T model) throws Exception {
+    public MsgResultVO<T> update(T model) throws Exception {
         throw new CellBaseException();
     }
 
@@ -117,8 +117,8 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 汎型對象
      */
     @Override
-    public MsgResultVO details(T model) {
-        LoggerInfo();
+    public MsgResultVO<T> details(T model) {
+        loggerInfo();
         return null;
     }
 
@@ -128,8 +128,8 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 汎型對象
      */
     @Override
-    public MsgResultVO details(Long id) {
-        LoggerInfo();
+    public MsgResultVO<T> details(Long id) {
+        loggerInfo();
         return null;
     }
 
@@ -142,8 +142,8 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 分頁對象
      */
     @Override
-    public MsgResultVO list(Boolean getAll, Integer requestPage, Integer size, T model) {
-        LoggerInfo();
+    public MsgResultVO<PageVO<T>> list(Boolean getAll, Integer requestPage, Integer size, T model) {
+        loggerInfo();
         return null;
     }
 
@@ -153,8 +153,8 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 對象集合
      */
     @Override
-    public MsgResultVO listAll(T model) {
-        LoggerInfo();
+    public MsgResultVO<List<T>> listAll(T model) {
+        loggerInfo();
         return null;
     }
 
@@ -163,8 +163,8 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      * @return 對象集合
      */
     @Override
-    public MsgResultVO listAll() {
-        LoggerInfo();
+    public MsgResultVO<List<T>> listAll() {
+        loggerInfo();
         return null;
     }
 
@@ -175,7 +175,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      */
     @Override
     public MsgResultVO isExist(T model) {
-        LoggerInfo();
+        loggerInfo();
         return null;
     }
 
@@ -186,7 +186,7 @@ public abstract class CellBaseServiceAb<T extends ModelPrototype> implements Cel
      */
     @Override
     public MsgResultVO isExist(Long id) {
-        LoggerInfo();
+        loggerInfo();
         return null;
     }
 }

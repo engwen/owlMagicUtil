@@ -2,6 +2,7 @@ package com.owl.magicUtil.controller;
 
 import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.vo.MsgResultVO;
+import com.owl.magicUtil.vo.PageVO;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ interface CellBaseController<T extends ModelPrototype> {
      * @param model 将要被创建的对象
      * @return 创建后的对象返回数据
      */
-    MsgResultVO create(T model);
+    MsgResultVO<T> create(T model);
 
     /**
      * 批量创建
@@ -46,14 +47,14 @@ interface CellBaseController<T extends ModelPrototype> {
      * @param model 将要被更新的对象
      * @return 结果
      */
-    MsgResultVO update(T model);
+    MsgResultVO<T> update(T model);
 
     /**
      * 获取详情
      * @param model 获取详情的对象唯一属性
      * @return 结果对象
      */
-    MsgResultVO details(T model);
+    MsgResultVO<T> details(T model);
 
     /**
      * 获取分页集合
@@ -62,14 +63,14 @@ interface CellBaseController<T extends ModelPrototype> {
      * @param model       检索对象属性
      * @return 分页集合
      */
-    MsgResultVO list(Integer requestPage, Integer size, T model);
+    MsgResultVO<PageVO<T>> list(Integer requestPage, Integer size, T model);
 
     /**
      * 获取所有对象
      * @param model 检索条件
      * @return 结果集合
      */
-    MsgResultVO listAll(T model);
+    MsgResultVO<List<T>> listAll(T model);
 
 
     /**

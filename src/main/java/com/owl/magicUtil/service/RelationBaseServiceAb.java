@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public abstract class RelationBaseServiceAb<T extends ModelPrototype> implements RelationBaseService<T> {
     private static Logger logger = Logger.getLogger(RelationBaseServiceAb.class.getName());
 
-    private static void LoggerInfo() {
+    private static void loggerInfo() {
         logger.info("默认的原始输出，将不会产生任何影响");
     }
 
@@ -27,6 +27,7 @@ public abstract class RelationBaseServiceAb<T extends ModelPrototype> implements
      */
     @Override
     public MsgResultVO insert(T model) throws Exception {
+        loggerInfo();
         throw new CellBaseException();
     }
 
@@ -38,6 +39,7 @@ public abstract class RelationBaseServiceAb<T extends ModelPrototype> implements
      */
     @Override
     public MsgResultVO insertList(List<T> modelList) throws Exception {
+        loggerInfo();
         throw new CellBaseException();
     }
 
@@ -49,6 +51,7 @@ public abstract class RelationBaseServiceAb<T extends ModelPrototype> implements
      */
     @Override
     public MsgResultVO delete(T model) throws Exception {
+        loggerInfo();
         throw new CellBaseException();
     }
 
@@ -60,6 +63,7 @@ public abstract class RelationBaseServiceAb<T extends ModelPrototype> implements
      */
     @Override
     public MsgResultVO deleteList(List<T> modelList) throws Exception {
+        loggerInfo();
         throw new CellBaseException();
     }
 }

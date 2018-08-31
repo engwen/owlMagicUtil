@@ -2,6 +2,7 @@ package com.owl.magicUtil.service;
 
 import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.vo.MsgResultVO;
+import com.owl.magicUtil.vo.PageVO;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ interface CellBaseService<T extends ModelPrototype> {
      * @return 汎型對象
      * @throws Exception
      */
-    MsgResultVO create(T model) throws Exception;
+    MsgResultVO<T> create(T model) throws Exception;
 
     /**
      * 批量創建
@@ -35,7 +36,7 @@ interface CellBaseService<T extends ModelPrototype> {
      * @return 基礎數據
      * @throws Exception
      */
-    MsgResultVO delete(Long id)throws Exception;
+    MsgResultVO delete(Long id) throws Exception;
 
     /**
      * 刪除 更新前需要查询，因此可能返回对象为父类型
@@ -43,7 +44,7 @@ interface CellBaseService<T extends ModelPrototype> {
      * @return 基礎數據
      * @throws Exception
      */
-    MsgResultVO delete(T model)throws Exception;
+    MsgResultVO delete(T model) throws Exception;
 
     /**
      * 批量刪除 更新前需要查询，因此可能返回对象为父类型
@@ -51,7 +52,7 @@ interface CellBaseService<T extends ModelPrototype> {
      * @return 基礎數據
      * @throws Exception
      */
-    MsgResultVO deleteList(List<Long> idList)throws Exception;
+    MsgResultVO deleteList(List<Long> idList) throws Exception;
 
     /**
      * 批量操作 禁用或啓用
@@ -60,7 +61,7 @@ interface CellBaseService<T extends ModelPrototype> {
      * @return
      * @throws Exception
      */
-    MsgResultVO banOrLeave(Long id, Boolean status)throws Exception;
+    MsgResultVO banOrLeave(Long id, Boolean status) throws Exception;
 
     /**
      * 批量操作 禁用或啓用
@@ -69,7 +70,7 @@ interface CellBaseService<T extends ModelPrototype> {
      * @return
      * @throws Exception
      */
-    MsgResultVO banOrLeaveList(List<Long> idList, Boolean status)throws Exception;
+    MsgResultVO banOrLeaveList(List<Long> idList, Boolean status) throws Exception;
 
     /**
      * 更新 更新前需要查询，因此可能返回对象为父类型
@@ -77,21 +78,21 @@ interface CellBaseService<T extends ModelPrototype> {
      * @return 基礎數據
      * @throws Exception
      */
-    MsgResultVO update(T model)throws Exception;
+    MsgResultVO<T> update(T model) throws Exception;
 
     /**
      * 獲取詳情
      * @param model 汎型對象檢索條件
      * @return 汎型對象
      */
-    MsgResultVO details(T model);
+    MsgResultVO<T> details(T model);
 
     /**
      * 獲取詳情
      * @param id 汎型對象檢索條件
      * @return 汎型對象
      */
-    MsgResultVO details(Long id);
+    MsgResultVO<T> details(Long id);
 
     /**
      * 獲取分頁列表，添加 model 提供檢索功能
@@ -101,20 +102,20 @@ interface CellBaseService<T extends ModelPrototype> {
      * @param model       檢索條件
      * @return 分頁對象
      */
-    MsgResultVO list(Boolean getAll, Integer requestPage, Integer size, T model);
+    MsgResultVO<PageVO<T>> list(Boolean getAll, Integer requestPage, Integer size, T model);
 
     /**
      * 獲取所有的對象 添加 model 提供檢索功能
      * @param model 檢索條件
      * @return 對象集合
      */
-    MsgResultVO listAll(T model);
+    MsgResultVO<List<T>> listAll(T model);
 
     /**
      * 獲取所有的對象
      * @return 對象集合
      */
-    MsgResultVO listAll();
+    MsgResultVO<List<T>> listAll();
 
     /**
      * 檢查数据是否存在
