@@ -38,7 +38,7 @@ public abstract class DateCountUtil {
      * @return
      */
     public static String getDateFormSdfStr(Date date, String sdfStr) {
-        return getDateFormSdf(date,new SimpleDateFormat(sdfStr));
+        return getDateFormSdf(date, new SimpleDateFormat(sdfStr));
     }
 
     /**
