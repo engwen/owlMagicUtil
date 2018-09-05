@@ -7,6 +7,7 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -24,21 +25,98 @@ public abstract class RegexUtil {
 
     private static final String is_date = "^\\d{4}[-/]\\d{1,2}[-/]\\d{1,2}$";
 
+    private static final String is_postCodes = "^[1-9]\\d{5}$";
+
+    private static final String is_ip = "^([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])$";
+
+    private static final String is_http = "^(http|https)\\://(\\w+\\.\\w+\\.\\w+|\\w+\\.\\w+)";
+
+    /**
+     * 驗證字符串中是否有符合正則的字串
+     * @param reg   正則
+     * @param input 字符串
+     * @return
+     */
+    public boolean isContainsStr(String reg, String input) {
+        Pattern pattern = Pattern.compile(reg);
+        Matcher matcher = pattern.matcher(input);
+        return matcher.matches();
+    }
+
+    /**
+     * 驗證是否爲空
+     * @param input 字符串
+     * @return
+     */
     public static boolean isEmpty(String input) {
         return null == input || "".equals(input) || Pattern.matches(is_empty, input) || "null".equals(input);
     }
 
+    /**
+     * 手机号码验证,11位，不知道详细的手机号码段，只是验证开头必须是1和位数
+     * @param input 字符串
+     * @return
+     */
     public static boolean isMobile(String input) {
         return !isEmpty(input) && Pattern.matches(is_mobile, input);
     }
 
+    /**
+     * 驗證是否是郵件
+     * @param input 字符串
+     * @return
+     */
     public static boolean isEmail(String input) {
         return !isEmpty(input) && Pattern.matches(is_email, input);
     }
 
+    /**
+     * 驗證是否是日期
+     * @param input 字符串
+     * @return
+     */
     public static boolean isDate(String input) {
         return !isEmpty(input) && Pattern.matches(is_date, input);
     }
+
+
+    /**
+     * 检查邮政编码(中国),6位，第一位必须是非0开头，其他5位数字为0-9
+     * @param input 字符串
+     * @return
+     */
+    public static boolean isPostCodes(String input) {
+        return !isEmpty(input) && input.matches(is_postCodes);
+    }
+
+
+    /**
+     * 检查邮政编码(中国),6位，第一位必须是非0开头，其他5位数字为0-9
+     * @param input 字符串
+     * @return
+     */
+    public static boolean isIp(String input) {
+        return !isEmpty(input) && Pattern.matches(is_ip, input);
+    }
+
+    /**
+     * 网址验证<br>
+     * 符合类型：<br>
+     * http://www.test.com<br>
+     * http://163.com
+     */
+    public boolean checkWebSite(String url) {
+        return !isEmpty(url) && url.matches(is_http);
+    }
+
+    /**
+     * 检验用户名 取值范围为a-z,A-Z,0-9,"_",汉字，不能以"_"结尾 用户名有最小长度和最大长度限制，比如用户名必须是4-20位
+     */
+    public boolean isUserName(String username, int min, int max) {
+        String regex = "[\\w\u4e00-\u9fa5]{" + min + "," + max + "}(?<!_)";
+        return username.matches(regex);
+    }
+
 
     /**
      * 檢測所有的參數是否爲空
