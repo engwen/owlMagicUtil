@@ -4,7 +4,6 @@ package com.owl.magicUtil.vo;
 import com.owl.magicUtil.constant.MsgConstantEM;
 import com.owl.magicUtil.model.ModelPrototype;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -211,8 +210,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * @return 字符串
      */
     public String toJSON() {
-        Field[] fields = ModelPrototype.class.getDeclaredFields();
-
         return "{result:" + this.result + ",resultCode:" + this.resultCode + ",resultMsg:" + this.resultMsg + "}";
     }
 
