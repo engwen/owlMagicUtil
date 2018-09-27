@@ -48,9 +48,10 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * 請求失敗
      * @param em 枚举信息对象
      */
-    public void errorResult(MsgConstantEM em) {
+    public MsgResultVO<T> errorResult(MsgConstantEM em) {
         this.result = false;
         setMsgConstantEM(em);
+        return this;
     }
 
     /**
@@ -58,10 +59,11 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      */
-    public void errorResult(String resultCode, String resultMsg) {
+    public MsgResultVO<T> errorResult(String resultCode, String resultMsg) {
         this.result = false;
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
+        return this;
     }
 
     /**
@@ -69,10 +71,11 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * @param prototype 對象
      * @param em        枚举信息对象
      */
-    public void errorResult(T prototype, MsgConstantEM em) {
+    public MsgResultVO<T> errorResult(T prototype, MsgConstantEM em) {
         this.result = false;
         this.resultData = prototype;
         setMsgConstantEM(em);
+        return this;
     }
 
     /**
@@ -81,20 +84,22 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      */
-    public void errorResult(T prototype, String resultCode, String resultMsg) {
+    public MsgResultVO<T> errorResult(T prototype, String resultCode, String resultMsg) {
         this.result = false;
         this.resultData = prototype;
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
+        return this;
     }
 
 
     /**
      * 請求成功
      */
-    public void successResult() {
+    public MsgResultVO<T> successResult() {
         this.result = true;
         setMsgConstantEM(MsgConstantEM.REQUEST_SUCCESS);
+        return this;
     }
 
     /**
@@ -102,39 +107,43 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      */
-    public void successResult(String resultCode, String resultMsg) {
+    public MsgResultVO<T> successResult(String resultCode, String resultMsg) {
         this.result = true;
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
+        return this;
     }
 
     /**
      * 請求成功
      * @param em 枚举信息对象
      */
-    public void successResult(MsgConstantEM em) {
+    public MsgResultVO<T> successResult(MsgConstantEM em) {
         this.result = true;
         this.resultCode = em.getCode();
         this.resultMsg = em.getMsg();
+        return this;
     }
 
     /**
      * 請求成功
      */
-    public void successResult(T prototype) {
+    public MsgResultVO<T> successResult(T prototype) {
         this.result = true;
         this.resultData = prototype;
         setMsgConstantEM(MsgConstantEM.REQUEST_SUCCESS);
+        return this;
     }
 
     /**
      * 請求成功
      * @param em 枚举信息对象
      */
-    public void successResult(T prototype, MsgConstantEM em) {
+    public MsgResultVO<T> successResult(T prototype, MsgConstantEM em) {
         this.result = true;
         this.resultData = prototype;
         setMsgConstantEM(em);
+        return this;
     }
 
     /**
@@ -142,11 +151,12 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      */
-    public void successResult(T prototype, String resultCode, String resultMsg) {
+    public MsgResultVO<T> successResult(T prototype, String resultCode, String resultMsg) {
         this.result = true;
         this.resultData = prototype;
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
+        return this;
     }
 
     /**
