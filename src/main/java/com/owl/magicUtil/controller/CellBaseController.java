@@ -59,11 +59,11 @@ interface CellBaseController<T extends ModelPrototype> {
     /**
      * 获取分页集合
      * @param requestPage 请求页数
-     * @param size        请求显示条数
+     * @param rows        请求显示条数
      * @param model       检索对象属性
      * @return 分页集合
      */
-    MsgResultVO<PageVO<T>> list(Integer requestPage, Integer size, T model);
+    MsgResultVO<PageVO<T>> list(Integer requestPage, Integer rows, T model);
 
     /**
      * 获取所有对象

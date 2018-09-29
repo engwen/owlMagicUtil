@@ -102,12 +102,12 @@ public abstract class CellBaseControllerAb<T extends ModelPrototype> implements 
     /**
      * 获取分页集合
      * @param requestPage 请求页数
-     * @param size        请求显示条数
+     * @param rows        请求显示条数
      * @param model       检索对象属性
      * @return 分页集合
      */
     @Override
-    public MsgResultVO<PageVO<T>> list(Integer requestPage, Integer size, T model) {
+    public MsgResultVO<PageVO<T>> list(Integer requestPage, Integer rows, T model) {
         defaultBack();
         MsgResultVO<PageVO<T>> result = new MsgResultVO<>();
         result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);

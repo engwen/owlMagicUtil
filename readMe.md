@@ -27,7 +27,7 @@ com.owl.magicUtil
     MsgResult deleteList(List<Long> idList);
     MsgResult update(T model);
     MsgResult details(T model);
-    PageVO<T> list(Integer requestPage, Integer size, T model);
+    PageVO<T> list(Integer requestPage, Integer rows, T model);
     List<T> listAll(T model);
     MsgResult isExist(T model);
   ```

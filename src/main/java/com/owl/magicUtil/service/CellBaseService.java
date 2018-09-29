@@ -98,11 +98,11 @@ interface CellBaseService<T extends ModelPrototype> {
      * 獲取分頁列表，添加 model 提供檢索功能
      * @param getAll      是否獲取所有
      * @param requestPage 請求頁數
-     * @param size        請求列表的尺寸
+     * @param rows        請求列表的尺寸
      * @param model       檢索條件
      * @return 分頁對象
      */
-    MsgResultVO<PageVO<T>> list(Boolean getAll, Integer requestPage, Integer size, T model);
+    MsgResultVO<PageVO<T>> list(Boolean getAll, Integer requestPage, Integer rows, T model);
 
     /**
      * 獲取所有的對象 添加 model 提供檢索功能
