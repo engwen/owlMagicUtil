@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * email xiachanzou@outlook.com
  * time 2018/04/22.
  */
-public abstract class RelationBaseServiceAb<T extends ModelPrototype> implements RelationBaseService<T> {
+public abstract class RelationBaseServiceAb<T> implements RelationBaseService<T> {
     private static Logger logger = Logger.getLogger(RelationBaseServiceAb.class.getName());
 
     private static void loggerInfo() {

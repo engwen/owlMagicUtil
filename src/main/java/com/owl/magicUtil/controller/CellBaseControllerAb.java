@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * email xiachanzou@outlook.com
  * time 2018/07/16.
  */
-public abstract class CellBaseControllerAb<T extends ModelPrototype> implements CellBaseController<T> {
+public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     private static Logger logger = Logger.getLogger(CellBaseControllerAb.class.getName());
 
     private static void defaultBack() {

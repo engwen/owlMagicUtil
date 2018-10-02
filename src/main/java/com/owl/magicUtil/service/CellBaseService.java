@@ -13,7 +13,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/01/22.
  */
-interface CellBaseService<T extends ModelPrototype> {
+interface CellBaseService<T> {
     /**
      * 創建
      * @param model 汎型對象

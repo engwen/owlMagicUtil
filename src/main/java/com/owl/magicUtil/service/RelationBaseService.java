@@ -12,7 +12,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/01/25.
  */
-interface RelationBaseService<T extends ModelPrototype> {
+interface RelationBaseService<T> {
     /**
      * 插入關係數據
      * @param model 汎型對象

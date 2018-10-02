@@ -10,7 +10,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/06/15.
  */
-public final class TreeVO<T extends ModelPrototype> extends ModelPrototype {
+public final class TreeVO<T> extends ModelPrototype {
     private Long id;
     private Long pid;
 

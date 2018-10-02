@@ -12,7 +12,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/07/16.
  */
-interface CellBaseController<T extends ModelPrototype> {
+interface CellBaseController<T> {
 
     /**
      * 创建
