@@ -1,6 +1,5 @@
 package com.owl.magicUtil.service;
 
-import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.vo.MsgResultVO;
 
 import java.util.List;

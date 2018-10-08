@@ -1,7 +1,5 @@
 package com.owl.magicUtil.dao;
 
-import com.owl.magicUtil.model.ModelPrototype;
-
 import java.util.List;
 
 /**
@@ -10,7 +8,7 @@ import java.util.List;
  * email xiachanzou@outlook.com
  * time 2018/08/22.
  */
-public interface CellBaseDao<T extends ModelPrototype> {
+public interface CellBaseDao<T> {
 
     /**
      * 直接插入
@@ -18,13 +16,6 @@ public interface CellBaseDao<T extends ModelPrototype> {
      * @return
      */
     int insert(T record);
-
-    /**
-     * 依照屬性插入
-     * @param record
-     * @return
-     */
-    int insertSelective(T record);
 
     /**
      * 批量插入
@@ -46,6 +37,29 @@ public interface CellBaseDao<T extends ModelPrototype> {
      * @return
      */
     int deleteByIdList(List<Long> idList);
+
+    /**
+     * 刪除
+     * @param model
+     * @return
+     */
+    int deleteBySelective(T model);
+
+    /**
+     * 批量操作 禁用或啓用
+     * @param id     對象ID
+     * @param status 對象狀態，可以爲空
+     * @return
+     */
+    int banOrLeave(Long id, Boolean status);
+
+    /**
+     * 批量操作 禁用或啓用
+     * @param idList 對象ID
+     * @param status 對象狀態
+     * @return
+     */
+    int banOrLeaveList(List<Long> idList, Boolean status);
 
     /**
      * 依據Id更新

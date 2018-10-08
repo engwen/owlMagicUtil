@@ -20,6 +20,7 @@ public enum MsgConstantEM {
     REQUEST_IS_EXITS("0009", "该数据已存在"),
     REQUEST_CANT_UPDATE_ADMIN("0010", "管理员状态不可修改"),
     REQUEST_METHOD_NOT_EXITS("0011", "该方法（接口）不存在，请检查代码"),
+    REQUEST_DB_ERROR("0012", "底层sql错误,请检查代码"),
 
     REQUEST_CANT_UPDATE_STATUS("0020", "更新操作不能进行删除操作"),
 
