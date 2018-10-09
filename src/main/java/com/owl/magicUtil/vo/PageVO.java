@@ -35,21 +35,28 @@ public final class PageVO<T> extends ModelPrototype {
     private Boolean getAll = false;
 
     /**
+     * 塞入總數，获取所有
+     */
+    public void initPageVO(Integer sum) {
+        this.getAll = true;
+        this.rows = sum;
+        this.sum = sum;
+        this.requestPage = 1;
+        this.sumPage = 1;
+        this.upLimit = 0;
+        this.downLimit = this.sum;
+        this.pageList = new int[1];
+        this.pageList[0] = 1;
+    }
+
+    /**
      * 塞入總數，請求頁數，每頁數量,是否获取所有
      */
-    public void initPageVO(Integer sum, Boolean isGetAll) {
+    public void initPageVO(Integer sum, Integer requestPage, Integer rows, Boolean isGetAll) {
         if (isGetAll) {
-            this.getAll = true;
-            this.rows = sum;
-            this.sum = sum;
-            this.requestPage = 1;
-            this.sumPage = 1;
-            this.upLimit = 0;
-            this.downLimit = this.sum;
-            this.pageList = new int[1];
-            this.pageList[0] = 1;
+            initPageVO(sum);
         } else {
-            this.initPageVO(sum, this.requestPage, this.rows);
+            this.initPageVO(sum, requestPage, rows);
         }
     }
 

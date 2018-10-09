@@ -25,13 +25,6 @@ public interface CellBaseDao<T> {
     int insertList(List<T> list);
 
     /**
-     * 刪除
-     * @param id
-     * @return
-     */
-    int deleteById(Long id);
-
-    /**
      * 批量刪除
      * @param idList
      * @return
@@ -60,13 +53,6 @@ public interface CellBaseDao<T> {
      * @return
      */
     int banOrLeaveList(List<Long> idList, Boolean status);
-
-    /**
-     * 依據Id更新
-     * @param record
-     * @return
-     */
-    int updateById(T record);
 
     /**
      * 依據指定的屬性進行更新

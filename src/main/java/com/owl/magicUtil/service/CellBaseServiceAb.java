@@ -1,6 +1,5 @@
 package com.owl.magicUtil.service;
 
-import com.owl.magicUtil.exception.CellBaseException;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
 
@@ -24,55 +23,44 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      * 創建
      * @param model 汎型對象
      * @return 汎型對象
-     * @throws Exception
      */
     @Override
-    public MsgResultVO<T> create(T model) throws Exception {
-        throw new CellBaseException();
+    public MsgResultVO<T> create(T model) {
+        loggerInfo();
+        return null;
     }
 
     /**
      * 批量創建
      * @param modelList 汎型對象
      * @return 汎型對象
-     * @throws Exception
      */
     @Override
-    public MsgResultVO createList(List<T> modelList) throws Exception {
-        throw new CellBaseException();
-    }
-
-    /**
-     * 刪除 更新前需要查询，因此可能返回对象为父类型
-     * @param id 对象ID
-     * @return 基礎數據
-     * @throws Exception
-     */
-    @Override
-    public MsgResultVO delete(Long id) throws Exception {
-        throw new CellBaseException();
+    public MsgResultVO createList(List<T> modelList) {
+        loggerInfo();
+        return null;
     }
 
     /**
      * 刪除 更新前需要查询，因此可能返回对象为父类型
      * @param model 对象
      * @return 基礎數據
-     * @throws Exception
      */
     @Override
-    public MsgResultVO delete(T model) throws Exception {
-        throw new CellBaseException();
+    public MsgResultVO delete(T model) {
+        loggerInfo();
+        return null;
     }
 
     /**
      * 批量刪除 更新前需要查询，因此可能返回对象为父类型
      * @param idList ID集合
      * @return 基礎數據
-     * @throws Exception
      */
     @Override
-    public MsgResultVO deleteList(List<Long> idList) throws Exception {
-        throw new CellBaseException();
+    public MsgResultVO deleteList(List<Long> idList) {
+        loggerInfo();
+        return null;
     }
 
     /**
@@ -80,11 +68,11 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      * @param id     對象ID
      * @param status 對象狀態，可以爲空
      * @return 基礎數據
-     * @throws Exception
      */
     @Override
-    public MsgResultVO banOrLeave(Long id, Boolean status) throws Exception {
-        throw new CellBaseException();
+    public MsgResultVO banOrLeave(Long id, Boolean status) {
+        loggerInfo();
+        return null;
     }
 
     /**
@@ -92,22 +80,22 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      * @param idList 對象ID
      * @param status 對象狀態
      * @return 基礎數據
-     * @throws Exception
      */
     @Override
-    public MsgResultVO banOrLeaveList(List<Long> idList, Boolean status) throws Exception {
-        throw new CellBaseException();
+    public MsgResultVO banOrLeaveList(List<Long> idList, Boolean status) {
+        loggerInfo();
+        return null;
     }
 
     /**
      * 更新 更新前需要查询，因此可能返回对象为父类型
      * @param model 汎型對象
      * @return 基礎數據
-     * @throws Exception
      */
     @Override
-    public MsgResultVO<T> update(T model) throws Exception {
-        throw new CellBaseException();
+    public MsgResultVO update(T model) {
+        loggerInfo();
+        return null;
     }
 
     /**
@@ -116,7 +104,7 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      * @return 汎型對象
      */
     @Override
-    public MsgResultVO<T> details(T model) {
+    public MsgResultVO<List<T>> details(T model) {
         loggerInfo();
         return null;
     }
@@ -142,17 +130,6 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      */
     @Override
     public MsgResultVO<PageVO<T>> list(Boolean getAll, Integer requestPage, Integer rows, T model) {
-        loggerInfo();
-        return null;
-    }
-
-    /**
-     * 獲取所有的對象 添加 model 提供檢索功能
-     * @param model 檢索條件
-     * @return 對象集合
-     */
-    @Override
-    public MsgResultVO<List<T>> listAll(T model) {
         loggerInfo();
         return null;
     }
