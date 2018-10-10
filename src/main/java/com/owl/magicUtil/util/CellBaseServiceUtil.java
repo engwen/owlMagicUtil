@@ -252,7 +252,6 @@ public abstract class CellBaseServiceUtil {
      * @param id id属性
      * @return Boolean
      */
-
     public static <T> MsgResultVO isExist(CellBaseDao<T> cellBaseDao, Long id) {
         MsgResultVO resultVO = new MsgResultVO();
         try {

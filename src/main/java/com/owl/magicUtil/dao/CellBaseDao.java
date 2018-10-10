@@ -3,7 +3,7 @@ package com.owl.magicUtil.dao;
 import java.util.List;
 
 /**
- * 底层对dao进行统一，本接口对外开放
+ * 底层对基礎dao进行统一，本接口对外开放
  * author engwen
  * email xiachanzou@outlook.com
  * time 2018/08/22.

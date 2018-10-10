@@ -1,6 +1,5 @@
 package com.owl.magicUtil.service;
 
-import com.owl.magicUtil.exception.CellBaseException;
 import com.owl.magicUtil.vo.MsgResultVO;
 
 import java.util.List;
@@ -19,50 +18,57 @@ public abstract class RelationBaseServiceAb<T> implements RelationBaseService<T>
     }
 
     /**
+     * 獲取詳情集合
+     * @param model
+     * @return
+     */
+    @Override
+    public List<T> selectBySelective(T model) {
+        loggerInfo();
+        return null;
+    }
+
+    /**
      * 插入關係數據
      * @param model 汎型對象
      * @return 基礎數據
-     * @throws Exception
      */
     @Override
-    public MsgResultVO insert(T model) throws Exception {
+    public MsgResultVO insert(T model) {
         loggerInfo();
-        throw new CellBaseException();
+        return null;
     }
 
     /**
      * 批量插入
      * @param modelList 汎型對象
      * @return 基礎數據
-     * @throws Exception
      */
     @Override
-    public MsgResultVO insertList(List<T> modelList) throws Exception {
+    public MsgResultVO insertList(List<T> modelList) {
         loggerInfo();
-        throw new CellBaseException();
+        return null;
     }
 
     /**
      * 刪除關係數據
      * @param model 汎型對象
      * @return 基礎數據
-     * @throws Exception
      */
     @Override
-    public MsgResultVO delete(T model) throws Exception {
+    public MsgResultVO delete(T model) {
         loggerInfo();
-        throw new CellBaseException();
+        return null;
     }
 
     /**
      * 批量刪除
      * @param modelList 汎型對象
      * @return 基礎數據
-     * @throws Exception
      */
     @Override
-    public MsgResultVO deleteList(List<T> modelList) throws Exception {
+    public MsgResultVO deleteList(List<T> modelList) {
         loggerInfo();
-        throw new CellBaseException();
+        return null;
     }
 }

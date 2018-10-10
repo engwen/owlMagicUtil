@@ -66,6 +66,13 @@ interface CellBaseService<T> {
 
     /**
      * 獲取詳情
+     * @param model 汎型對象檢索條件
+     * @return 汎型對象
+     */
+    MsgResultVO<List<T>> details(T model);
+
+    /**
+     * 獲取詳情
      * @param id 汎型對象檢索條件
      * @return 汎型對象
      */
@@ -80,14 +87,6 @@ interface CellBaseService<T> {
      * @return 分頁對象
      */
     MsgResultVO<PageVO<T>> list(Boolean getAll, Integer requestPage, Integer rows, T model);
-
-    /**
-     * 獲取詳情
-     * @param model 汎型對象檢索條件
-     * @return 汎型對象
-     */
-    MsgResultVO<List<T>> details(T model);
-
 
     /**
      * 獲取所有的對象
