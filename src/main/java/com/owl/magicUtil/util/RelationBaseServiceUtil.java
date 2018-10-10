@@ -1,11 +1,11 @@
 package com.owl.magicUtil.util;
 
 import com.owl.magicUtil.constant.MsgConstantEM;
-import com.owl.magicUtil.dao.CellBaseDao;
 import com.owl.magicUtil.dao.RelationBaseDao;
 import com.owl.magicUtil.vo.MsgResultVO;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * 類適用于常見的方法，提供基礎解決方案，繼承service類之後，可在注入dao后使用本工具類快速完成基礎功能代碼
@@ -14,6 +14,8 @@ import java.util.List;
  * time 2018/10/10.
  */
 public abstract class RelationBaseServiceUtil {
+    private static Logger logger = Logger.getLogger(CellBaseServiceUtil.class.getName());
+
     /**
      * 插入關係數據
      * @param model 汎型對象
@@ -33,6 +35,7 @@ public abstract class RelationBaseServiceUtil {
                 }
             }
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with insert,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -49,6 +52,7 @@ public abstract class RelationBaseServiceUtil {
             relationBaseDao.insertList(modelList);
             resultVO.successResult();
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with insertList,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -65,6 +69,7 @@ public abstract class RelationBaseServiceUtil {
             relationBaseDao.delete(model);
             resultVO.successResult();
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with delete,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -81,6 +86,7 @@ public abstract class RelationBaseServiceUtil {
             relationBaseDao.deleteList(modelList);
             resultVO.successResult();
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with deleteList,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;

@@ -16,7 +16,7 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
     private static Logger logger = Logger.getLogger(CellBaseServiceAb.class.getName());
 
     private static void loggerInfo() {
-        logger.info("默认的原始输出，将不会产生任何影响");
+        logger.warning("此方法没有被重写实现，默认的原始输出，将不会产生任何影响");
     }
 
     /**

@@ -6,6 +6,7 @@ import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * 本類適用于常見的方法，提供基礎解決方案，繼承service類之後，可在注入dao后使用本工具類快速完成基礎功能代碼
@@ -14,6 +15,8 @@ import java.util.List;
  * time 2018/10/09.
  */
 public abstract class CellBaseServiceUtil {
+    private static Logger logger = Logger.getLogger(CellBaseServiceUtil.class.getName());
+
     /**
      * 創建
      * @param model 汎型對象
@@ -22,12 +25,10 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<T> create(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            if (cellBaseDao.insert(model) > 0) {
-                resultVO.successResult(model);
-            } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
-            }
+            cellBaseDao.insert(model);
+            resultVO.successResult(model);
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with create,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -41,12 +42,10 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO createList(CellBaseDao<T> cellBaseDao, List<T> modelList) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            if (cellBaseDao.insertList(modelList) > 0) {
-                resultVO.successResult();
-            } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
-            }
+            cellBaseDao.insertList(modelList);
+            resultVO.successResult();
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with createList,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -61,12 +60,10 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO delete(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            if (cellBaseDao.deleteBySelective(model) > 0) {
-                resultVO.successResult();
-            } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
-            }
+            cellBaseDao.deleteBySelective(model);
+            resultVO.successResult();
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with delete,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -80,12 +77,10 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO deleteList(CellBaseDao<T> cellBaseDao, List<Long> idList) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            if (cellBaseDao.deleteByIdList(idList) > 0) {
-                resultVO.successResult();
-            } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
-            }
+            cellBaseDao.deleteByIdList(idList);
+            resultVO.successResult();
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with deleteList,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -100,12 +95,10 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, Long id, Boolean status) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            if (cellBaseDao.banOrLeave(id, status) > 0) {
-                resultVO.successResult();
-            } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
-            }
+            cellBaseDao.banOrLeave(id, status);
+            resultVO.successResult();
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with banOrLeave,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -120,12 +113,10 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO banOrLeaveList(CellBaseDao<T> cellBaseDao, List<Long> idList, Boolean status) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            if (cellBaseDao.banOrLeaveList(idList, status) > 0) {
-                resultVO.successResult();
-            } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
-            }
+            cellBaseDao.banOrLeaveList(idList, status);
+            resultVO.successResult();
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with banOrLeaveList,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -139,12 +130,10 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<T> update(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            if (cellBaseDao.updateBySelective(model) > 0) {
-                resultVO.successResult();
-            } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
-            }
+            cellBaseDao.updateBySelective(model);
+            resultVO.successResult();
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with update,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -166,6 +155,7 @@ public abstract class CellBaseServiceUtil {
                 resultVO.errorResult(MsgConstantEM.REQUEST_NOT_EXITS);
             }
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with details,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -183,6 +173,7 @@ public abstract class CellBaseServiceUtil {
         try {
             resultVO.successResult(cellBaseDao.selectBySelective(model));
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with details,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -206,6 +197,7 @@ public abstract class CellBaseServiceUtil {
             pageVO.setObjectList(cellBaseDao.listByCondition(pageVO.getUpLimit(), pageVO.getRows(), model));
             resultVO.successResult(pageVO);
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with list,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -221,6 +213,7 @@ public abstract class CellBaseServiceUtil {
         try {
             resultVO.successResult(cellBaseDao.listAll());
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with listAll,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -242,6 +235,7 @@ public abstract class CellBaseServiceUtil {
                 resultVO.errorResult(MsgConstantEM.REQUEST_NOT_EXITS);
             }
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with isExist,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
@@ -262,6 +256,7 @@ public abstract class CellBaseServiceUtil {
                 resultVO.errorResult(MsgConstantEM.REQUEST_NOT_EXITS);
             }
         } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with isExist,information is %s", e));
             resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
         }
         return resultVO;
