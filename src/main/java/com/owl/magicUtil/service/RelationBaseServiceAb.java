@@ -18,17 +18,6 @@ public abstract class RelationBaseServiceAb<T> implements RelationBaseService<T>
     }
 
     /**
-     * 獲取詳情集合
-     * @param model
-     * @return
-     */
-    @Override
-    public List<T> selectBySelective(T model) {
-        loggerInfo();
-        return null;
-    }
-
-    /**
      * 插入關係數據
      * @param model 汎型對象
      * @return 基礎數據

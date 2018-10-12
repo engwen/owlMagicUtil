@@ -14,13 +14,6 @@ import java.util.List;
 interface RelationBaseService<T> {
 
     /**
-     * 獲取詳情集合
-     * @param model
-     * @return
-     */
-    List<T> selectBySelective(T model);
-
-    /**
      * 插入關係數據
      * @param model 汎型對象
      * @return 基礎數據
