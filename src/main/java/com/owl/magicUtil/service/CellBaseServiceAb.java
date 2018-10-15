@@ -121,6 +121,17 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
     }
 
     /**
+     * 獲取詳情
+     * @param model 汎型對象檢索條件
+     * @return 汎型對象
+     */
+    @Override
+    public MsgResultVO<T> detailsByOne(T model) {
+        loggerInfo();
+        return null;
+    }
+
+    /**
      * 獲取分頁列表，添加 model 提供檢索功能
      * @param getAll      是否獲取所有
      * @param requestPage 請求頁數

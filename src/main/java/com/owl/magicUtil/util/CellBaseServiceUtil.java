@@ -181,6 +181,30 @@ public abstract class CellBaseServiceUtil {
 
 
     /**
+     * 獲取詳情
+     * @param model 汎型對象檢索條件
+     * @return 汎型對象
+     */
+
+    public static <T> MsgResultVO<T> detailsByOne(CellBaseDao<T> cellBaseDao, T model) {
+        MsgResultVO<T> resultVO = new MsgResultVO<>();
+        try {
+            List<T> temp =cellBaseDao.selectBySelective(model);
+            if (null != temp && temp.size() ==1) {
+                resultVO.successResult(temp.get(0));
+            } else {
+                resultVO.errorResult(MsgConstantEM.REQUEST_NOT_EXITS);
+            }
+        } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with details,information is %s", e));
+            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+        }
+        return resultVO;
+    }
+
+
+
+    /**
      * 獲取分頁列表，添加 model 提供檢索功能
      * @param getAll      是否獲取所有
      * @param requestPage 請求頁數

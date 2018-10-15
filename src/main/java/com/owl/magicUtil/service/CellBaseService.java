@@ -78,6 +78,14 @@ interface CellBaseService<T> {
      */
     MsgResultVO<T> details(Long id);
 
+
+    /**
+     * 獲取詳情
+     * @param model 汎型對象檢索條件
+     * @return 汎型對象
+     */
+    MsgResultVO<T> detailsByOne(T model);
+
     /**
      * 獲取分頁列表，添加 model 提供檢索功能
      * @param getAll      是否獲取所有
