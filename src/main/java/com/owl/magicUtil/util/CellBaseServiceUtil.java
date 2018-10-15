@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * 本類適用于常見的方法，提供基礎解決方案，繼承service類之後，可在注入dao后使用本工具類快速完成基礎功能代碼
  * author engwen
  * email xiachanzou@outlook.com
- * time 2018/10/09.
+ * time 2018/10/07.
  */
 public abstract class CellBaseServiceUtil {
     private static Logger logger = Logger.getLogger(CellBaseServiceUtil.class.getName());
