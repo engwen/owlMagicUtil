@@ -53,6 +53,16 @@ public abstract class RegexUtil {
     }
 
     /**
+     * 驗證是否爲空 傳遞參數時
+     * @param input 字符串
+     * @return
+     */
+    public static boolean isEmpty(Object input) {
+        return null == input || (input instanceof String && isEmpty((String) input)) || (input instanceof Collection && ((Collection) input).size() <= 0);
+    }
+
+
+    /**
      * 手机号码验证,11位，不知道详细的手机号码段，只是验证开头必须是1和位数
      * @param input 字符串
      * @return
