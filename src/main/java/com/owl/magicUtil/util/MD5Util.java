@@ -17,8 +17,8 @@ public abstract class MD5Util {
 
     /**
      * 获取md5
-     * @param inputStr
-     * @return
+     * @param inputStr 輸入字符串
+     * @return str
      */
     public static String getMD5(String inputStr) {
         String backStr = null;
@@ -68,7 +68,7 @@ public abstract class MD5Util {
     /**
      * 将字节数组转成 16 进制的字符串来表示，每个字节采用两个字符表表示
      * @param bys 需要转换成 16 进制的字节数组
-     * @return
+     * @return str
      */
     public static String bytes2Hex(byte[] bys) {
         char[] chs = new char[bys.length * 2];
@@ -81,9 +81,9 @@ public abstract class MD5Util {
 
     /**
      * 加密
-     * @param uuid
-     * @param psw
-     * @return
+     * @param uuid uuid
+     * @param psw psw
+     * @return str
      */
     public static String getSecretPsw(String uuid, String psw) {
         return getMD5(String.format("%s##%s", uuid, psw));
@@ -91,8 +91,8 @@ public abstract class MD5Util {
 
     /**
      * 输入至少为4位密码加密，否则将会自动补4零
-     * @param psw
-     * @return
+     * @param psw psw
+     * @return str
      */
     public static String getSecretPsw(String psw) {
         return psw.length() >= 4 ? getMD5(String.format("%s##%s", psw.substring(0, 4), psw)) : getSecretPsw("0000", psw);

@@ -12,29 +12,29 @@ public interface CellBaseDao<T> {
 
     /**
      * 直接插入
-     * @param record
-     * @return
+     * @param record 泛型对象
+     * @return int
      */
     int insert(T record);
 
     /**
      * 批量插入
-     * @param list
-     * @return
+     * @param list 泛型对象集合
+     * @return int
      */
     int insertList(List<T> list);
 
     /**
      * 批量刪除
-     * @param idList
-     * @return
+     * @param idList id集合
+     * @return int
      */
     int deleteByIdList(List<Long> idList);
 
     /**
      * 刪除
-     * @param model
-     * @return
+     * @param model 泛型对象
+     * @return int
      */
     int deleteBySelective(T model);
 
@@ -42,7 +42,7 @@ public interface CellBaseDao<T> {
      * 批量操作 禁用或啓用
      * @param id     對象ID
      * @param status 對象狀態，可以爲空
-     * @return
+     * @return int
      */
     int banOrLeave(Long id, Boolean status);
 
@@ -50,41 +50,41 @@ public interface CellBaseDao<T> {
      * 批量操作 禁用或啓用
      * @param idList 對象ID
      * @param status 對象狀態
-     * @return
+     * @return int
      */
     int banOrLeaveList(List<Long> idList, Boolean status);
 
     /**
      * 依據指定的屬性進行更新
-     * @param record
-     * @return
+     * @param record 泛型对象
+     * @return int
      */
     int updateBySelective(T record);
 
     /**
      * 依據id查詢對象
-     * @param id
-     * @return
+     * @param id id
+     * @return 泛型对象
      */
     T selectById(Long id);
 
     /**
      * 依據屬性獲取對象集合
-     * @param record
-     * @return
+     * @param record 泛型对象
+     * @return 泛型对象集合
      */
     List<T> selectBySelective(T record);
 
     /**
      * 獲取全部
-     * @return
+     * @return 泛型对象集合
      */
     List<T> listAll();
 
     /**
      * 依據指定的屬性統計數據條數
-     * @param record
-     * @return
+     * @param record 泛型对象
+     * @return int
      */
     Integer countSumByCondition(T record);
 
@@ -93,7 +93,7 @@ public interface CellBaseDao<T> {
      * @param upLimit @Param("upLimit")
      * @param rows    @Param("rows")
      * @param record  @Param("record")
-     * @return
+     * @return 泛型对象集合
      */
     List<T> listByCondition(Integer upLimit, Integer rows, T record);
 

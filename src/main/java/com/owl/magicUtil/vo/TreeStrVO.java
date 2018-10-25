@@ -60,7 +60,7 @@ public final class TreeStrVO<T> extends ModelPrototype {
     /**
      * 获取树
      * @param treeVOList 分樹的對象
-     * @return
+     * @return List<TreeStrVO>
      */
     public static List<TreeStrVO> getTree(List<TreeStrVO> treeVOList) {
         List<TreeStrVO> root = new ArrayList<>();
@@ -76,7 +76,7 @@ public final class TreeStrVO<T> extends ModelPrototype {
      * 获取子叶
      * @param root       根
      * @param treeVOList 子葉
-     * @return
+     * @return TreeStrVO
      */
     @SuppressWarnings("unchecked")
     private static TreeStrVO getTrees(TreeStrVO root, List<TreeStrVO> treeVOList) {
@@ -93,7 +93,7 @@ public final class TreeStrVO<T> extends ModelPrototype {
      * 获取对应的开始节点，并返回目标节点及以下的树id集合
      * @param aimID      目标节点
      * @param treeVOList 所有的集合
-     * @return
+     * @return List<String>
      */
     public static List<String> getIdTree(String aimID, List<TreeStrVO> treeVOList) {
         List<String> result = new ArrayList<>();
@@ -110,9 +110,9 @@ public final class TreeStrVO<T> extends ModelPrototype {
 
     /**
      * 获取节点以及以下
-     * @param root
-     * @param treeVOList
-     * @return
+     * @param root 根
+     * @param treeVOList 對象集合
+     * @return List<String>
      */
     private static List<String> getIdTrees(TreeStrVO root, List<TreeStrVO> treeVOList) {
         List<String> result = new ArrayList<>();

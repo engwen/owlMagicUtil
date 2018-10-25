@@ -133,8 +133,8 @@ public final class PageVO<T> extends ModelPrototype {
 
     /**
      * 將本部的pageVO屬性賦值給薪傳進來的new PageVO 即屬性傳遞
-     * @param newPage
-     * @return
+     * @param newPage 新的對象
+     * @return pagevo
      */
     public PageVO setThisPageToAnotherPage(PageVO newPage) {
         if (!RegexUtil.isParamsHaveEmpty(newPage)) {

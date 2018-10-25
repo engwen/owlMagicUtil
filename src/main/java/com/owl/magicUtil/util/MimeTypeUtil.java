@@ -150,8 +150,8 @@ public abstract class MimeTypeUtil {
 
     /**
      * 依据file的contentType类型获取文件的类型
-     * @param contentType
-     * @return
+     * @param contentType  file的contentType
+     * @return 文件类型
      */
     public static String getFileTypeByContentType(String contentType) {
         String result = "unknown";

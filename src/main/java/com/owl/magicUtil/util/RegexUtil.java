@@ -35,7 +35,7 @@ public abstract class RegexUtil {
      * 驗證字符串中是否有符合正則的字串
      * @param reg   正則
      * @param input 字符串
-     * @return
+     * @return boolean
      */
     public boolean isContainsStr(String reg, String input) {
         Pattern pattern = Pattern.compile(reg);
@@ -46,7 +46,7 @@ public abstract class RegexUtil {
     /**
      * 驗證是否爲空
      * @param input 字符串
-     * @return
+     * @return boolean
      */
     public static boolean isEmpty(String input) {
         return null == input || "".equals(input) || Pattern.matches(is_empty, input) || "null".equals(input);
@@ -55,7 +55,7 @@ public abstract class RegexUtil {
     /**
      * 驗證是否爲空 傳遞參數時
      * @param input 字符串
-     * @return
+     * @return boolean
      */
     public static boolean isEmpty(Object input) {
         return null == input || (input instanceof String && isEmpty((String) input)) || (input instanceof Collection && ((Collection) input).size() <= 0);
@@ -65,7 +65,7 @@ public abstract class RegexUtil {
     /**
      * 手机号码验证,11位，不知道详细的手机号码段，只是验证开头必须是1和位数
      * @param input 字符串
-     * @return
+     * @return boolean
      */
     public static boolean isMobile(String input) {
         return !isEmpty(input) && Pattern.matches(is_mobile, input);
@@ -74,7 +74,7 @@ public abstract class RegexUtil {
     /**
      * 驗證是否是郵件
      * @param input 字符串
-     * @return
+     * @return boolean
      */
     public static boolean isEmail(String input) {
         return !isEmpty(input) && Pattern.matches(is_email, input);
@@ -83,7 +83,7 @@ public abstract class RegexUtil {
     /**
      * 驗證是否是日期
      * @param input 字符串
-     * @return
+     * @return boolean
      */
     public static boolean isDate(String input) {
         return !isEmpty(input) && Pattern.matches(is_date, input);
@@ -93,7 +93,7 @@ public abstract class RegexUtil {
     /**
      * 检查邮政编码(中国),6位，第一位必须是非0开头，其他5位数字为0-9
      * @param input 字符串
-     * @return
+     * @return boolean
      */
     public static boolean isPostCodes(String input) {
         return !isEmpty(input) && input.matches(is_postCodes);
@@ -103,7 +103,7 @@ public abstract class RegexUtil {
     /**
      * 检查邮政编码(中国),6位，第一位必须是非0开头，其他5位数字为0-9
      * @param input 字符串
-     * @return
+     * @return boolean
      */
     public static boolean isIp(String input) {
         return !isEmpty(input) && Pattern.matches(is_ip, input);
@@ -148,8 +148,8 @@ public abstract class RegexUtil {
 
     /**
      * 數組對象中是否含有爲空
-     * @param inputs
-     * @return
+     * @param inputs 數組
+     * @return boolean
      */
     public static boolean isParamsHaveEmpty(Object... inputs) {
         boolean result = false;
@@ -176,7 +176,7 @@ public abstract class RegexUtil {
     /**
      * 判断一个对象是否有属性为空--有一个为空即为true，全部非空才为false
      * @param object MsgResult的子类对象
-     * @return
+     * @return boolean
      */
     public static boolean isObjectHaveEmpty(ModelPrototype object) {
         boolean result = false;
@@ -207,7 +207,7 @@ public abstract class RegexUtil {
 
     /**
      * 校验单列集合是否有数据
-     * @param collection
+     * @param collection 對象集合
      * @return true 有
      */
     public static boolean isCollectionHaveData(Collection collection) {

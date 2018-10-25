@@ -17,7 +17,7 @@ public abstract class FileToZip {
      * @param sourceFilePath :待压缩的文件路径
      * @param zipFilePath    :压缩后存放路径
      * @param fileName       :压缩后文件的名称
-     * @return
+     * @return boolean
      */
     public static boolean fileToZip(String sourceFilePath, String zipFilePath, String fileName) {
         boolean flag = false;
@@ -93,9 +93,9 @@ public abstract class FileToZip {
      * 传入list的文件路径，打包到指定的新生成ZIP文件中，如果已存在的Zip，将会被覆盖
      * <p>
      * 特注：zos一定放在循环外结束，不然我打不死你
-     * @param zipFilename
-     * @param path
-     * @return
+     * @param zipFilename 名稱
+     * @param path 路徑
+     * @return boolean
      * @throws Exception
      */
     public static boolean createFileToZip(String zipFilename, List<String> path) throws Exception {

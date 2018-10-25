@@ -45,7 +45,7 @@ interface CellBaseService<T> {
      * 批量操作 禁用或啓用
      * @param id     對象ID
      * @param status 對象狀態，可以爲空
-     * @return
+     * @return 基礎數據
      */
     MsgResultVO banOrLeave(Long id, Boolean status);
 
@@ -53,7 +53,7 @@ interface CellBaseService<T> {
      * 批量操作 禁用或啓用
      * @param idList 對象ID
      * @param status 對象狀態
-     * @return
+     * @return 基礎數據
      */
     MsgResultVO banOrLeaveList(List<Long> idList, Boolean status);
 

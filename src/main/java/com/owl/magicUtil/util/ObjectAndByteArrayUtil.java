@@ -12,8 +12,8 @@ import java.io.*;
 public abstract class ObjectAndByteArrayUtil {
     /**
      * 将Object对象转为byte数组
-     * @param obj
-     * @return
+     * @param obj obj
+     * @return byte[]
      */
     public static byte[] toByteArray(Object obj) {
         byte[] bytes = null;
@@ -37,8 +37,8 @@ public abstract class ObjectAndByteArrayUtil {
 
     /**
      * 将byte数组转成Object对象
-     * @param bytes
-     * @return
+     * @param bytes byte[]
+     * @return Object
      */
     public static Object toObject(byte[] bytes) {
         Object object = null;

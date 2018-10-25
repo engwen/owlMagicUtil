@@ -13,24 +13,22 @@ public abstract class RandomUtil {
             = "0123456789";
 
 
-
     /**
      * 随机生成min-max之间的随机数(前后都包含)
-     * @param min
-     * @param max
-     * @return
+     * @param min min
+     * @param max max
+     * @return int
      */
-    public static Integer getRandonNum(int min,int max){
+    public static int getRandonNum(int min, int max) {
         Random r = new Random();
-        int random = r.nextInt(max-min+1)+min;
-        return random ;
+        return r.nextInt(max - min + 1) + min;
     }
+
     /**
      * 生成制定范围内的随机数
-     *
-     * @param scopeMin
-     * @param scoeMax
-     * @return
+     * @param scopeMin 最小
+     * @param scoeMax  最大
+     * @return 結果
      */
     public static int integer(int scopeMin, int scoeMax) {
         Random random = new Random();
@@ -39,12 +37,11 @@ public abstract class RandomUtil {
 
     /**
      * 返回固定长度的数字
-     *
-     * @param length
-     * @return
+     * @param length 長度
+     * @return str
      */
     public static String number(int length) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
             sb.append(NUMBERCHAR.charAt(random.nextInt(NUMBERCHAR.length())));
@@ -54,12 +51,11 @@ public abstract class RandomUtil {
 
     /**
      * 返回一个定长的随机字符串(只包含大小写字母、数字)
-     *
      * @param length 随机字符串长度
      * @return 随机字符串
      */
     public static String String(int length) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
             sb.append(ALLCHAR.charAt(random.nextInt(ALLCHAR.length())));
@@ -69,12 +65,11 @@ public abstract class RandomUtil {
 
     /**
      * 返回一个定长的随机纯字母字符串(只包含大小写字母)
-     *
      * @param length 随机字符串长度
      * @return 随机字符串
      */
     public static String MixString(int length) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
             sb.append(ALLCHAR.charAt(random.nextInt(LETTERCHAR.length())));
@@ -84,7 +79,6 @@ public abstract class RandomUtil {
 
     /**
      * 返回一个定长的随机纯大写字母字符串(只包含大小写字母)
-     *
      * @param length 随机字符串长度
      * @return 随机字符串
      */
@@ -94,7 +88,6 @@ public abstract class RandomUtil {
 
     /**
      * 返回一个定长的随机纯小写字母字符串(只包含大小写字母)
-     *
      * @param length 随机字符串长度
      * @return 随机字符串
      */
@@ -104,12 +97,11 @@ public abstract class RandomUtil {
 
     /**
      * 生成一个定长的纯0字符串
-     *
      * @param length 字符串长度
      * @return 纯0字符串
      */
     public static String ZeroString(int length) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {
             sb.append('0');
         }
@@ -118,33 +110,12 @@ public abstract class RandomUtil {
 
     /**
      * 根据数字生成一个定长的字符串，长度不够前面补0
-     *
      * @param num       数字
      * @param fixdlenth 字符串长度
      * @return 定长的字符串
      */
     public static String toFixdLengthString(long num, int fixdlenth) {
-        StringBuffer sb = new StringBuffer();
-        String strNum = String.valueOf(num);
-        if (fixdlenth - strNum.length() >= 0) {
-            sb.append(ZeroString(fixdlenth - strNum.length()));
-        } else {
-            throw new RuntimeException("将数字" +
-                    num + "转化为长度为" + fixdlenth + "的字符串发生异常！");
-        }
-        sb.append(strNum);
-        return sb.toString();
-    }
-
-    /**
-     * 根据数字生成一个定长的字符串，长度不够前面补0
-     *
-     * @param num       数字
-     * @param fixdlenth 字符串长度
-     * @return 定长的字符串
-     */
-    public static String toFixdLengthString(int num, int fixdlenth) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         String strNum = String.valueOf(num);
         if (fixdlenth - strNum.length() >= 0) {
             sb.append(ZeroString(fixdlenth - strNum.length()));
@@ -158,8 +129,7 @@ public abstract class RandomUtil {
 
     /**
      * 每次生成的len位数都不相同
-     *
-     * @param param
+     * @param param 請求參數
      * @return 定长的数字
      */
     public static int getNotSimple(int[] param, int len) {
@@ -187,12 +157,12 @@ public abstract class RandomUtil {
 
     /**
      * 实现一个简单的字符串乘法
-     * @param str
-     * @param multiplication
-     * @return
+     * @param str            str
+     * @param multiplication multiplication
+     * @return str
      */
-    private static String strMultiplication(String str,int multiplication){
-        StringBuffer buffer = new StringBuffer();
+    private static String strMultiplication(String str, int multiplication) {
+        StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < multiplication; i++) {
             buffer.append(str);
         }
@@ -201,7 +171,6 @@ public abstract class RandomUtil {
 
     /**
      * 返回一个UUID
-     *
      * @return 小写的UUID
      */
     public static String uuid() {
@@ -213,16 +182,10 @@ public abstract class RandomUtil {
 
     /**
      * 返回一个UUID
-     *
      * @return 大写的UUID
      */
     public static String UUID() {
-        UUID uuid = UUID.randomUUID();
-        String s = uuid.toString();
-        String temp = s.substring(0, 8) + s.substring(9, 13) +
-                s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
-        return temp.toUpperCase();
+        return uuid().toUpperCase();
     }
-
 
 }

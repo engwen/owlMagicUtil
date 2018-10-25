@@ -193,7 +193,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
     /**
      * 获取指定key的值
      * @param key 参数名称
-     * @return
+     * @return obj
      */
     public Object getParamValue(String key) {
         return this.params.get(key);

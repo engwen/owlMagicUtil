@@ -20,9 +20,9 @@ public abstract class PropertiesUtil {
 
     /**
      * 讀取指定配置文件信息
-     * @param propertiesName
-     * @param key
-     * @return
+     * @param propertiesName 屬性名稱
+     * @param key key
+     * @return str
      */
     public static String readProperties(String propertiesName, String key) {
         return ResourceBundle.getBundle(propertiesName, Locale.getDefault()).getString(key);
@@ -30,8 +30,8 @@ public abstract class PropertiesUtil {
 
     /**
      * 讀取默認配置文件信息
-     * @param key
-     * @return
+     * @param key key
+     * @return str
      */
     public static String readConfigProperties(String key) {
         return readProperties(CONFIG, key);
