@@ -130,6 +130,7 @@ public abstract class RandomUtil {
     /**
      * 每次生成的len位数都不相同
      * @param param 請求參數
+     * @param len 長度
      * @return 定长的数字
      */
     public static int getNotSimple(int[] param, int len) {
@@ -147,9 +148,7 @@ public abstract class RandomUtil {
         return result;
     }
 
-    /**
-     * 从指定的数组中随机数组中的某个元素
-     */
+
     public static <T> T randomItem(T[] param) {
         int index = integer(0, param.length);
         return param[index];

@@ -44,7 +44,7 @@ public abstract class PropertiesUtil {
      * @param key            键
      * @param nameHasPath    名称中是否包含位置信息
      * @param value          值
-     * @throws Exception
+     * @throws Exception ex
      */
     public static void writeProperties(String propertiesName, boolean nameHasPath, String key, String value) throws Exception {
         Properties properties = new Properties();
@@ -60,7 +60,7 @@ public abstract class PropertiesUtil {
      * 想默认配置文件中写入属性
      * @param key   键
      * @param value 值
-     * @throws Exception
+     * @throws Exception ex
      */
     public static void writeConfigProperties(String key, String value) throws Exception {
         writeProperties(CONFIG_PROPERTIES, false, key, value);

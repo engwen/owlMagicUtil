@@ -96,7 +96,7 @@ public abstract class FileToZip {
      * @param zipFilename 名稱
      * @param path 路徑
      * @return boolean
-     * @throws Exception
+     * @throws Exception ex
      */
     public static boolean createFileToZip(String zipFilename, List<String> path) throws Exception {
         //压缩文件名

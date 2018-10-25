@@ -34,7 +34,7 @@ public final class PageVO<T> extends ModelPrototype {
     //是否獲取全部對象
     private Boolean getAll = false;
 
-    /**
+    /*
      * 塞入總數，获取所有
      */
     public void initPageVO(Integer sum) {
@@ -49,7 +49,7 @@ public final class PageVO<T> extends ModelPrototype {
         this.pageList[0] = 1;
     }
 
-    /**
+    /*
      * 塞入總數，請求頁數，每頁數量,是否获取所有
      */
     public void initPageVO(Integer sum, Integer requestPage, Integer rows, Boolean isGetAll) {
@@ -60,7 +60,7 @@ public final class PageVO<T> extends ModelPrototype {
         }
     }
 
-    /**
+    /*
      * 塞入總數，請求頁數，每頁數量
      */
     public void initPageVO(Integer sum, Integer requestPage, Integer rows) {

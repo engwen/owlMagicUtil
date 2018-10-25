@@ -46,6 +46,7 @@ public abstract class DateCountUtil {
 
     /**
      * 根据指定格式的字符串，返回指定格式的日期
+     * @param dateString dates
      * @param sdf 格式
      * @return 日期字符串
      */
@@ -62,6 +63,7 @@ public abstract class DateCountUtil {
 
     /**
      * 根据指定格式的字符串，返回指定格式的日期
+     * @param dateString dates
      * @param sdfStr 格式
      * @return 日期
      */
@@ -259,6 +261,7 @@ public abstract class DateCountUtil {
 
     /**
      * 将传入日期的小时和分钟和秒提取出来
+     * @param date 日期
      * @return str
      */
     public static String getHHmmss(Date date) {
@@ -267,6 +270,7 @@ public abstract class DateCountUtil {
 
     /**
      * 将传入日期的小时和分钟提取出来
+     * @param date 日期
      * @return str
      */
     public static String getHHmm(Date date) {

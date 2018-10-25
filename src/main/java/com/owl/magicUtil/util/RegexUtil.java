@@ -109,17 +109,12 @@ public abstract class RegexUtil {
         return !isEmpty(input) && Pattern.matches(is_ip, input);
     }
 
-    /**
-     * 网址验证<br>
-     * 符合类型：<br>
-     * http://www.test.com<br>
-     * http://163.com
-     */
+
     public boolean checkWebSite(String url) {
         return !isEmpty(url) && url.matches(is_http);
     }
 
-    /**
+    /*
      * 检验用户名 取值范围为a-z,A-Z,0-9,"_",汉字，不能以"_"结尾 用户名有最小长度和最大长度限制，比如用户名必须是4-20位
      */
     public boolean isUserName(String username, int min, int max) {

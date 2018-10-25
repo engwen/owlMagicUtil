@@ -16,11 +16,7 @@ import java.util.logging.Logger;
 public abstract class RelationBaseServiceUtil {
     private static Logger logger = Logger.getLogger(CellBaseServiceUtil.class.getName());
 
-    /**
-     * 插入關係數據
-     * @param model 汎型對象
-     * @return 基礎數據
-     */
+
     public static <T> MsgResultVO insert(RelationBaseDao<T> relationBaseDao, T model) {
         MsgResultVO resultVO = new MsgResultVO();
         try {
@@ -41,11 +37,6 @@ public abstract class RelationBaseServiceUtil {
         return resultVO;
     }
 
-    /**
-     * 批量插入
-     * @param modelList 汎型對象
-     * @return 基礎數據
-     */
     public static <T> MsgResultVO insertList(RelationBaseDao<T> relationBaseDao, List<T> modelList) {
         MsgResultVO resultVO = new MsgResultVO();
         try {
@@ -58,11 +49,6 @@ public abstract class RelationBaseServiceUtil {
         return resultVO;
     }
 
-    /**
-     * 刪除關係數據
-     * @param model 汎型對象
-     * @return 基礎數據
-     */
     public static <T> MsgResultVO delete(RelationBaseDao<T> relationBaseDao, T model) {
         MsgResultVO resultVO = new MsgResultVO();
         try {
@@ -75,11 +61,6 @@ public abstract class RelationBaseServiceUtil {
         return resultVO;
     }
 
-    /**
-     * 批量刪除
-     * @param modelList 汎型對象
-     * @return 基礎數據
-     */
     public static <T> MsgResultVO deleteList(RelationBaseDao<T> relationBaseDao, List<T> modelList) {
         MsgResultVO resultVO = new MsgResultVO();
         try {

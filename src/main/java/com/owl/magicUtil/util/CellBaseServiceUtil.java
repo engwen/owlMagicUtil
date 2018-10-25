@@ -17,9 +17,11 @@ import java.util.logging.Logger;
 public abstract class CellBaseServiceUtil {
     private static Logger logger = Logger.getLogger(CellBaseServiceUtil.class.getName());
 
-    /**
+    /*
      * 創建
+     * @param cellBaseDao cellBaseDao
      * @param model 汎型對象
+     * @param <T> 汎型
      * @return 汎型對象
      */
     public static <T> MsgResultVO<T> create(CellBaseDao<T> cellBaseDao, T model) {
@@ -34,7 +36,7 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-    /**
+    /*
      * 批量創建
      * @param modelList 汎型對象
      * @return 汎型對象
@@ -52,7 +54,7 @@ public abstract class CellBaseServiceUtil {
     }
 
 
-    /**
+    /*
      * 刪除 更新前需要查询，因此可能返回对象为父类型
      * @param model 对象
      * @return 基礎數據
@@ -69,7 +71,7 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-    /**
+    /*
      * 批量刪除 更新前需要查询，因此可能返回对象为父类型
      * @param idList ID集合
      * @return 基礎數據
@@ -86,7 +88,7 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-    /**
+    /*
      * 批量操作 禁用或啓用
      * @param id     對象ID
      * @param status 對象狀態，可以爲空
@@ -104,7 +106,7 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-    /**
+    /*
      * 批量操作 禁用或啓用
      * @param idList 對象ID
      * @param status 對象狀態
@@ -122,7 +124,7 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-    /**
+    /*
      * 更新 更新前需要查询，因此可能返回对象为父类型
      * @param model 汎型對象
      * @return 基礎數據
@@ -139,7 +141,7 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-    /**
+    /*
      * 獲取詳情
      * @param id 汎型對象檢索條件
      * @return 汎型對象
@@ -162,7 +164,7 @@ public abstract class CellBaseServiceUtil {
     }
 
 
-    /**
+    /*
      * 獲取詳情
      * @param model 汎型對象檢索條件
      * @return 汎型對象
@@ -180,7 +182,7 @@ public abstract class CellBaseServiceUtil {
     }
 
 
-    /**
+    /*
      * 獲取詳情
      * @param model 汎型對象檢索條件
      * @return 汎型對象
@@ -204,7 +206,7 @@ public abstract class CellBaseServiceUtil {
 
 
 
-    /**
+    /*
      * 獲取分頁列表，添加 model 提供檢索功能
      * @param getAll      是否獲取所有
      * @param requestPage 請求頁數
@@ -227,7 +229,7 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-    /**
+    /*
      * 獲取所有的對象
      * @return 對象集合
      */
@@ -243,7 +245,7 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-    /**
+    /*
      * 檢查数据是否存在
      * @param model 检索条件
      * @return Boolean
@@ -265,7 +267,7 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-    /**
+    /*
      * 檢查数据是否存在
      * @param id id属性
      * @return Boolean

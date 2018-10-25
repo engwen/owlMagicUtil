@@ -47,6 +47,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
     /**
      * 請求失敗
      * @param em 枚举信息对象
+     * @return 結果對象
      */
     public MsgResultVO<T> errorResult(MsgConstantEM em) {
         this.result = false;
@@ -58,6 +59,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * 請求失敗
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
+     * @return 結果對象
      */
     public MsgResultVO<T> errorResult(String resultCode, String resultMsg) {
         this.result = false;
@@ -70,6 +72,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * 請求失敗
      * @param prototype 對象
      * @param em        枚举信息对象
+     * @return 結果對象
      */
     public MsgResultVO<T> errorResult(T prototype, MsgConstantEM em) {
         this.result = false;
@@ -83,6 +86,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * @param prototype  對象
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
+     * @return 結果對象
      */
     public MsgResultVO<T> errorResult(T prototype, String resultCode, String resultMsg) {
         this.result = false;
@@ -95,6 +99,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
+     * @return 結果對象
      */
     public MsgResultVO<T> successResult() {
         this.result = true;
@@ -106,6 +111,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
      * 請求成功
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
+     * @return 結果對象
      */
     public MsgResultVO<T> successResult(String resultCode, String resultMsg) {
         this.result = true;
@@ -117,6 +123,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
     /**
      * 請求成功
      * @param em 枚举信息对象
+     * @return 結果對象
      */
     public MsgResultVO<T> successResult(MsgConstantEM em) {
         this.result = true;
@@ -127,6 +134,8 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
+     * @param prototype 汎型對象
+     * @return 結果對象
      */
     public MsgResultVO<T> successResult(T prototype) {
         this.result = true;
@@ -138,6 +147,8 @@ public final class MsgResultVO<T> extends ModelPrototype {
     /**
      * 請求成功
      * @param em 枚举信息对象
+     * @param prototype 汎型對象
+     * @return 結果對象
      */
     public MsgResultVO<T> successResult(T prototype, MsgConstantEM em) {
         this.result = true;
@@ -148,8 +159,10 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
+     * @param prototype 汎型對象
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
+     * @return 結果對象
      */
     public MsgResultVO<T> successResult(T prototype, String resultCode, String resultMsg) {
         this.result = true;

@@ -90,9 +90,9 @@ public interface CellBaseDao<T> {
 
     /**
      * 依據指定的屬性獲取指定的集合
-     * @param upLimit @Param("upLimit")
-     * @param rows    @Param("rows")
-     * @param record  @Param("record")
+     * @param upLimit Param("upLimit")
+     * @param rows    Param("rows")
+     * @param record  Param("record")
      * @return 泛型对象集合
      */
     List<T> listByCondition(Integer upLimit, Integer rows, T record);
