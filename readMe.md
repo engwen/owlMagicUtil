@@ -8,9 +8,9 @@ com.owl.magicUtil
 * 引用方式为
 ```
 <dependency>
-    <groupId>owl.magic.util</groupId>
+   <groupId>com.github.engwen</groupId>
     <artifactId>owlMagicUtil</artifactId>
-    <version>2.1</version>
+    <version>2.3</version>
 </dependency>
 ```
 #### *项目结构以及介绍如下*
