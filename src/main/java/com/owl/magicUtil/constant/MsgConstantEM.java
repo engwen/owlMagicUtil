@@ -24,10 +24,14 @@ public enum MsgConstantEM {
 
     REQUEST_CANT_UPDATE_STATUS("0020", "更新操作不能进行删除操作"),
 
+    RESULT_DATA_TYPE_ERROR("0030","返回参数类型错误"),
+    RESULT_NOT_SUPPORT_TYPE_ERROR("0031","不支持此种类型封装的校验"),
 
     PARAM_EMAIL_ERROR("1001", "邮箱格式错误"),
     PARAM_MOBILE_ERROR("1002", "手机号格式错误"),
     PARAM_ACCOUNT_ERROR("1003", "账户错误");
+
+
 
     private String code;
     private String msg;

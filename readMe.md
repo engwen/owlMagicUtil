@@ -1,7 +1,5 @@
 owlMagicUtil工具介绍
 -------
- 
-*双师课堂一期中所有工具均来自自身，二期为提高相关代码重用度，转而采用引用jar的方式，用到的私有包被命名为owlMagicUtil-2.1（美容项目，owlMagicFile以及一期中均为1.0版本，后升级为1.1，1.2，2.0，2.1，但只有2.0，2.1版本被应用在二期以及owlMagicShiro中），这里只对2.1最新版的做一下基本说明*
 
 * 包名
 com.owl.magicUtil
@@ -10,7 +8,7 @@ com.owl.magicUtil
 <dependency>
    <groupId>com.github.engwen</groupId>
     <artifactId>owlMagicUtil</artifactId>
-    <version>2.3</version>
+    <version>*.*.*</version>
 </dependency>
 ```
 #### *项目结构以及介绍如下*
