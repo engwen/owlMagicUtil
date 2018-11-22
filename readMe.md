@@ -45,6 +45,8 @@ com.owl.magicUtil
     4. RandomUtil 随机数工具
     5. RegexUtil 正则工具
     6. ClassTypeUtil 类选择工具 
+    7. CellBaseServiceUtil 传入继承CellBaseDao的实现类，使用它提供的csud方法可以快速完成基础功能
+    8. RelationBaseServiceUtil 传入继承RelationBaseDao的实现类，使用它提供的csud方法可以快速完成基础功能
 * **vo**  直接使用对象集合  
     1. MsgResultVO  vo级别对象，用于程序返回对象的包装，提供了result，resultCode，resultMsg，resultData，params，以及errorResult,successResult方法
     2. PageVO  分页对象，包含objectList分页对象集合，sumPage总页数，sum总条数，size查询条数，requestPage查询页数，pageList页码集合以及getAll是否获取全部
