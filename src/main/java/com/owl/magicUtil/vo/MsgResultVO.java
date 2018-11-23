@@ -1,8 +1,8 @@
 package com.owl.magicUtil.vo;
 
 
-import com.owl.magicUtil.constant.MsgConstantEM;
 import com.owl.magicUtil.model.ModelPrototype;
+import com.owl.magicUtil.model.MsgConstant;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,39 +24,41 @@ public final class MsgResultVO<T> extends ModelPrototype {
     //儅以汎型數據仍不能滿足時，提供Map封裝參數
     private Map<String, Object> params;
 
-    private void setMsgConstantEM(MsgConstantEM msgConstantEM) {
-        this.resultCode = msgConstantEM.getCode();
-        this.resultMsg = msgConstantEM.getMsg();
+    private void setMsgConstant(MsgConstant msgConstant) {
+        this.resultCode = msgConstant.getCode();
+        this.resultMsg = msgConstant.getMsg();
     }
 
     /*----------------------------  提供构造函数  --------------------------------*/
     public MsgResultVO() {
         this.result = true;
         this.params = new HashMap<>();
-        setMsgConstantEM(MsgConstantEM.REQUEST_DEFAULT);
+        setMsgConstant(MsgConstant.REQUEST_DEFAULT);
     }
 
     public MsgResultVO(Map<String, Object> params) {
         this.result = true;
         this.params = params;
-        setMsgConstantEM(MsgConstantEM.REQUEST_DEFAULT);
+        setMsgConstant(MsgConstant.REQUEST_DEFAULT);
     }
 
     /*----------------------------  构造函数结束  --------------------------------*/
 
     /**
      * 請求失敗
-     * @param em 枚举信息对象
+     *
+     * @param msgConstant 枚举信息对象
      * @return 結果對象
      */
-    public MsgResultVO<T> errorResult(MsgConstantEM em) {
+    public MsgResultVO<T> errorResult(MsgConstant msgConstant) {
         this.result = false;
-        setMsgConstantEM(em);
+        setMsgConstant(msgConstant);
         return this;
     }
 
     /**
      * 請求失敗
+     *
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      * @return 結果對象
@@ -70,19 +72,21 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求失敗
-     * @param prototype 對象
-     * @param em        枚举信息对象
+     *
+     * @param prototype   對象
+     * @param msgConstant 枚举信息对象
      * @return 結果對象
      */
-    public MsgResultVO<T> errorResult(T prototype, MsgConstantEM em) {
+    public MsgResultVO<T> errorResult(T prototype, MsgConstant msgConstant) {
         this.result = false;
         this.resultData = prototype;
-        setMsgConstantEM(em);
+        setMsgConstant(msgConstant);
         return this;
     }
 
     /**
      * 請求失敗
+     *
      * @param prototype  對象
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
@@ -99,16 +103,18 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
+     *
      * @return 結果對象
      */
     public MsgResultVO<T> successResult() {
         this.result = true;
-        setMsgConstantEM(MsgConstantEM.REQUEST_SUCCESS);
+        setMsgConstant(MsgConstant.REQUEST_SUCCESS);
         return this;
     }
 
     /**
      * 請求成功
+     *
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      * @return 結果對象
@@ -122,44 +128,48 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
-     * @param em 枚举信息对象
+     *
+     * @param msgConstant 枚举信息对象
      * @return 結果對象
      */
-    public MsgResultVO<T> successResult(MsgConstantEM em) {
+    public MsgResultVO<T> successResult(MsgConstant msgConstant) {
         this.result = true;
-        this.resultCode = em.getCode();
-        this.resultMsg = em.getMsg();
+        this.resultCode = msgConstant.getCode();
+        this.resultMsg = msgConstant.getMsg();
         return this;
     }
 
     /**
      * 請求成功
+     *
      * @param prototype 汎型對象
      * @return 結果對象
      */
     public MsgResultVO<T> successResult(T prototype) {
         this.result = true;
         this.resultData = prototype;
-        setMsgConstantEM(MsgConstantEM.REQUEST_SUCCESS);
+        setMsgConstant(MsgConstant.REQUEST_SUCCESS);
         return this;
     }
 
     /**
      * 請求成功
-     * @param em 枚举信息对象
-     * @param prototype 汎型對象
+     *
+     * @param msgConstant 枚举信息对象
+     * @param prototype   汎型對象
      * @return 結果對象
      */
-    public MsgResultVO<T> successResult(T prototype, MsgConstantEM em) {
+    public MsgResultVO<T> successResult(T prototype, MsgConstant msgConstant) {
         this.result = true;
         this.resultData = prototype;
-        setMsgConstantEM(em);
+        setMsgConstant(msgConstant);
         return this;
     }
 
     /**
      * 請求成功
-     * @param prototype 汎型對象
+     *
+     * @param prototype  汎型對象
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      * @return 結果對象
@@ -174,6 +184,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 將本類中的結果信息傳遞給其他的msg
+     *
      * @param anotherMsg 另一個msgResult
      * @return ModelPrototype 返回原來的引用
      */
@@ -186,6 +197,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 將其他msg的結果信息傳遞給本類
+     *
      * @param anotherMsg 另一個msgResult
      */
     public void getMsgByAnotherMsg(MsgResultVO anotherMsg) {
@@ -196,6 +208,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 向Map中传递参数名以及值
+     *
      * @param key   参数名称
      * @param value 值
      */
@@ -205,6 +218,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 获取指定key的值
+     *
      * @param key 参数名称
      * @return obj
      */
@@ -214,6 +228,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 移除Map中的參數
+     *
      * @param key 參數名
      */
     public void removeParam(String key) {
@@ -222,6 +237,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 生成可直接返回的目標對象，剝除多餘的對象信息
+     *
      * @return 目标对象
      */
     public MsgResultVO aimMsg() {
@@ -230,6 +246,7 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 为了方便查看结果信息，直接使用JSON格式
+     *
      * @return 字符串
      */
     public String toJSON() {

@@ -13,25 +13,21 @@ public abstract class ClassTypeUtil {
     private static Class[] classTypePack = new Class[]{String.class, Integer.class, Long.class, Short.class, Float.class, Double.class, Boolean.class};
 
     private static boolean isContain(Class[] classType, Object obj) {
-        boolean result = false;
         for (Class className : classType) {
             if (className.equals(obj.getClass())) {
-                result = true;
-                break;
+                return true;
             }
         }
-        return result;
+        return false;
     }
 
     private static boolean isContain(Class[] classType, Class obj) {
-        boolean result = false;
         for (Class className : classType) {
             if (className.equals(obj)) {
-                result = true;
-                break;
+                return true;
             }
         }
-        return result;
+        return false;
     }
 
     public static boolean isBaseClass(Object obj) {

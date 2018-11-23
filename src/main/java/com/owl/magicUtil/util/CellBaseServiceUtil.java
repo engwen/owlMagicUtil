@@ -1,7 +1,7 @@
 package com.owl.magicUtil.util;
 
-import com.owl.magicUtil.constant.MsgConstantEM;
 import com.owl.magicUtil.dao.CellBaseDao;
+import com.owl.magicUtil.model.MsgConstant;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
 
@@ -31,7 +31,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult(model);
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with create,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -48,7 +48,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with createList,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -66,7 +66,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with delete,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -83,7 +83,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with deleteList,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -101,7 +101,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with banOrLeave,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -119,7 +119,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with banOrLeaveList,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -136,7 +136,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with update,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -154,11 +154,11 @@ public abstract class CellBaseServiceUtil {
             if (null != model) {
                 resultVO.successResult(model);
             } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_NOT_EXITS);
+                resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);
             }
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with details,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -176,7 +176,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult(cellBaseDao.selectBySelective(model));
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with details,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -195,11 +195,11 @@ public abstract class CellBaseServiceUtil {
             if (null != temp && temp.size() ==1) {
                 resultVO.successResult(temp.get(0));
             } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_NOT_EXITS);
+                resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);
             }
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with details,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -224,7 +224,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult(pageVO);
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with list,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -240,7 +240,7 @@ public abstract class CellBaseServiceUtil {
             resultVO.successResult(cellBaseDao.listAll());
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with listAll,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -256,13 +256,13 @@ public abstract class CellBaseServiceUtil {
         try {
             List<T> list = cellBaseDao.selectBySelective(model);
             if (null != list && list.size() > 0) {
-                resultVO.successResult(MsgConstantEM.REQUEST_IS_EXITS);
+                resultVO.successResult(MsgConstant.REQUEST_IS_EXITS);
             } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_NOT_EXITS);
+                resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);
             }
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with isExist,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -277,13 +277,13 @@ public abstract class CellBaseServiceUtil {
         try {
             T model = cellBaseDao.selectById(id);
             if (null != model) {
-                resultVO.successResult(MsgConstantEM.REQUEST_IS_EXITS);
+                resultVO.successResult(MsgConstant.REQUEST_IS_EXITS);
             } else {
-                resultVO.errorResult(MsgConstantEM.REQUEST_NOT_EXITS);
+                resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);
             }
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with isExist,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }

@@ -8,23 +8,33 @@ import com.owl.magicUtil.model.ModelPrototype;
  * email xiachanzou@outlook.com
  * time 2018/06/15.
  */
-public final class ReorderVO<T extends ModelPrototype> extends ModelPrototype {
+public final class ReorderVO<T> extends ModelPrototype {
     //序号
     private Integer order;
+
+    private T model;
+
+    public ReorderVO(Integer order, T model) {
+        this.order = order;
+        this.model = model;
+    }
+
+    public ReorderVO() {
+    }
 
     public Integer getOrder() {
         return order;
     }
 
-//    //初始化对象
-//    public ReorderVO(Integer order, T object) {
-//        this.order = order;
-//        super.setResultData(object);
-//    }
-//
-//    @Override
-//    @SuppressWarnings("unchecked")
-//    public T getResultData() {
-//        return null != super.getResultData() ? (T) super.getResultData() : null;
-//    }
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public T getModel() {
+        return model;
+    }
+
+    public void setModel(T model) {
+        this.model = model;
+    }
 }

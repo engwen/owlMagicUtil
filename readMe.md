@@ -53,3 +53,9 @@ com.owl.magicUtil
     3. ReorderVO 排序对象
     4. TreeStrVO 树对象，使用Str作为id和pid时使用
     5. TreeVO 树对象，使用Long或者Integer作为id和pid时使用
+    
+    
+2.3.1
+
+   添加类选择工具ClassTypeUtil,优化reorderRule排序工具
+   取消基于接口（MsgConstantUtil）以及枚举(MsgConstantEM)的msg常量，使用新的类MsgConstant，以方便拓展，该类支持继承与重写

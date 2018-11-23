@@ -1,6 +1,6 @@
 package com.owl.magicUtil.controller;
 
-import com.owl.magicUtil.constant.MsgConstantEM;
+import com.owl.magicUtil.model.MsgConstant;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
 
@@ -29,7 +29,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     public MsgResultVO<T> create(T model) {
         defaultBack();
         MsgResultVO<T> result = new MsgResultVO<>();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -42,7 +42,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     public MsgResultVO createList(List<T> list) {
         defaultBack();
         MsgResultVO result = new MsgResultVO();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -55,7 +55,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     public MsgResultVO delete(T model) {
         defaultBack();
         MsgResultVO result = new MsgResultVO();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -68,7 +68,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     public MsgResultVO deleteList(List<Long> idList) {
         defaultBack();
         MsgResultVO result = new MsgResultVO();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -81,7 +81,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     public MsgResultVO<T> update(T model) {
         defaultBack();
         MsgResultVO<T> result = new MsgResultVO<>();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -94,7 +94,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     public MsgResultVO<T> details(T model) {
         defaultBack();
         MsgResultVO<T> result = new MsgResultVO<>();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -109,7 +109,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     public MsgResultVO<PageVO<T>> list(Integer requestPage, Integer rows, T model) {
         defaultBack();
         MsgResultVO<PageVO<T>> result = new MsgResultVO<>();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -122,7 +122,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     public MsgResultVO<List<T>> listAll(T model) {
         defaultBack();
         MsgResultVO<List<T>> result = new MsgResultVO<>();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 
@@ -135,7 +135,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     public MsgResultVO isExist(T model) {
         defaultBack();
         MsgResultVO<List<T>> result = new MsgResultVO<>();
-        result.errorResult(MsgConstantEM.REQUEST_METHOD_NOT_EXITS);
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
         return result;
     }
 }

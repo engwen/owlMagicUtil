@@ -1,7 +1,7 @@
 package com.owl.magicUtil.util;
 
-import com.owl.magicUtil.constant.MsgConstantEM;
 import com.owl.magicUtil.dao.RelationBaseDao;
+import com.owl.magicUtil.model.MsgConstant;
 import com.owl.magicUtil.vo.MsgResultVO;
 
 import java.util.List;
@@ -22,17 +22,17 @@ public abstract class RelationBaseServiceUtil {
         try {
             List<T> temp = relationBaseDao.selectBySelective(model);
             if (null != temp && temp.size() > 0) {
-                resultVO.errorResult(MsgConstantEM.REQUEST_IS_EXITS);
+                resultVO.errorResult(MsgConstant.REQUEST_IS_EXITS);
             } else {
                 if (relationBaseDao.insert(model) > 0) {
                     resultVO.successResult();
                 } else {
-                    resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+                    resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
                 }
             }
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with insert,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -44,7 +44,7 @@ public abstract class RelationBaseServiceUtil {
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with insertList,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -56,7 +56,7 @@ public abstract class RelationBaseServiceUtil {
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with delete,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }
@@ -68,7 +68,7 @@ public abstract class RelationBaseServiceUtil {
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with deleteList,information is %s", e));
-            resultVO.errorResult(MsgConstantEM.REQUEST_DB_ERROR);
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
     }

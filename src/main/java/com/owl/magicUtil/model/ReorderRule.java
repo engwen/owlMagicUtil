@@ -1,4 +1,4 @@
-package com.owl.magicUtil.util;
+package com.owl.magicUtil.model;
 
 /**
  * author engwen
@@ -6,24 +6,11 @@ package com.owl.magicUtil.util;
  * time 2018/06/15.
  */
 
-import com.owl.magicUtil.model.ModelPrototype;
 import com.owl.magicUtil.vo.ReorderVO;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
-public class ReorderUtil<T extends ModelPrototype> {
-    public List<T> getSort(List<ReorderVO<T>> reorderVOList) {
-        List<T> result = new ArrayList<>();
-        reorderVOList.sort(new ReorderRule());
-//        reorderVOList.forEach(reorderVO -> result.add(reorderVO.getResultData()));
-        return result;
-    }
-}
-
-
-class ReorderRule implements Comparator<ReorderVO> {
+public final class ReorderRule implements Comparator<ReorderVO> {
     @Override
     public int compare(ReorderVO o1, ReorderVO o2) {
         int flag = 0;
