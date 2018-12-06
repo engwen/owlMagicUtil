@@ -46,6 +46,33 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
         return result;
     }
 
+
+    /**
+     * 批量操作 禁用或啓用
+     * @param id     對象ID
+     * @param status 對象狀態，可以爲空
+     * @return int
+     */
+    public MsgResultVO banOrLeave(Long id, Boolean status){
+        defaultBack();
+        MsgResultVO result = new MsgResultVO();
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
+        return result;
+    }
+
+    /**
+     * 批量操作 禁用或啓用
+     * @param idList 對象ID
+     * @param status 對象狀態
+     * @return int
+     */
+    public MsgResultVO banOrLeaveList(List<Long> idList, Boolean status){
+        defaultBack();
+        MsgResultVO result = new MsgResultVO();
+        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
+        return result;
+    }
+
     /**
      * 删除功能
      * @param model 待删除的对象
@@ -91,7 +118,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
      * @return 结果对象
      */
     @Override
-    public MsgResultVO<T> details(T model) {
+    public MsgResultVO<T> detailsByOne(T model) {
         defaultBack();
         MsgResultVO<T> result = new MsgResultVO<>();
         result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);

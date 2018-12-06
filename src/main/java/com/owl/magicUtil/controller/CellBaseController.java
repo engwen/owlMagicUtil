@@ -42,6 +42,22 @@ interface CellBaseController<T> {
     MsgResultVO deleteList(List<Long> idList);
 
     /**
+     * 批量操作 禁用或啓用
+     * @param id     對象ID
+     * @param status 對象狀態，可以爲空
+     * @return int
+     */
+    MsgResultVO banOrLeave(Long id, Boolean status);
+
+    /**
+     * 批量操作 禁用或啓用
+     * @param idList 對象ID
+     * @param status 對象狀態
+     * @return int
+     */
+    MsgResultVO banOrLeaveList(List<Long> idList, Boolean status);
+
+    /**
      * 更新
      * @param model 将要被更新的对象
      * @return 结果
@@ -50,10 +66,24 @@ interface CellBaseController<T> {
 
     /**
      * 获取详情
+     * @param model 获取详情的对象不唯一属性
+     * @return 结果对象
+     */
+    MsgResultVO<List<T>> details(T model);
+
+    /**
+     * 获取详情
      * @param model 获取详情的对象唯一属性
      * @return 结果对象
      */
-    MsgResultVO<T> details(T model);
+    MsgResultVO<T> detailsByOne(T model);
+
+    /**
+     * 获取详情
+     * @param id 获取详情的对象唯一属性
+     * @return 结果对象
+     */
+    MsgResultVO<T> details(Long id);
 
     /**
      * 获取分页集合
