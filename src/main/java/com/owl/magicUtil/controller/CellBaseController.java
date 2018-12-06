@@ -78,12 +78,6 @@ interface CellBaseController<T> {
      */
     MsgResultVO<T> detailsByOne(T model);
 
-    /**
-     * 获取详情
-     * @param id 获取详情的对象唯一属性
-     * @return 结果对象
-     */
-    MsgResultVO<T> details(Long id);
 
     /**
      * 获取分页集合
