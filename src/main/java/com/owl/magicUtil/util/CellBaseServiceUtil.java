@@ -37,6 +37,29 @@ public abstract class CellBaseServiceUtil {
     }
 
     /*
+     * 創建
+     * @param cellBaseDao cellBaseDao
+     * @param model 汎型對象
+     * @param <T> 汎型
+     * @return 汎型對象
+     */
+    public static <T> MsgResultVO<T> createByCheck(CellBaseDao<T> cellBaseDao, T model) {
+        MsgResultVO<T> resultVO = new MsgResultVO<>();
+        try {
+            if (isExist(cellBaseDao, model).getResult()) {
+                resultVO.errorResult(MsgConstant.REQUEST_IS_EXITS);
+            } else {
+                cellBaseDao.insert(model);
+                resultVO.successResult(model);
+            }
+        } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with create,information is %s", e));
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
+        }
+        return resultVO;
+    }
+
+    /*
      * 批量創建
      * @param modelList 汎型對象
      * @return 汎型對象
@@ -64,6 +87,27 @@ public abstract class CellBaseServiceUtil {
         try {
             cellBaseDao.deleteBySelective(model);
             resultVO.successResult();
+        } catch (Exception e) {
+            logger.info(String.format("there is a bad thing begin with delete,information is %s", e));
+            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
+        }
+        return resultVO;
+    }
+
+    /*
+     * 刪除 更新前需要查询，因此可能返回对象为父类型
+     * @param model 对象
+     * @return 基礎數據
+     */
+    public static <T> MsgResultVO deleteByCheck(CellBaseDao<T> cellBaseDao, T model) {
+        MsgResultVO<T> resultVO = new MsgResultVO<>();
+        try {
+            if (isExist(cellBaseDao, model).getResult()) {
+                cellBaseDao.deleteBySelective(model);
+                resultVO.successResult();
+            } else {
+                resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);
+            }
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with delete,information is %s", e));
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
@@ -124,6 +168,8 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
+
+
     /*
      * 更新 更新前需要查询，因此可能返回对象为父类型
      * @param model 汎型對象
@@ -132,8 +178,12 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<T> update(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            cellBaseDao.updateBySelective(model);
-            resultVO.successResult();
+            if (isExist(cellBaseDao,model).getResult()) {
+                cellBaseDao.updateBySelective(model);
+                resultVO.successResult();
+            } else {
+                resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);
+            }
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with update,information is %s", e));
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
@@ -191,8 +241,8 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<T> detailsByOne(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            List<T> temp =cellBaseDao.selectBySelective(model);
-            if (null != temp && temp.size() ==1) {
+            List<T> temp = cellBaseDao.selectBySelective(model);
+            if (null != temp && temp.size() == 1) {
                 resultVO.successResult(temp.get(0));
             } else {
                 resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);

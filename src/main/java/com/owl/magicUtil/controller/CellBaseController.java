@@ -66,17 +66,10 @@ interface CellBaseController<T> {
 
     /**
      * 获取详情
-     * @param model 获取详情的对象不唯一属性
-     * @return 结果对象
-     */
-    MsgResultVO<List<T>> details(T model);
-
-    /**
-     * 获取详情
      * @param model 获取详情的对象唯一属性
      * @return 结果对象
      */
-    MsgResultVO<T> detailsByOne(T model);
+    MsgResultVO<T> details(T model);
 
 
     /**

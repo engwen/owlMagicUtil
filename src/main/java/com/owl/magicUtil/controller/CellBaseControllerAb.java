@@ -118,7 +118,7 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
      * @return 结果对象
      */
     @Override
-    public MsgResultVO<T> detailsByOne(T model) {
+    public MsgResultVO<T> details(T model) {
         defaultBack();
         MsgResultVO<T> result = new MsgResultVO<>();
         result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);

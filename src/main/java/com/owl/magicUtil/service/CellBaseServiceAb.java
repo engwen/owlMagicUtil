@@ -104,29 +104,7 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      * @return 汎型對象
      */
     @Override
-    public MsgResultVO<List<T>> details(T model) {
-        loggerInfo();
-        return null;
-    }
-
-    /**
-     * 獲取詳情
-     * @param id 汎型對象檢索條件
-     * @return 汎型對象
-     */
-    @Override
-    public MsgResultVO<T> details(Long id) {
-        loggerInfo();
-        return null;
-    }
-
-    /**
-     * 獲取詳情
-     * @param model 汎型對象檢索條件
-     * @return 汎型對象
-     */
-    @Override
-    public MsgResultVO<T> detailsByOne(T model) {
+    public MsgResultVO<T> details(T model) {
         loggerInfo();
         return null;
     }
@@ -150,7 +128,7 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      * @return 對象集合
      */
     @Override
-    public MsgResultVO<List<T>> listAll() {
+    public MsgResultVO<List<T>> listAll(T model) {
         loggerInfo();
         return null;
     }
@@ -162,17 +140,6 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
      */
     @Override
     public MsgResultVO isExist(T model) {
-        loggerInfo();
-        return null;
-    }
-
-    /**
-     * 檢查数据是否存在
-     * @param id id属性
-     * @return Boolean
-     */
-    @Override
-    public MsgResultVO isExist(Long id) {
         loggerInfo();
         return null;
     }

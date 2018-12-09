@@ -69,22 +69,7 @@ interface CellBaseService<T> {
      * @param model 汎型對象檢索條件
      * @return 汎型對象
      */
-    MsgResultVO<List<T>> details(T model);
-
-    /**
-     * 獲取詳情
-     * @param id 汎型對象檢索條件
-     * @return 汎型對象
-     */
-    MsgResultVO<T> details(Long id);
-
-
-    /**
-     * 獲取詳情
-     * @param model 汎型對象檢索條件
-     * @return 汎型對象
-     */
-    MsgResultVO<T> detailsByOne(T model);
+    MsgResultVO<T> details(T model);
 
     /**
      * 獲取分頁列表，添加 model 提供檢索功能
@@ -97,10 +82,10 @@ interface CellBaseService<T> {
     MsgResultVO<PageVO<T>> list(Boolean getAll, Integer requestPage, Integer rows, T model);
 
     /**
-     * 獲取所有的對象
+     * 獲取所有的對象，添加 model 提供檢索功能
      * @return 對象集合
      */
-    MsgResultVO<List<T>> listAll();
+    MsgResultVO<List<T>> listAll(T model);
 
     /**
      * 檢查数据是否存在
@@ -108,12 +93,5 @@ interface CellBaseService<T> {
      * @return Boolean
      */
     MsgResultVO isExist(T model);
-
-    /**
-     * 檢查数据是否存在
-     * @param id id属性
-     * @return Boolean
-     */
-    MsgResultVO isExist(Long id);
 
 }
