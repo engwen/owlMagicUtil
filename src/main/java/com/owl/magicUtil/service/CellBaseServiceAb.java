@@ -1,5 +1,8 @@
 package com.owl.magicUtil.service;
 
+import com.owl.magicUtil.dto.BanDTO;
+import com.owl.magicUtil.dto.BanListDTO;
+import com.owl.magicUtil.dto.PageDTO;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
 
@@ -75,6 +78,11 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
         return null;
     }
 
+    @Override
+    public MsgResultVO banOrLeave(BanDTO banDTO) {
+        return null;
+    }
+
     /**
      * 批量操作 禁用或啓用
      * @param idList 對象ID
@@ -84,6 +92,11 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
     @Override
     public MsgResultVO banOrLeaveList(List<Long> idList, Boolean status) {
         loggerInfo();
+        return null;
+    }
+
+    @Override
+    public MsgResultVO banOrLeaveList(BanListDTO banListDTO) {
         return null;
     }
 
@@ -120,6 +133,16 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
     @Override
     public MsgResultVO<PageVO<T>> list(Boolean getAll, Integer requestPage, Integer rows, T model) {
         loggerInfo();
+        return null;
+    }
+
+    @Override
+    public MsgResultVO<PageVO<T>> list(PageDTO<T> pageDTO) {
+        return null;
+    }
+
+    @Override
+    public MsgResultVO<List<T>> listAll() {
         return null;
     }
 

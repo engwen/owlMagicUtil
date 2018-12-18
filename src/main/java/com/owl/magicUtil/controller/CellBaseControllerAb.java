@@ -1,5 +1,8 @@
 package com.owl.magicUtil.controller;
 
+import com.owl.magicUtil.dto.BanDTO;
+import com.owl.magicUtil.dto.BanListDTO;
+import com.owl.magicUtil.dto.PageDTO;
 import com.owl.magicUtil.model.MsgConstant;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
@@ -16,153 +19,156 @@ import java.util.logging.Logger;
 public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
     private static Logger logger = Logger.getLogger(CellBaseControllerAb.class.getName());
 
-    private static void defaultBack() {
+    private MsgResultVO defaultBack() {
         logger.info("默认的原始输出，将不会产生任何影响");
+        MsgResultVO result = new MsgResultVO();
+        return result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
     }
 
     /**
      * 创建
+     *
      * @param model 将要被创建的对象
      * @return 创建后的对象返回数据
      */
     @Override
     public MsgResultVO<T> create(T model) {
-        defaultBack();
-        MsgResultVO<T> result = new MsgResultVO<>();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
+        return defaultBack();
     }
 
     /**
      * 批量创建
+     *
      * @param list 待创建对象集合
      * @return 结果
      */
     @Override
     public MsgResultVO createList(List<T> list) {
-        defaultBack();
-        MsgResultVO result = new MsgResultVO();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
+        return defaultBack();
     }
 
-
-    /**
-     * 批量操作 禁用或啓用
-     * @param id     對象ID
-     * @param status 對象狀態，可以爲空
-     * @return int
-     */
-    public MsgResultVO banOrLeave(Long id, Boolean status){
-        defaultBack();
-        MsgResultVO result = new MsgResultVO();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
-    }
-
-    /**
-     * 批量操作 禁用或啓用
-     * @param idList 對象ID
-     * @param status 對象狀態
-     * @return int
-     */
-    public MsgResultVO banOrLeaveList(List<Long> idList, Boolean status){
-        defaultBack();
-        MsgResultVO result = new MsgResultVO();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
-    }
 
     /**
      * 删除功能
+     *
      * @param model 待删除的对象
      * @return 结果
      */
     @Override
     public MsgResultVO delete(T model) {
-        defaultBack();
-        MsgResultVO result = new MsgResultVO();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
+        return defaultBack();
     }
 
     /**
      * 批量删除
+     *
      * @param idList 待删除的id集合
      * @return 结果
      */
     @Override
     public MsgResultVO deleteList(List<Long> idList) {
-        defaultBack();
-        MsgResultVO result = new MsgResultVO();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
+        return defaultBack();
+    }
+
+    /**
+     * 批量操作 禁用或啓用
+     *
+     * @param id     對象ID
+     * @param status 對象狀態，可以爲空
+     * @return int
+     */
+    public MsgResultVO banOrLeave(Long id, Boolean status) {
+        return defaultBack();
+    }
+
+    @Override
+    public MsgResultVO banOrLeave(BanDTO banDTO) {
+        return defaultBack();
+    }
+
+
+    /**
+     * 批量操作 禁用或啓用
+     *
+     * @param idList 對象ID
+     * @param status 對象狀態
+     * @return int
+     */
+    public MsgResultVO banOrLeaveList(List<Long> idList, Boolean status) {
+        return defaultBack();
+    }
+
+    @Override
+    public MsgResultVO banOrLeaveList(BanListDTO banListDTO) {
+        return defaultBack();
     }
 
     /**
      * 更新
+     *
      * @param model 将要被更新的对象
      * @return 结果
      */
     @Override
     public MsgResultVO<T> update(T model) {
-        defaultBack();
-        MsgResultVO<T> result = new MsgResultVO<>();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
+        return defaultBack();
     }
 
     /**
      * 获取详情
+     *
      * @param model 获取详情的对象唯一属性
      * @return 结果对象
      */
     @Override
     public MsgResultVO<T> details(T model) {
-        defaultBack();
-        MsgResultVO<T> result = new MsgResultVO<>();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
+        return defaultBack();
     }
 
     /**
      * 获取分页集合
+     *
      * @param requestPage 请求页数
      * @param rows        请求显示条数
      * @param model       检索对象属性
      * @return 分页集合
      */
     @Override
-    public MsgResultVO<PageVO<T>> list(Integer requestPage, Integer rows, T model) {
-        defaultBack();
-        MsgResultVO<PageVO<T>> result = new MsgResultVO<>();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
+    public MsgResultVO<PageVO<T>> list(boolean getAll, Integer requestPage, Integer rows, T model) {
+        return defaultBack();
+    }
+
+
+    @Override
+    public MsgResultVO<PageVO<T>> list(PageDTO<T> pageDTO) {
+        return defaultBack();
     }
 
     /**
      * 获取所有对象
+     *
      * @param model 检索条件
      * @return 结果集合
      */
     @Override
     public MsgResultVO<List<T>> listAll(T model) {
-        defaultBack();
-        MsgResultVO<List<T>> result = new MsgResultVO<>();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
+        return defaultBack();
     }
+
+    @Override
+    public MsgResultVO<List<T>> listAll() {
+        return defaultBack();
+    }
+
 
     /**
      * 檢查数据是否存在
+     *
      * @param model 检索条件
      * @return Boolean
      */
     @Override
     public MsgResultVO isExist(T model) {
-        defaultBack();
-        MsgResultVO<List<T>> result = new MsgResultVO<>();
-        result.errorResult(MsgConstant.REQUEST_METHOD_NOT_EXITS);
-        return result;
+        return defaultBack();
     }
 }

@@ -1,10 +1,14 @@
 package com.owl.magicUtil.util;
 
 import com.owl.magicUtil.dao.CellBaseDao;
+import com.owl.magicUtil.dto.BanDTO;
+import com.owl.magicUtil.dto.BanListDTO;
+import com.owl.magicUtil.dto.PageDTO;
 import com.owl.magicUtil.model.MsgConstant;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -141,13 +145,19 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, Long id, Boolean status) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            cellBaseDao.banOrLeave(id, status);
+            List<Long> ids = new ArrayList<>();
+            ids.add(id);
+            cellBaseDao.banOrLeave(ids, status);
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with banOrLeave,information is %s", e));
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
+    }
+
+    public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, BanDTO banDTO) {
+        return banOrLeave(cellBaseDao, banDTO.getId(), banDTO.getStatus());
     }
 
     /*
@@ -159,7 +169,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO banOrLeaveList(CellBaseDao<T> cellBaseDao, List<Long> idList, Boolean status) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            cellBaseDao.banOrLeaveList(idList, status);
+            cellBaseDao.banOrLeave(idList, status);
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with banOrLeaveList,information is %s", e));
@@ -168,7 +178,9 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
-
+    public static <T> MsgResultVO banOrLeaveList(CellBaseDao<T> cellBaseDao, BanListDTO banListDTO) {
+        return banOrLeaveList(cellBaseDao, banListDTO.getIdList(), banListDTO.getStatus());
+    }
 
     /*
      * 更新 更新前需要查询，因此可能返回对象为父类型
@@ -178,7 +190,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<T> update(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            if (isExist(cellBaseDao,model).getResult()) {
+            if (isExist(cellBaseDao, model).getResult()) {
                 cellBaseDao.updateBySelective(model);
                 resultVO.successResult();
             } else {
@@ -279,20 +291,37 @@ public abstract class CellBaseServiceUtil {
         return resultVO;
     }
 
+    public static <T> MsgResultVO<PageVO<T>> list(CellBaseDao<T> cellBaseDao, PageDTO<T> pageDTO) {
+        return list(cellBaseDao, pageDTO.getGetAll(), pageDTO.getRequestPage(), pageDTO.getRows(), pageDTO.getModel());
+    }
+
     /*
      * 獲取所有的對象
      * @return 對象集合
      */
-
-    public static <T> MsgResultVO<List<T>> listAll(CellBaseDao<T> cellBaseDao) {
+    public static <T> MsgResultVO<List<T>> listAll(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<List<T>> resultVO = new MsgResultVO<>();
         try {
-            resultVO.successResult(cellBaseDao.listAll());
+            MsgResultVO<PageVO<T>> pageVO = list(cellBaseDao, true, 1, 0, model);
+            if (pageVO.getResult()) {
+                resultVO.successResult(pageVO.getResultData().getObjectList());
+            } else {
+                resultVO.getMsgByAnotherMsg(pageVO);
+            }
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with listAll,information is %s", e));
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
+    }
+
+
+    /*
+     * 獲取所有的對象
+     * @return 對象集合
+     */
+    public static <T> MsgResultVO<List<T>> listAll(CellBaseDao<T> cellBaseDao) {
+        return listAll(cellBaseDao, null);
     }
 
     /*
