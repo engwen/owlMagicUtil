@@ -320,5 +320,6 @@ public abstract class CellBaseServiceUtil {
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
+
     }
 }
