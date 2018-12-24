@@ -141,11 +141,6 @@ public abstract class CellBaseServiceAb<T> implements CellBaseService<T> {
         return null;
     }
 
-    @Override
-    public MsgResultVO<List<T>> listAll() {
-        return null;
-    }
-
     /**
      * 獲取所有的對象
      * @return 對象集合

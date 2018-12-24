@@ -205,33 +205,9 @@ public abstract class CellBaseServiceUtil {
 
     /*
      * 獲取詳情
-     * @param id 汎型對象檢索條件
-     * @return 汎型對象
-     */
-
-    public static <T> MsgResultVO<T> details(CellBaseDao<T> cellBaseDao, Long id) {
-        MsgResultVO<T> resultVO = new MsgResultVO<>();
-        try {
-            T model = cellBaseDao.selectById(id);
-            if (null != model) {
-                resultVO.successResult(model);
-            } else {
-                resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);
-            }
-        } catch (Exception e) {
-            logger.info(String.format("there is a bad thing begin with details,information is %s", e));
-            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
-        }
-        return resultVO;
-    }
-
-
-    /*
-     * 獲取詳情
      * @param model 汎型對象檢索條件
      * @return 汎型對象
      */
-
     public static <T> MsgResultVO<List<T>> details(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<List<T>> resultVO = new MsgResultVO<>();
         try {
@@ -335,27 +311,6 @@ public abstract class CellBaseServiceUtil {
         try {
             List<T> list = cellBaseDao.selectBySelective(model);
             if (null != list && list.size() > 0) {
-                resultVO.successResult(MsgConstant.REQUEST_IS_EXITS);
-            } else {
-                resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);
-            }
-        } catch (Exception e) {
-            logger.info(String.format("there is a bad thing begin with isExist,information is %s", e));
-            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
-        }
-        return resultVO;
-    }
-
-    /*
-     * 檢查数据是否存在
-     * @param id id属性
-     * @return Boolean
-     */
-    public static <T> MsgResultVO isExist(CellBaseDao<T> cellBaseDao, Long id) {
-        MsgResultVO resultVO = new MsgResultVO();
-        try {
-            T model = cellBaseDao.selectById(id);
-            if (null != model) {
                 resultVO.successResult(MsgConstant.REQUEST_IS_EXITS);
             } else {
                 resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);

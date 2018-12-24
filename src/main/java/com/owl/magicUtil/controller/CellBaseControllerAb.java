@@ -38,7 +38,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 批量创建
-     *
      * @param list 待创建对象集合
      * @return 结果
      */
@@ -50,7 +49,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 删除功能
-     *
      * @param model 待删除的对象
      * @return 结果
      */
@@ -61,7 +59,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 批量删除
-     *
      * @param idList 待删除的id集合
      * @return 结果
      */
@@ -72,7 +69,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 批量操作 禁用或啓用
-     *
      * @param id     對象ID
      * @param status 對象狀態，可以爲空
      * @return int
@@ -89,7 +85,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 批量操作 禁用或啓用
-     *
      * @param idList 對象ID
      * @param status 對象狀態
      * @return int
@@ -116,7 +111,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 获取详情
-     *
      * @param model 获取详情的对象唯一属性
      * @return 结果对象
      */
@@ -127,7 +121,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 获取分页集合
-     *
      * @param requestPage 请求页数
      * @param rows        请求显示条数
      * @param model       检索对象属性
@@ -138,7 +131,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
         return defaultBack();
     }
 
-
     @Override
     public MsgResultVO<PageVO<T>> list(PageDTO<T> pageDTO) {
         return defaultBack();
@@ -146,7 +138,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 获取所有对象
-     *
      * @param model 检索条件
      * @return 结果集合
      */
@@ -155,15 +146,8 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
         return defaultBack();
     }
 
-    @Override
-    public MsgResultVO<List<T>> listAll() {
-        return defaultBack();
-    }
-
-
     /**
      * 檢查数据是否存在
-     *
      * @param model 检索条件
      * @return Boolean
      */

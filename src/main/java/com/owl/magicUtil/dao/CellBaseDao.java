@@ -12,7 +12,6 @@ public interface CellBaseDao<T> {
 
     /**
      * 直接插入
-     *
      * @param record 泛型对象
      * @return int
      */
@@ -20,7 +19,6 @@ public interface CellBaseDao<T> {
 
     /**
      * 批量插入
-     *
      * @param list 泛型对象集合
      * @return int
      */
@@ -28,7 +26,6 @@ public interface CellBaseDao<T> {
 
     /**
      * 批量刪除
-     *
      * @param idList id集合
      * @return int
      */
@@ -36,7 +33,6 @@ public interface CellBaseDao<T> {
 
     /**
      * 刪除
-     *
      * @param model 泛型对象
      * @return int
      */
@@ -44,7 +40,6 @@ public interface CellBaseDao<T> {
 
     /**
      * 批量操作 禁用或啓用
-     *
      * @param idList 對象ID
      * @param status 對象狀態
      * @return int
@@ -53,23 +48,13 @@ public interface CellBaseDao<T> {
 
     /**
      * 依據指定的屬性進行更新
-     *
      * @param record 泛型对象
      * @return int
      */
     int updateBySelective(T record);
 
     /**
-     * 依據id查詢對象
-     *
-     * @param id id
-     * @return 泛型对象
-     */
-    T selectById(Long id);
-
-    /**
      * 依據屬性獲取對象集合
-     *
      * @param record 泛型对象
      * @return 泛型对象集合
      */
@@ -77,7 +62,6 @@ public interface CellBaseDao<T> {
 
     /**
      * 依據指定的屬性統計數據條數
-     *
      * @param record 泛型对象
      * @return int
      */
