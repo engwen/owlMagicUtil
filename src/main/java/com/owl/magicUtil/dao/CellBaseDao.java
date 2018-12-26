@@ -15,7 +15,7 @@ public interface CellBaseDao<T> {
      * @param record 泛型对象
      * @return int
      */
-    int insert(T record);
+    int insertSelective(T record);
 
     /**
      * 批量插入

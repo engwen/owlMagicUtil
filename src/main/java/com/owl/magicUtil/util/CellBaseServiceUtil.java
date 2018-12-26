@@ -31,7 +31,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<T> create(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            cellBaseDao.insert(model);
+            cellBaseDao.insertSelective(model);
             resultVO.successResult(model);
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with create,information is %s", e));
@@ -53,7 +53,7 @@ public abstract class CellBaseServiceUtil {
             if (isExist(cellBaseDao, model).getResult()) {
                 resultVO.errorResult(MsgConstant.REQUEST_IS_EXITS);
             } else {
-                cellBaseDao.insert(model);
+                cellBaseDao.insertSelective(model);
                 resultVO.successResult(model);
             }
         } catch (Exception e) {
@@ -143,17 +143,9 @@ public abstract class CellBaseServiceUtil {
      * @return 基礎數據
      */
     public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, Long id, Boolean status) {
-        MsgResultVO<T> resultVO = new MsgResultVO<>();
-        try {
-            List<Long> ids = new ArrayList<>();
-            ids.add(id);
-            cellBaseDao.banOrLeave(ids, status);
-            resultVO.successResult();
-        } catch (Exception e) {
-            logger.info(String.format("there is a bad thing begin with banOrLeave,information is %s", e));
-            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
-        }
-        return resultVO;
+        List<Long> ids = new ArrayList<>();
+        ids.add(id);
+        return banOrLeaveList(cellBaseDao,ids,status);
     }
 
     public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, BanDTO banDTO) {
