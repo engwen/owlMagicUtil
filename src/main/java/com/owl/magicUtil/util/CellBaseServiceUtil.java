@@ -208,32 +208,15 @@ public abstract class CellBaseServiceUtil {
      * @param model 汎型對象檢索條件
      * @return 汎型對象
      */
-    public static <T> MsgResultVO<List<T>> details(CellBaseDao<T> cellBaseDao, T model) {
-        MsgResultVO<List<T>> resultVO = new MsgResultVO<>();
-        try {
-            resultVO.successResult(cellBaseDao.selectBySelective(model));
-        } catch (Exception e) {
-            logger.info(String.format("there is a bad thing begin with details,information is %s", e));
-            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
-        }
-        return resultVO;
-    }
-
-
-    /*
-     * 獲取詳情
-     * @param model 汎型對象檢索條件
-     * @return 汎型對象
-     */
-
-    public static <T> MsgResultVO<T> detailsByOne(CellBaseDao<T> cellBaseDao, T model) {
+    public static <T> MsgResultVO<T> details(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
             List<T> temp = cellBaseDao.selectBySelective(model);
             if (null != temp && temp.size() == 1) {
                 resultVO.successResult(temp.get(0));
             } else {
-                resultVO.errorResult(MsgConstant.REQUEST_NOT_EXITS);
+                logger.info("there are list with details back, but you just want one");
+                resultVO.errorResult(MsgConstant.REQUEST_BACK_ARE_LIST);
             }
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with details,information is %s", e));
@@ -252,7 +235,6 @@ public abstract class CellBaseServiceUtil {
      * @param model       檢索條件
      * @return 分頁對象
      */
-
     public static <T> MsgResultVO<PageVO<T>> list(CellBaseDao<T> cellBaseDao, Boolean getAll, Integer requestPage, Integer rows, T model) {
         MsgResultVO<PageVO<T>> resultVO = new MsgResultVO<>();
         try {
@@ -273,31 +255,18 @@ public abstract class CellBaseServiceUtil {
 
     /*
      * 獲取所有的對象
+     * @param model 汎型對象檢索條件
      * @return 對象集合
      */
     public static <T> MsgResultVO<List<T>> listAll(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<List<T>> resultVO = new MsgResultVO<>();
         try {
-            MsgResultVO<PageVO<T>> pageVO = list(cellBaseDao, true, 1, 0, model);
-            if (pageVO.getResult()) {
-                resultVO.successResult(pageVO.getResultData().getObjectList());
-            } else {
-                resultVO.getMsgByAnotherMsg(pageVO);
-            }
+            resultVO.successResult(cellBaseDao.selectBySelective(model));
         } catch (Exception e) {
-            logger.info(String.format("there is a bad thing begin with listAll,information is %s", e));
+            logger.info(String.format("there is a bad thing begin with details,information is %s", e));
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
-    }
-
-
-    /*
-     * 獲取所有的對象
-     * @return 對象集合
-     */
-    public static <T> MsgResultVO<List<T>> listAll(CellBaseDao<T> cellBaseDao) {
-        return listAll(cellBaseDao, null);
     }
 
     /*

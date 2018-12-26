@@ -23,6 +23,7 @@ public class MsgConstant {
     public static MsgConstant REQUEST_CANT_UPDATE_ADMIN = new MsgConstant("0010", "管理员状态不可修改");
     public static MsgConstant REQUEST_METHOD_NOT_EXITS = new MsgConstant("0011", "该方法（接口）不存在，请检查代码");
     public static MsgConstant REQUEST_DB_ERROR = new MsgConstant("0012", "底层sql错误,请检查代码");
+    public static MsgConstant REQUEST_BACK_ARE_LIST = new MsgConstant("0013", "符合条件的数据不唯一");
 
     public static MsgConstant REQUEST_CANT_UPDATE_STATUS = new MsgConstant("0020", "更新操作不能进行删除操作");
 
