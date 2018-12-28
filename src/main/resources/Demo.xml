@@ -38,9 +38,6 @@
             <if test="id != null">
                 #{id,jdbcType=BIGINT},
             </if>
-            <if test="name != null">
-                #{name,jdbcType=VARCHAR},
-            </if>
             <if test="isBan != null">
                 #{isBan,jdbcType=BIT},
             </if>
@@ -53,9 +50,9 @@
         id,
         is_ban, status, create_time, update_time)
         values
-        <foreach collection="list" item="model" separator=",">
-            (#{model.id,jdbcType=BIGINT},
-            #{model.isBan,jdbcType=BIT},#{model.status,jdbcType=BIT} , null , null)
+        <foreach collection="list" item="record" separator=",">
+            (#{record.id,jdbcType=BIGINT},
+            #{record.isBan,jdbcType=BIT},#{record.status,jdbcType=BIT} , null , null)
         </foreach>
     </insert>
 
@@ -86,13 +83,14 @@
 
     <update id="banOrLeave">
         UPDATE <include refid="Table_Name"/>
-        SET is_ban = #{isBan}
+        SET is_ban = #{isBan},update_time = NULL
         WHERE id IN
         <foreach collection="idList" item="id" open="(" close=")" separator=",">
             <if test="id != null">
                 #{id}
             </if>
         </foreach>
+        and status = true
     </update>
 
     <update id="updateBySelective">
@@ -103,7 +101,7 @@
             </if>
             update_time = NULL
         </set>
-        where id = #{id,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT} and status = true
     </update>
 
     <select id="listAll" resultMap="BaseResultMap">
@@ -115,9 +113,10 @@
                 (name like CONCAT(CONCAT('%',#{name}),'%'))
                 AND
             </if>
-            <if test="null != status">
-                status = #{status}
+            <if test="null != isBan">
+                is_ban = #{isBan} and
             </if>
+            status = true
         </trim>
     </select>
 
@@ -125,14 +124,12 @@
         select count(id) from
         <include refid="Table_Name"/>
         <trim prefix="where" suffixOverrides="and">
-            <if test="null != model">
-                <if test="null != model.name">
-                    (name like CONCAT(CONCAT('%',#{model.name}),'%'))
+            <if test="null != record">
+                <if test="null != record.name">
+                    (name like CONCAT(CONCAT('%',#{record.name}),'%'))
                     AND
                 </if>
-                <if test="null != model.status">
-                    status = #{model.status}
-                </if>
+                status = true
             </if>
         </trim>
     </select>
@@ -142,14 +139,12 @@
         <include refid="Base_Column_List"/>
         from <include refid="Table_Name"/>
         <trim prefix="where" suffixOverrides="and">
-            <if test="null != model">
-                <if test="null != model.name">
-                    (name like CONCAT(CONCAT('%',#{model.name}),'%'))
+            <if test="null != record">
+                <if test="null != record.name">
+                    (name like CONCAT(CONCAT('%',#{record.name}),'%'))
                     AND
                 </if>
-                <if test="null != model.status">
-                    status = #{model.status}
-                </if>
+                status = true
             </if>
         </trim>
         ORDER BY CONVERT(name using gbk) ASC
