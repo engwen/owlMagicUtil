@@ -104,7 +104,7 @@
         where id = #{id,jdbcType=BIGINT} and status = true
     </update>
 
-    <select id="listAll" resultMap="BaseResultMap">
+    <select id="selectBySelective" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from <include refid="Table_Name"/>
@@ -129,8 +129,8 @@
                     (name like CONCAT(CONCAT('%',#{record.name}),'%'))
                     AND
                 </if>
-                status = true
             </if>
+            status = true
         </trim>
     </select>
 
@@ -144,8 +144,8 @@
                     (name like CONCAT(CONCAT('%',#{record.name}),'%'))
                     AND
                 </if>
-                status = true
             </if>
+            status = true
         </trim>
         ORDER BY CONVERT(name using gbk) ASC
         limit #{upLimit},#{rows}
