@@ -1,5 +1,8 @@
 package com.owl.magicUtil.dao;
 
+import com.owl.magicUtil.dto.BanListDTO;
+import com.owl.magicUtil.dto.SelectLikeDTO;
+
 import java.util.List;
 
 /**
@@ -12,10 +15,10 @@ public interface CellBaseDao<T> {
 
     /**
      * 直接插入
-     * @param record 泛型对象
+     * @param model 泛型对象
      * @return int
      */
-    int insertSelective(T record);
+    int insertSelective(T model);
 
     /**
      * 批量插入
@@ -40,41 +43,45 @@ public interface CellBaseDao<T> {
 
     /**
      * 批量操作 禁用或啓用
-     * @param idList 對象ID
-     * @param status 對象狀態
+     * @param banListDTO 對象
+     * param idList 對象ID
+     * param status 對象狀態
      * @return int
      */
-    int banOrLeave(List<Long> idList, Boolean status);
+    int banOrLeave(BanListDTO banListDTO);
 
     /**
      * 依據指定的屬性進行更新
-     * @param record 泛型对象
+     * @param model 泛型对象
      * @return int
      */
-    int updateBySelective(T record);
+    int updateBySelective(T model);
 
     /**
      * 依據屬性獲取對象集合
-     * @param record 泛型对象
+     * @param selectLikeDTO 泛型对象
+     * Param("model")
      * @return 泛型对象集合
      */
-    List<T> selectBySelective(T record);
+    List<T> selectBySelective(SelectLikeDTO<T> selectLikeDTO);
+
 
     /**
      * 依據指定的屬性統計數據條數
-     * @param record 泛型对象
+     * @param selectLikeDTO 泛型对象
+     * Param("model")
      * @return int
      */
-    Integer countSumByCondition(T record);
+    Integer countSumByCondition(SelectLikeDTO<T> selectLikeDTO);
 
     /**
      * 依據指定的屬性獲取指定的集合
-     *
-     * @param upLimit Param("upLimit")
-     * @param rows    Param("rows")
-     * @param record  Param("record")
+     * @param selectLikeDTO
+     * Param("upLimit")
+     * Param("rows")
+     * Param("model")
      * @return 泛型对象集合
      */
-    List<T> listByCondition(Integer upLimit, Integer rows, T record);
+    List<T> listByCondition(SelectLikeDTO<T> selectLikeDTO);
 
 }

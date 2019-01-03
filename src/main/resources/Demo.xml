@@ -9,14 +9,33 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
-    <sql id="Base_Column_List">
-        -- 请添加所需要的属性
-        id,
-        is_ban, status, create_time, update_time
+
+    <sql id="Table_ID_Name">
+        id
     </sql>
     <sql id="Table_Name">
-        -- 请修改表名
         owl_demo
+    </sql>
+    <sql id="Base_Column_List">
+        <include refid="Table_ID_Name"/> ,
+        is_ban, status, create_time, update_time
+    </sql>
+
+    <sql id="Select_Like">
+        <trim prefix="where" suffixOverrides="and">
+            <if test="null != model">
+                <if test="null != model.name">
+                    (name like CONCAT(CONCAT('%',#{model.name}),'%'))
+                    AND
+                </if>
+                <if test="null != model.isBan">
+                    is_ban = #{model.isBan} and
+                </if>
+                <if test="null != model.status">
+                    status = true
+                </if>
+            </if>
+        </trim>
     </sql>
 
     <insert id="insertSelective" parameterType="com.owl.Demo">
@@ -24,20 +43,12 @@
             select LAST_INSERT_ID()
         </selectKey>
         insert into <include refid="Table_Name"/>
-        -- 请更改指定的列属性
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
             <if test="isBan != null">
                 is_ban,
             </if>
         </trim>
-        -- 请更改指定的列属性值
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
             <if test="isBan != null">
                 #{isBan,jdbcType=BIT},
             </if>
@@ -47,23 +58,15 @@
     <!-- 请添加所需要的属性-->
     <insert id="insertList">
         insert into <include refid="Table_Name"/> (
-        id,
+
         is_ban, status, create_time, update_time)
         values
-        <foreach collection="list" item="record" separator=",">
-            (#{record.id,jdbcType=BIGINT},
-            #{record.isBan,jdbcType=BIT},#{record.status,jdbcType=BIT} , null , null)
+        <foreach collection="list" item="model" separator=",">
+            (
+
+            #{model.isBan,jdbcType=BIT},#{model.status,jdbcType=BIT} , null , null)
         </foreach>
     </insert>
-
-    <update id="deleteByIdList">
-        update <include refid="Table_Name"/>
-        set status=false,update_time = NULL
-        WHERE id IN
-        <foreach collection="idList" item="id" open="(" close=")" separator=",">
-            #{id}
-        </foreach>
-    </update>
 
     <update id="deleteBySelective">
         update <include refid="Table_Name"/>
@@ -71,7 +74,7 @@
         <trim prefix="where" suffixOverrides="and">
             <choose>
                 <when test="id != null">
-                    id = #{id}
+                    <include refid="Table_ID_Name"/> = #{id}
                 </when>
                 <otherwise>
 
@@ -80,15 +83,21 @@
         </trim>
     </update>
 
+    <update id="deleteByIdList">
+        update <include refid="Table_Name"/>
+        set status=false,update_time = NULL
+        WHERE <include refid="Table_ID_Name"/> IN
+        <foreach collection="idList" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
 
     <update id="banOrLeave">
         UPDATE <include refid="Table_Name"/>
         SET is_ban = #{isBan},update_time = NULL
-        WHERE id IN
+        WHERE <include refid="Table_ID_Name"/> IN
         <foreach collection="idList" item="id" open="(" close=")" separator=",">
-            <if test="id != null">
-                #{id}
-            </if>
+            #{id}
         </foreach>
         and status = true
     </update>
@@ -101,52 +110,27 @@
             </if>
             update_time = NULL
         </set>
-        where id = #{id,jdbcType=BIGINT} and status = true
+        where <include refid="Table_ID_Name"/> = #{id,jdbcType=BIGINT} and status = true
     </update>
 
     <select id="selectBySelective" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from <include refid="Table_Name"/>
-        <trim prefix="where" suffixOverrides="and">
-            <if test="null != name">
-                (name like CONCAT(CONCAT('%',#{name}),'%'))
-                AND
-            </if>
-            <if test="null != isBan">
-                is_ban = #{isBan} and
-            </if>
-            status = true
-        </trim>
+        <include refid="Select_Like"/>
     </select>
 
     <select id="countSumByCondition" resultType="java.lang.Integer">
-        select count(id) from
+        select count(<include refid="Table_ID_Name"/>) from
         <include refid="Table_Name"/>
-        <trim prefix="where" suffixOverrides="and">
-            <if test="null != record">
-                <if test="null != record.name">
-                    (name like CONCAT(CONCAT('%',#{record.name}),'%'))
-                    AND
-                </if>
-            </if>
-            status = true
-        </trim>
+        <include refid="Select_Like"/>
     </select>
 
     <select id="listByCondition" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from <include refid="Table_Name"/>
-        <trim prefix="where" suffixOverrides="and">
-            <if test="null != record">
-                <if test="null != record.name">
-                    (name like CONCAT(CONCAT('%',#{record.name}),'%'))
-                    AND
-                </if>
-            </if>
-            status = true
-        </trim>
+        <include refid="Select_Like"/>
         ORDER BY CONVERT(name using gbk) ASC
         limit #{upLimit},#{rows}
     </select>

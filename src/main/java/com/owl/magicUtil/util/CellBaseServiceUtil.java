@@ -4,6 +4,7 @@ import com.owl.magicUtil.dao.CellBaseDao;
 import com.owl.magicUtil.dto.BanDTO;
 import com.owl.magicUtil.dto.BanListDTO;
 import com.owl.magicUtil.dto.PageDTO;
+import com.owl.magicUtil.dto.SelectLikeDTO;
 import com.owl.magicUtil.model.MsgConstant;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
@@ -145,7 +146,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, Long id, Boolean status) {
         List<Long> ids = new ArrayList<>();
         ids.add(id);
-        return banOrLeaveList(cellBaseDao,ids,status);
+        return banOrLeaveList(cellBaseDao, ids, status);
     }
 
     public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, BanDTO banDTO) {
@@ -161,7 +162,10 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO banOrLeaveList(CellBaseDao<T> cellBaseDao, List<Long> idList, Boolean status) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            cellBaseDao.banOrLeave(idList, status);
+            BanListDTO banListDTO = new BanListDTO();
+            banListDTO.setIdList(idList);
+            banListDTO.setStatus(status);
+            cellBaseDao.banOrLeave(banListDTO);
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with banOrLeaveList,information is %s", e));
@@ -203,7 +207,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<T> details(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            List<T> temp = cellBaseDao.selectBySelective(model);
+            List<T> temp = cellBaseDao.selectBySelective(SelectLikeDTO.getInstance(model));
             if (null != temp && temp.size() == 1) {
                 resultVO.successResult(temp.get(0));
             } else {
@@ -218,7 +222,6 @@ public abstract class CellBaseServiceUtil {
     }
 
 
-
     /*
      * 獲取分頁列表，添加 model 提供檢索功能
      * @param getAll      是否獲取所有
@@ -231,8 +234,8 @@ public abstract class CellBaseServiceUtil {
         MsgResultVO<PageVO<T>> resultVO = new MsgResultVO<>();
         try {
             PageVO<T> pageVO = new PageVO<>();
-            pageVO.initPageVO(cellBaseDao.countSumByCondition(model), requestPage, rows, getAll);
-            pageVO.setObjectList(cellBaseDao.listByCondition(pageVO.getUpLimit(), pageVO.getRows(), model));
+            pageVO.initPageVO(cellBaseDao.countSumByCondition(SelectLikeDTO.getInstance(model)), requestPage, rows, getAll);
+            pageVO.setObjectList(cellBaseDao.listByCondition(SelectLikeDTO.getInstance(model, pageVO.getUpLimit(), pageVO.getRows())));
             resultVO.successResult(pageVO);
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with list,information is %s", e));
@@ -253,7 +256,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<List<T>> listAll(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<List<T>> resultVO = new MsgResultVO<>();
         try {
-            resultVO.successResult(cellBaseDao.selectBySelective(model));
+            resultVO.successResult(cellBaseDao.selectBySelective(SelectLikeDTO.getInstance(model)));
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with details,information is %s", e));
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
@@ -270,7 +273,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO isExist(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO resultVO = new MsgResultVO();
         try {
-            List<T> list = cellBaseDao.selectBySelective(model);
+            List<T> list = cellBaseDao.selectBySelective(SelectLikeDTO.getInstance(model));
             if (null != list && list.size() > 0) {
                 resultVO.successResult(MsgConstant.REQUEST_IS_EXITS);
             } else {
