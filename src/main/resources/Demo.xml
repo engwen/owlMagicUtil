@@ -24,6 +24,10 @@
     <sql id="Select_Like">
         <trim prefix="where" suffixOverrides="and">
             <if test="null != model">
+                <if test="null != model.id">
+                    id = #{model.id}
+                    AND
+                </if>
                 <if test="null != model.name">
                     (name like CONCAT(CONCAT('%',#{model.name}),'%'))
                     AND
