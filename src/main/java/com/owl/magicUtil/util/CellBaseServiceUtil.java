@@ -160,11 +160,16 @@ public abstract class CellBaseServiceUtil {
      * @return 基礎數據
      */
     public static <T> MsgResultVO banOrLeaveList(CellBaseDao<T> cellBaseDao, List<Long> idList, Boolean status) {
+        BanListDTO banListDTO = new BanListDTO();
+        banListDTO.setIdList(idList);
+        banListDTO.setStatus(status);
+        cellBaseDao.banOrLeave(banListDTO);
+        return banOrLeaveList(cellBaseDao, banListDTO);
+    }
+
+    public static <T> MsgResultVO banOrLeaveList(CellBaseDao<T> cellBaseDao, BanListDTO banListDTO) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            BanListDTO banListDTO = new BanListDTO();
-            banListDTO.setIdList(idList);
-            banListDTO.setStatus(status);
             cellBaseDao.banOrLeave(banListDTO);
             resultVO.successResult();
         } catch (Exception e) {
@@ -172,10 +177,6 @@ public abstract class CellBaseServiceUtil {
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
-    }
-
-    public static <T> MsgResultVO banOrLeaveList(CellBaseDao<T> cellBaseDao, BanListDTO banListDTO) {
-        return banOrLeaveList(cellBaseDao, banListDTO.getIdList(), banListDTO.getStatus());
     }
 
     /*
@@ -284,6 +285,5 @@ public abstract class CellBaseServiceUtil {
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
         }
         return resultVO;
-
     }
 }
