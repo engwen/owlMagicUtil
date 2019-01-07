@@ -48,14 +48,22 @@
         </selectKey>
         insert into <include refid="Table_Name"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="status != null">
+                status,
+            </if>
             <if test="isBan != null">
                 is_ban,
             </if>
+            create_time,update_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="status != null">
+                #{status,jdbcType=BIT}
+            </if>
             <if test="isBan != null">
                 #{isBan,jdbcType=BIT},
             </if>
+            null,null
         </trim>
     </insert>
 
