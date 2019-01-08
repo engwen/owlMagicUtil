@@ -4,6 +4,7 @@ import com.owl.magicUtil.dao.RelationBaseDao;
 import com.owl.magicUtil.model.MsgConstant;
 import com.owl.magicUtil.vo.MsgResultVO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -18,23 +19,9 @@ public abstract class RelationBaseServiceUtil {
 
 
     public static <T> MsgResultVO insert(RelationBaseDao<T> relationBaseDao, T model) {
-        MsgResultVO resultVO = new MsgResultVO();
-        try {
-            List<T> temp = relationBaseDao.selectBySelective(model);
-            if (null != temp && temp.size() > 0) {
-                resultVO.errorResult(MsgConstant.REQUEST_IS_EXITS);
-            } else {
-                if (relationBaseDao.insert(model) > 0) {
-                    resultVO.successResult();
-                } else {
-                    resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
-                }
-            }
-        } catch (Exception e) {
-            logger.info(String.format("there is a bad thing begin with insert,information is %s", e));
-            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
-        }
-        return resultVO;
+        List<T> temp = new ArrayList<>();
+        temp.add(model);
+        return insertList(relationBaseDao, temp);
     }
 
     public static <T> MsgResultVO insertList(RelationBaseDao<T> relationBaseDao, List<T> modelList) {
@@ -50,15 +37,9 @@ public abstract class RelationBaseServiceUtil {
     }
 
     public static <T> MsgResultVO delete(RelationBaseDao<T> relationBaseDao, T model) {
-        MsgResultVO resultVO = new MsgResultVO();
-        try {
-            relationBaseDao.delete(model);
-            resultVO.successResult();
-        } catch (Exception e) {
-            logger.info(String.format("there is a bad thing begin with delete,information is %s", e));
-            resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
-        }
-        return resultVO;
+        List<T> temp = new ArrayList<>();
+        temp.add(model);
+        return deleteList(relationBaseDao, temp);
     }
 
     public static <T> MsgResultVO deleteList(RelationBaseDao<T> relationBaseDao, List<T> modelList) {
