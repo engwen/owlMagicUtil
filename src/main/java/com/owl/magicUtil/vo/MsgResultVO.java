@@ -46,7 +46,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求失敗
-     *
      * @param msgConstant 枚举信息对象
      * @return 結果對象
      */
@@ -58,7 +57,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求失敗
-     *
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      * @return 結果對象
@@ -72,7 +70,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求失敗
-     *
      * @param prototype   對象
      * @param msgConstant 枚举信息对象
      * @return 結果對象
@@ -86,7 +83,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求失敗
-     *
      * @param prototype  對象
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
@@ -103,7 +99,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
-     *
      * @return 結果對象
      */
     public MsgResultVO<T> successResult() {
@@ -114,7 +109,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
-     *
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
      * @return 結果對象
@@ -128,7 +122,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
-     *
      * @param msgConstant 枚举信息对象
      * @return 結果對象
      */
@@ -141,7 +134,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
-     *
      * @param prototype 汎型對象
      * @return 結果對象
      */
@@ -154,7 +146,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
-     *
      * @param msgConstant 枚举信息对象
      * @param prototype   汎型對象
      * @return 結果對象
@@ -168,7 +159,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 請求成功
-     *
      * @param prototype  汎型對象
      * @param resultCode 消息代碼
      * @param resultMsg  消息信息
@@ -184,7 +174,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 將本類中的結果信息傳遞給其他的msg
-     *
      * @param anotherMsg 另一個msgResult
      * @return ModelPrototype 返回原來的引用
      */
@@ -197,7 +186,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 將其他msg的結果信息傳遞給本類
-     *
      * @param anotherMsg 另一個msgResult
      */
     public void getMsgByAnotherMsg(MsgResultVO anotherMsg) {
@@ -208,7 +196,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 向Map中传递参数名以及值
-     *
      * @param key   参数名称
      * @param value 值
      */
@@ -218,7 +205,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 获取指定key的值
-     *
      * @param key 参数名称
      * @return obj
      */
@@ -228,7 +214,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 移除Map中的參數
-     *
      * @param key 參數名
      */
     public void removeParam(String key) {
@@ -237,7 +222,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 生成可直接返回的目標對象，剝除多餘的對象信息
-     *
      * @return 目标对象
      */
     public MsgResultVO aimMsg() {
@@ -246,7 +230,6 @@ public final class MsgResultVO<T> extends ModelPrototype {
 
     /**
      * 为了方便查看结果信息，直接使用JSON格式
-     *
      * @return 字符串
      */
     public String toJSON() {

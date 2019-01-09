@@ -21,7 +21,7 @@ public abstract class PropertiesUtil {
     /**
      * 讀取指定配置文件信息
      * @param propertiesName 屬性名稱
-     * @param key key
+     * @param key            key
      * @return str
      */
     public static String readProperties(String propertiesName, String key) {

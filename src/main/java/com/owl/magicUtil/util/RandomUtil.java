@@ -130,7 +130,7 @@ public abstract class RandomUtil {
     /**
      * 每次生成的len位数都不相同
      * @param param 請求參數
-     * @param len 長度
+     * @param len   長度
      * @return 定长的数字
      */
     public static int getNotSimple(int[] param, int len) {
