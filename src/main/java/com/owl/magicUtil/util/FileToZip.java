@@ -77,18 +77,6 @@ public abstract class FileToZip {
         return flag;
     }
 
-    public static void main(String[] args) {
-        String sourceFilePath = "H:\\Course\\2015_11_12\\123123张  红＜中国近现代史＞";
-        String zipFilePath = "H:\\Course\\2015_11_12\\123123张  红＜中国近现代史＞";
-        String fileName = "＜中国近现代史＞.zip";
-        boolean flag = FileToZip.fileToZip(sourceFilePath, zipFilePath, fileName);
-        if (flag) {
-            System.out.println("文件打包成功!");
-        } else {
-            System.out.println("文件打包失败!");
-        }
-    }
-
     /**
      * 传入list的文件路径，打包到指定的新生成ZIP文件中，如果已存在的Zip，将会被覆盖
      * <p>

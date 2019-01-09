@@ -69,14 +69,17 @@
 
     <!-- 请添加所需要的属性-->
     <insert id="insertList">
-        insert into <include refid="Table_Name"/> (
+        insert into <include refid="Table_Name"/>
+        (
 
-        is_ban, status, create_time, update_time)
+        is_ban, status, create_time, update_time
+        )
         values
-        <foreach collection="list" item="model" separator=",">
+        <foreach collection="modelList" item="model" separator=",">
             (
 
-            #{model.isBan,jdbcType=BIT},#{model.status,jdbcType=BIT} , null , null)
+            #{model.isBan,jdbcType=BIT},#{model.status,jdbcType=BIT} , null , null
+            )
         </foreach>
     </insert>
 

@@ -4,7 +4,9 @@ import com.owl.magicUtil.dao.CellBaseDao;
 import com.owl.magicUtil.dto.BanDTO;
 import com.owl.magicUtil.dto.BanListDTO;
 import com.owl.magicUtil.dto.PageDTO;
-import com.owl.magicUtil.dto.SelectLikeDTO;
+import com.owl.magicUtil.so.IdListSO;
+import com.owl.magicUtil.so.ModelListSO;
+import com.owl.magicUtil.so.SelectLikeSO;
 import com.owl.magicUtil.model.MsgConstant;
 import com.owl.magicUtil.vo.MsgResultVO;
 import com.owl.magicUtil.vo.PageVO;
@@ -72,7 +74,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO createList(CellBaseDao<T> cellBaseDao, List<T> modelList) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            cellBaseDao.insertList(modelList);
+            cellBaseDao.insertList(ModelListSO.getInstance(modelList));
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with createList,information is %s", e));
@@ -128,7 +130,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO deleteList(CellBaseDao<T> cellBaseDao, List<Long> idList) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            cellBaseDao.deleteByIdList(idList);
+            cellBaseDao.deleteByIdList(IdListSO.getInstance(idList));
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with deleteList,information is %s", e));
@@ -208,7 +210,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<T> details(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<T> resultVO = new MsgResultVO<>();
         try {
-            List<T> temp = cellBaseDao.selectBySelective(SelectLikeDTO.getInstance(model));
+            List<T> temp = cellBaseDao.selectBySelective(SelectLikeSO.getInstance(model));
             if (null != temp && temp.size() == 1) {
                 resultVO.successResult(temp.get(0));
             } else {
@@ -235,8 +237,8 @@ public abstract class CellBaseServiceUtil {
         MsgResultVO<PageVO<T>> resultVO = new MsgResultVO<>();
         try {
             PageVO<T> pageVO = new PageVO<>();
-            pageVO.initPageVO(cellBaseDao.countSumByCondition(SelectLikeDTO.getInstance(model)), requestPage, rows, getAll);
-            pageVO.setObjectList(cellBaseDao.listByCondition(SelectLikeDTO.getInstance(model, pageVO.getUpLimit(), pageVO.getRows())));
+            pageVO.initPageVO(cellBaseDao.countSumByCondition(SelectLikeSO.getInstance(model)), requestPage, rows, getAll);
+            pageVO.setObjectList(cellBaseDao.listByCondition(SelectLikeSO.getInstance(model, pageVO.getUpLimit(), pageVO.getRows())));
             resultVO.successResult(pageVO);
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with list,information is %s", e));
@@ -257,7 +259,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO<List<T>> listAll(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO<List<T>> resultVO = new MsgResultVO<>();
         try {
-            resultVO.successResult(cellBaseDao.selectBySelective(SelectLikeDTO.getInstance(model)));
+            resultVO.successResult(cellBaseDao.selectBySelective(SelectLikeSO.getInstance(model)));
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with details,information is %s", e));
             resultVO.errorResult(MsgConstant.REQUEST_DB_ERROR);
@@ -274,7 +276,7 @@ public abstract class CellBaseServiceUtil {
     public static <T> MsgResultVO isExist(CellBaseDao<T> cellBaseDao, T model) {
         MsgResultVO resultVO = new MsgResultVO();
         try {
-            List<T> list = cellBaseDao.selectBySelective(SelectLikeDTO.getInstance(model));
+            List<T> list = cellBaseDao.selectBySelective(SelectLikeSO.getInstance(model));
             if (null != list && list.size() > 0) {
                 resultVO.successResult(MsgConstant.REQUEST_IS_EXITS);
             } else {

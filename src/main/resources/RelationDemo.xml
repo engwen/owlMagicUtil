@@ -7,12 +7,6 @@
         <result column="two_id" property="TwoId" jdbcType="BIGINT" />
     </resultMap>
 
-    <sql id="One_ID_Name">
-        one_id
-    </sql>
-    <sql id="Two_ID_Name">
-        two_id
-    </sql>
     <sql id="Table_Name">
         owl_demo
     </sql>
@@ -21,12 +15,12 @@
     <insert id="insertList">
         insert into <include refid="Table_Name"/>
         (
-          <include refid="One_ID_Name"/>,<include refid="Two_ID_Name"/>
+          one_id, two_id
         )
         values
-        <foreach collection="list" item="model" separator=",">
+        <foreach collection="modelList" item="model" separator=",">
           (
-            oneID,twoID
+            #{model.oneId,jdbcType=BIGINT},#{model.twoId,jdbcType=BIGINT}
           )
         </foreach>
     </insert>
@@ -34,15 +28,19 @@
     <delete id="deleteList">
         delete from <include refid="Table_Name"/>
         <trim prefix="where">
-            <foreach open="(" close=")" collection="modelList" item="model" separator="or">
-                <trim suffixOverrides="and">
-                    <if test="oneID != null">
-                        <include refid="One_ID_Name"/> = #{oneID}
-                        and
-                    </if>
-                    <if test="twoID != null">
-                        <include refid="Two_ID_Name"/> = #{twoID}
-                    </if>
+            <foreach collection="modelList" item="model" separator="or">
+                <trim prefix="(" suffix=")" prefixOverrides="(" suffixOverrides=")">
+                    <trim suffixOverrides="and">
+
+                        <if test="model.oneId != null">
+                            one_id= #{model.oneId}
+                            and
+                        </if>
+                        <if test="model.twoId != null">
+                            two_id = #{model.twoId}
+                        </if>
+
+                    </trim>
                 </trim>
             </foreach>
         </trim>

@@ -2,6 +2,7 @@ package com.owl.magicUtil.util;
 
 import com.owl.magicUtil.dao.RelationBaseDao;
 import com.owl.magicUtil.model.MsgConstant;
+import com.owl.magicUtil.so.ModelListSO;
 import com.owl.magicUtil.vo.MsgResultVO;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public abstract class RelationBaseServiceUtil {
     public static <T> MsgResultVO insertList(RelationBaseDao<T> relationBaseDao, List<T> modelList) {
         MsgResultVO resultVO = new MsgResultVO();
         try {
-            relationBaseDao.insertList(modelList);
+            relationBaseDao.insertList(ModelListSO.getInstance(modelList));
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with insertList,information is %s", e));
@@ -45,7 +46,7 @@ public abstract class RelationBaseServiceUtil {
     public static <T> MsgResultVO deleteList(RelationBaseDao<T> relationBaseDao, List<T> modelList) {
         MsgResultVO resultVO = new MsgResultVO();
         try {
-            relationBaseDao.deleteList(modelList);
+            relationBaseDao.deleteList(ModelListSO.getInstance(modelList));
             resultVO.successResult();
         } catch (Exception e) {
             logger.info(String.format("there is a bad thing begin with deleteList,information is %s", e));

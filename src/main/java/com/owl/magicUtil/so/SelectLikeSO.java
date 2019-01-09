@@ -1,4 +1,4 @@
-package com.owl.magicUtil.dto;
+package com.owl.magicUtil.so;
 
 /**
  * 本類使用于查詢 dao 接口，爲了方便并行 sql ，因此使用本封裝
@@ -6,24 +6,24 @@ package com.owl.magicUtil.dto;
  * email xiachanzou@outlook.com
  * 2019/1/3.
  */
-public class SelectLikeDTO<T> {
+public class SelectLikeSO<T> {
     private T model;
     private Integer upLimit;
     private Integer rows;
 
-    public static <T> SelectLikeDTO<T> getInstance(T model) {
-        return new SelectLikeDTO<>(model);
+    public static <T> SelectLikeSO<T> getInstance(T model) {
+        return new SelectLikeSO<>(model);
     }
 
-    public static <T> SelectLikeDTO<T> getInstance(T model, Integer upLimit, Integer rows) {
-        return new SelectLikeDTO<>(model, upLimit, rows);
+    public static <T> SelectLikeSO<T> getInstance(T model, Integer upLimit, Integer rows) {
+        return new SelectLikeSO<>(model, upLimit, rows);
     }
 
-    private SelectLikeDTO(T model) {
+    private SelectLikeSO(T model) {
         this.model = model;
     }
 
-    private SelectLikeDTO(T model, Integer upLimit, Integer rows) {
+    private SelectLikeSO(T model, Integer upLimit, Integer rows) {
         this.model = model;
         this.upLimit = upLimit;
         this.rows = rows;

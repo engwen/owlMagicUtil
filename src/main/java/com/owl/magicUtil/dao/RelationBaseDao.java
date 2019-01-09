@@ -1,6 +1,6 @@
 package com.owl.magicUtil.dao;
 
-import java.util.List;
+import com.owl.magicUtil.so.ModelListSO;
 
 /**
  * 關係數據類型dao，本接口對外開發
@@ -12,15 +12,15 @@ public interface RelationBaseDao<T> {
 
     /**
      * 批量插入
-     * @param modelList 汎型對象
+     * @param modelListSO 内含汎型對象
      * @return int
      */
-    int insertList(List<T> modelList);
+    int insertList(ModelListSO<T> modelListSO);
 
     /**
      * 批量刪除
-     * @param modelList 汎型對象
+     * @param modelListSO 内含汎型對象
      * @return int
      */
-    int deleteList(List<T> modelList);
+    int deleteList(ModelListSO<T> modelListSO);
 }
