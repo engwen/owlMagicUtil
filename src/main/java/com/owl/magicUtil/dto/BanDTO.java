@@ -2,7 +2,7 @@ package com.owl.magicUtil.dto;
 
 public class BanDTO {
     private Long id;
-    private Boolean status;
+    private Boolean isBan;
 
     public Long getId() {
         return id;
@@ -12,11 +12,11 @@ public class BanDTO {
         this.id = id;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getIsBan() {
+        return isBan;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsBan(Boolean ban) {
+        this.isBan = ban;
     }
 }

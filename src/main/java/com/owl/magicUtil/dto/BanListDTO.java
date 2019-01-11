@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BanListDTO {
     private List<Long> idList;
-    private Boolean status;
+    private Boolean isBan;
 
     public List<Long> getIdList() {
         return idList;
@@ -14,11 +14,12 @@ public class BanListDTO {
         this.idList = idList;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getIsBan() {
+        return isBan;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsBan(Boolean ban) {
+        this.isBan = ban;
     }
+
 }

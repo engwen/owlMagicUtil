@@ -145,14 +145,14 @@ public abstract class CellBaseServiceUtil {
      * @param status 對象狀態，可以爲空
      * @return 基礎數據
      */
-    public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, Long id, Boolean status) {
+    public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, Long id, Boolean isBan) {
         List<Long> ids = new ArrayList<>();
         ids.add(id);
-        return banOrLeaveList(cellBaseDao, ids, status);
+        return banOrLeaveList(cellBaseDao, ids, isBan);
     }
 
     public static <T> MsgResultVO banOrLeave(CellBaseDao<T> cellBaseDao, BanDTO banDTO) {
-        return banOrLeave(cellBaseDao, banDTO.getId(), banDTO.getStatus());
+        return banOrLeave(cellBaseDao, banDTO.getId(), banDTO.getIsBan());
     }
 
     /*
@@ -161,10 +161,10 @@ public abstract class CellBaseServiceUtil {
      * @param status 對象狀態
      * @return 基礎數據
      */
-    public static <T> MsgResultVO banOrLeaveList(CellBaseDao<T> cellBaseDao, List<Long> idList, Boolean status) {
+    public static <T> MsgResultVO banOrLeaveList(CellBaseDao<T> cellBaseDao, List<Long> idList, Boolean isBan) {
         BanListDTO banListDTO = new BanListDTO();
         banListDTO.setIdList(idList);
-        banListDTO.setStatus(status);
+        banListDTO.setIsBan(isBan);
         cellBaseDao.banOrLeave(banListDTO);
         return banOrLeaveList(cellBaseDao, banListDTO);
     }
