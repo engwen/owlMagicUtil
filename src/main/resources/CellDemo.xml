@@ -58,7 +58,7 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="status != null">
-                #{status,jdbcType=BIT}
+                #{status,jdbcType=BIT},
             </if>
             <if test="isBan != null">
                 #{isBan,jdbcType=BIT},
