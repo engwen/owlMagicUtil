@@ -24,20 +24,23 @@
     <sql id="Select_Like">
         <trim prefix="where" suffixOverrides="and">
             <if test="null != model">
-                <if test="null != model.id">
-                    id = #{model.id}
-                    AND
-                </if>
-                <if test="null != model.name">
-                    (name like CONCAT(CONCAT('%',#{model.name}),'%'))
-                    AND
-                </if>
-                <if test="null != model.isBan">
-                    is_ban = #{model.isBan} and
-                </if>
-                <if test="null != model.status">
-                    status = true
-                </if>
+                <choose>
+                    <when test="null != model.id">
+                        id = #{model.id}
+                    </when>
+                    <otherwise>
+                        <if test="null != model.name">
+                            (name like CONCAT(CONCAT('%',#{model.name}),'%'))
+                            AND
+                        </if>
+                        <if test="null != model.isBan">
+                            is_ban = #{model.isBan} and
+                        </if>
+                        <if test="null != model.status">
+                            status = true
+                        </if>
+                    </otherwise>
+                </choose>
             </if>
         </trim>
     </sql>
