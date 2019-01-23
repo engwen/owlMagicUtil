@@ -1,4 +1,4 @@
-package com.owl.magicUtil.util;
+package com.owl.magicUtil.util.mvc;
 
 import com.owl.magicUtil.dto.BanDTO;
 import com.owl.magicUtil.dto.BanListDTO;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public abstract class CellBaseControllerUtil {
 
-    /**
+    /*
      * 创建
      * @param cellBaseServiceAb service对象
      * @param model             将要被创建的对象
@@ -29,13 +29,14 @@ public abstract class CellBaseControllerUtil {
         try {
             resultVO = cellBaseServiceAb.create(model);
         } catch (Exception e) {
+            e.printStackTrace();
             resultVO = new MsgResultVO<>();
             resultVO.errorResult(MsgConstant.REQUEST_CDUS_ERROR);
         }
         return resultVO;
     }
 
-    /**
+    /*
      * 批量创建
      * @param cellBaseServiceAb service对象
      * @param list              待创建对象集合
@@ -46,6 +47,7 @@ public abstract class CellBaseControllerUtil {
         try {
             resultVO = cellBaseServiceAb.createList(list);
         } catch (Exception e) {
+            e.printStackTrace();
             resultVO = new MsgResultVO<>();
             resultVO.errorResult(MsgConstant.REQUEST_CDUS_ERROR);
         }
@@ -53,7 +55,7 @@ public abstract class CellBaseControllerUtil {
     }
 
 
-    /**
+    /*
      * 删除功能
      * @param cellBaseServiceAb service对象
      * @param model             待删除的对象
@@ -64,13 +66,14 @@ public abstract class CellBaseControllerUtil {
         try {
             resultVO = cellBaseServiceAb.delete(model);
         } catch (Exception e) {
+            e.printStackTrace();
             resultVO = new MsgResultVO<>();
             resultVO.errorResult(MsgConstant.REQUEST_CDUS_ERROR);
         }
         return resultVO;
     }
 
-    /**
+    /*
      * 批量删除
      * @param cellBaseServiceAb service对象
      * @param idList            待删除的id集合
@@ -81,13 +84,14 @@ public abstract class CellBaseControllerUtil {
         try {
             resultVO = cellBaseServiceAb.deleteList(idList);
         } catch (Exception e) {
+            e.printStackTrace();
             resultVO = new MsgResultVO<>();
             resultVO.errorResult(MsgConstant.REQUEST_CDUS_ERROR);
         }
         return resultVO;
     }
 
-    /**
+    /*
      * 批量操作 禁用或啓用
      * @param cellBaseServiceAb service对象
      * @param id                對象ID
@@ -99,6 +103,7 @@ public abstract class CellBaseControllerUtil {
         try {
             resultVO = cellBaseServiceAb.banOrLeave(id, status);
         } catch (Exception e) {
+            e.printStackTrace();
             resultVO = new MsgResultVO<>();
             resultVO.errorResult(MsgConstant.REQUEST_CDUS_ERROR);
         }
@@ -111,6 +116,7 @@ public abstract class CellBaseControllerUtil {
         try {
             resultVO = cellBaseServiceAb.banOrLeave(banDTO);
         } catch (Exception e) {
+            e.printStackTrace();
             resultVO = new MsgResultVO<>();
             resultVO.errorResult(MsgConstant.REQUEST_CDUS_ERROR);
         }
@@ -118,7 +124,7 @@ public abstract class CellBaseControllerUtil {
     }
 
 
-    /**
+    /*
      * 批量操作 禁用或啓用
      * @param cellBaseServiceAb service对象
      * @param idList            對象ID
@@ -130,6 +136,7 @@ public abstract class CellBaseControllerUtil {
         try {
             resultVO = cellBaseServiceAb.banOrLeaveList(idList, status);
         } catch (Exception e) {
+            e.printStackTrace();
             resultVO = new MsgResultVO<>();
             resultVO.errorResult(MsgConstant.REQUEST_CDUS_ERROR);
         }
@@ -141,13 +148,14 @@ public abstract class CellBaseControllerUtil {
         try {
             resultVO = cellBaseServiceAb.banOrLeaveList(banListDTO);
         } catch (Exception e) {
+            e.printStackTrace();
             resultVO = new MsgResultVO<>();
             resultVO.errorResult(MsgConstant.REQUEST_CDUS_ERROR);
         }
         return resultVO;
     }
 
-    /**
+    /*
      * 更新
      * @param cellBaseServiceAb service对象
      * @param model             将要被更新的对象
@@ -158,13 +166,14 @@ public abstract class CellBaseControllerUtil {
         try {
             resultVO = cellBaseServiceAb.update(model);
         } catch (Exception e) {
+            e.printStackTrace();
             resultVO = new MsgResultVO<>();
             resultVO.errorResult(MsgConstant.REQUEST_CDUS_ERROR);
         }
         return resultVO;
     }
 
-    /**
+    /*
      * 获取详情
      * @param cellBaseServiceAb service对象
      * @param model             获取详情的对象唯一属性
@@ -174,7 +183,7 @@ public abstract class CellBaseControllerUtil {
         return cellBaseServiceAb.details(model);
     }
 
-    /**
+    /*
      * 获取分页集合
      * @param cellBaseServiceAb service对象
      * @param requestPage       请求页数
@@ -191,7 +200,7 @@ public abstract class CellBaseControllerUtil {
         return cellBaseServiceAb.list(pageDTO);
     }
 
-    /**
+    /*
      * 获取所有对象
      * @param cellBaseServiceAb service对象
      * @param model             检索条件
@@ -201,7 +210,7 @@ public abstract class CellBaseControllerUtil {
         return cellBaseServiceAb.listAll(model);
     }
 
-    /**
+    /*
      * 檢查数据是否存在
      * @param cellBaseServiceAb service对象
      * @param model             检索条件

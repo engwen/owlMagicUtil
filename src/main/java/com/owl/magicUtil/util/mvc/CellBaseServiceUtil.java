@@ -1,4 +1,4 @@
-package com.owl.magicUtil.util;
+package com.owl.magicUtil.util.mvc;
 
 import com.owl.magicUtil.dao.CellBaseDao;
 import com.owl.magicUtil.dto.BanDTO;

@@ -92,6 +92,7 @@ interface CellBaseService<T> {
 
     /**
      * 獲取所有的對象，添加 model 提供檢索功能
+     * @param model 检索条件
      * @return 對象集合
      */
     MsgResultVO<List<T>> listAll(T model);

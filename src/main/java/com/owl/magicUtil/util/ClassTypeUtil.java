@@ -48,7 +48,7 @@ public abstract class ClassTypeUtil {
         return isContain(classTypePack, obj);
     }
 
-    /**
+    /*
      * 將一个对象的所有属性赋值给另一个对象的对应属性
      * @param oldObj 主要對象
      * @param newObj 將要塞入的對象

@@ -1,4 +1,4 @@
-package com.owl.magicUtil.util;
+package com.owl.magicUtil.util.mvc;
 
 import com.owl.magicUtil.dao.RelationBaseDao;
 import com.owl.magicUtil.model.MsgConstant;

@@ -18,7 +18,6 @@ interface CellBaseController<T> {
 
     /**
      * 创建
-     *
      * @param model 将要被创建的对象
      * @return 创建后的对象返回数据
      */
@@ -33,7 +32,6 @@ interface CellBaseController<T> {
 
     /**
      * 删除功能
-     *
      * @param model 待删除的对象
      * @return 结果
      */
@@ -83,12 +81,14 @@ interface CellBaseController<T> {
 
     /**
      * 获取分页集合
+     * @param getAll      获取所有
      * @param requestPage 请求页数
      * @param rows        请求显示条数
      * @param model       检索对象属性
      * @return 分页集合
      */
     MsgResultVO<PageVO<T>> list(boolean getAll, Integer requestPage, Integer rows, T model);
+
     MsgResultVO<PageVO<T>> list(PageDTO<T> pageDTO);
 
     /**

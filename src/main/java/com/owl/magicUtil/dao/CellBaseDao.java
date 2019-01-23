@@ -24,7 +24,7 @@ public interface CellBaseDao<T> {
 
     /**
      * 批量插入
-     * @param modelListSO 泛型对象集合List<T> list
+     * @param modelListSO 泛型对象集合List
      * @return int
      */
     int insertList(ModelListSO<T> modelListSO);
