@@ -34,7 +34,7 @@ public class MsgConstant {
     public static MsgConstant PARAM_EMAIL_ERROR = new MsgConstant("1001", "邮箱格式错误");
     public static MsgConstant PARAM_MOBILE_ERROR = new MsgConstant("1002", "手机号格式错误");
     public static MsgConstant PARAM_ACCOUNT_ERROR = new MsgConstant("1003", "账户错误");
-
+    public static MsgConstant SINGIN_ERROR = new MsgConstant("1004", "账号或密码错误错误");
 
     public MsgConstant(String code, String msg) {
         this.code = code;
