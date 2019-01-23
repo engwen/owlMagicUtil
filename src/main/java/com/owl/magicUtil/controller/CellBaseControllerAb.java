@@ -27,7 +27,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 创建
-     *
      * @param model 将要被创建的对象
      * @return 创建后的对象返回数据
      */
@@ -100,7 +99,6 @@ public abstract class CellBaseControllerAb<T> implements CellBaseController<T> {
 
     /**
      * 更新
-     *
      * @param model 将要被更新的对象
      * @return 结果
      */
