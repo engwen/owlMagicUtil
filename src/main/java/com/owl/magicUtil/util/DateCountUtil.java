@@ -23,11 +23,13 @@ public abstract class DateCountUtil {
     public static final SimpleDateFormat HHMMSS = new SimpleDateFormat("HH:mm:ss");
     public static final SimpleDateFormat HHMM = new SimpleDateFormat("HH:mm");
 
+    public static final Long Minute = 60 * 1000L;
+
 
     /**
      * 获取指定的日期格式
      * @param date 日期
-     * @param sdf 格式
+     * @param sdf  格式
      * @return 日期字符串
      */
     public static String getDateFormSdf(Date date, SimpleDateFormat sdf) {
@@ -36,7 +38,7 @@ public abstract class DateCountUtil {
 
     /**
      * 返回指定格式的日期
-     * @param date 日期
+     * @param date   日期
      * @param sdfStr 格式
      * @return 日期
      */
@@ -47,7 +49,7 @@ public abstract class DateCountUtil {
     /**
      * 根据指定格式的字符串，返回指定格式的日期
      * @param dateString dates
-     * @param sdf 格式
+     * @param sdf        格式
      * @return 日期字符串
      */
     public static Date getDateFormSdf(String dateString, SimpleDateFormat sdf) {
@@ -64,7 +66,7 @@ public abstract class DateCountUtil {
     /**
      * 根据指定格式的字符串，返回指定格式的日期
      * @param dateString dates
-     * @param sdfStr 格式
+     * @param sdfStr     格式
      * @return 日期
      */
     public static Date getDateFormSdfStr(String dateString, String sdfStr) {
@@ -119,9 +121,58 @@ public abstract class DateCountUtil {
     }
 
     /**
+     * 计算两个日期之间的天数
+     * @param oldDate 旧的日期
+     * @param newDate 新的日期
+     * @return int
+     */
+    public static int getDateToDateHowDate(Date oldDate, Date newDate) {
+        Calendar calendarOld = Calendar.getInstance();
+        calendarOld.clear();
+        calendarOld.setTime(oldDate);
+        Calendar calendarNew = Calendar.getInstance();
+        calendarNew.clear();
+        calendarNew.setTime(newDate);
+        return (int) Math.ceil((calendarNew.getTime().getTime() - calendarOld.getTime().getTime()) / (24 * 3600 * 1000F));
+    }
+
+    /**
+     * 计算两个日期之间的小时数
+     * @param oldDate 旧的日期
+     * @param newDate 新的日期
+     * @return int
+     */
+    public static int getDateToDateHowHour(Date oldDate, Date newDate) {
+        Calendar calendarOld = Calendar.getInstance();
+        calendarOld.clear();
+        calendarOld.setTime(oldDate);
+        Calendar calendarNew = Calendar.getInstance();
+        calendarNew.clear();
+        calendarNew.setTime(newDate);
+        return (int) Math.ceil((calendarNew.getTime().getTime() - calendarOld.getTime().getTime()) / (3600 * 1000F));
+    }
+
+    /**
+     * 计算两个日期之间的分钟数
+     * @param oldDate 旧的日期
+     * @param newDate 新的日期
+     * @return int
+     */
+    public static int getDateToDateHowMinute(Date oldDate, Date newDate) {
+        Calendar calendarOld = Calendar.getInstance();
+        calendarOld.clear();
+        calendarOld.setTime(oldDate);
+        Calendar calendarNew = Calendar.getInstance();
+        calendarNew.clear();
+        calendarNew.setTime(newDate);
+        return (int) Math.ceil((calendarNew.getTime().getTime() - calendarOld.getTime().getTime()) / (60 * 1000F));
+    }
+
+
+    /**
      * 獲取指定日期指定天數後的00:00开始日期
      * @param date 旧的日期
-     * @param day 指定天數後
+     * @param day  指定天數後
      * @return Date
      */
     public static Date addDay(Date date, int day) {
@@ -138,7 +189,7 @@ public abstract class DateCountUtil {
     /**
      * 獲取指定日期指定天數後的yyyy-MM-dd 23:59:59日期
      * @param date 旧的日期
-     * @param day 指定天數後
+     * @param day  指定天數後
      * @return Date
      */
     public static Date addDayWithLastTime(Date date, int day) {
@@ -156,7 +207,7 @@ public abstract class DateCountUtil {
     /**
      * 獲取指定日期指定天數後的日期
      * @param date 旧的日期
-     * @param day 指定天數後
+     * @param day  指定天數後
      * @return Date
      */
     public static Date addFullDay(Date date, int day) {
@@ -182,7 +233,7 @@ public abstract class DateCountUtil {
 
     /**
      * 獲取指定日期指定天數後的日期
-     * @param date 旧的日期
+     * @param date  旧的日期
      * @param month 月
      * @return Date
      */
@@ -199,7 +250,7 @@ public abstract class DateCountUtil {
 
     /**
      * 獲取指定日期指定月后的日期
-     * @param date 旧的日期
+     * @param date  旧的日期
      * @param month 月
      * @return Date
      */
@@ -218,29 +269,6 @@ public abstract class DateCountUtil {
      */
     public static Date addDay(int day) {
         return addDay(new Date(), day);
-    }
-
-    /**
-     * 返回两个日期相差的天数，不足一天按一天算
-     * 备注:该方法是:5月7日和5月7日相差一天，和5月8日相差两天
-     * @param startdate 開始日期
-     * @param enddate 結束日期
-     * @return int
-     */
-    public static int getsubDay(Date startdate, Date enddate) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String start = format.format(startdate);
-        String end = format.format(enddate);
-        try {
-            startdate = format.parse(start);
-            enddate = format.parse(end);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        long startTime = startdate.getTime();
-        long endTime = enddate.getTime();
-        long sub = endTime - startTime;
-        return (int) Math.ceil(sub * 1.0 / (24 * 60 * 60 * 1000)) + 1;
     }
 
     /**
@@ -313,6 +341,45 @@ public abstract class DateCountUtil {
         calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
         map.put("monthL", format.format(calendar.getTime()));
         return map;
+    }
+
+    /**
+     * 判断时间點是否包含在时间段1中
+     * @param start1      开始时间
+     * @param end1        结束时间
+     * @param containTime 开始时间
+     * @return 是否包含
+     */
+    public static boolean isContain(Date start1, Date end1, Date containTime) {
+        if (RegexUtil.isParamsHaveEmpty(start1, end1, containTime) || start1.getTime() > end1.getTime()) {
+            System.out.println("输入的时间错误");
+            return false;
+        }
+        return start1.getTime() < containTime.getTime() && containTime.getTime() < end1.getTime();
+    }
+
+    /**
+     * 判断时间段2是否包含在时间段1中
+     * @param start1 开始时间
+     * @param end1   结束时间
+     * @param start2 开始时间
+     * @param end2   结束时间
+     * @return 是否包含
+     */
+    public static boolean isContain(Date start1, Date end1, Date start2, Date end2) {
+        if (RegexUtil.isParamsHaveEmpty(start1, end1, start2, end2) || start1.getTime() > end1.getTime() || start2.getTime() > end2.getTime()) {
+            System.out.println("输入的时间错误");
+            return false;
+        }
+        //如果第二段時間的開始時間比第一段開始時間更早
+        if (start2.getTime() <= start1.getTime()) {
+            //第二段的結束時間處於開始時間之後則為包含
+            return end2.getTime() > start1.getTime();
+        } else {
+            //第二段開始時間在第一段的開始時間之後
+            //儅第二段的結束時間在第一段的結束時間之前 則爲包含
+            return start2.getTime() < end1.getTime();
+        }
     }
 
 }
