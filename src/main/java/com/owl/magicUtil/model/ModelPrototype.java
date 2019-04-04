@@ -1,6 +1,8 @@
 package com.owl.magicUtil.model;
 
 
+import com.owl.magicUtil.util.ObjectUtil;
+
 import java.io.Serializable;
 
 /**
@@ -13,4 +15,15 @@ public abstract class ModelPrototype implements Serializable {
     //序列化支持
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 为了方便查看结果信息，直接使用JSON格式
+     * @return 字符串
+     */
+    public String toJSON() {
+        return ObjectUtil.toJSON(this);
+    }
+
+    public void print() {
+        System.out.println(toJSON());
+    }
 }

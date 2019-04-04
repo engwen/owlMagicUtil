@@ -11,6 +11,7 @@ public abstract class ClassTypeUtil {
     private static Class[] classTypeBase = new Class[]{char.class, int.class, long.class, short.class, float.class, double.class, boolean.class};
     private static Class[] classTypePack = new Class[]{String.class, Integer.class, Long.class, Short.class, Float.class, Double.class, Boolean.class};
 
+
     private static boolean isContain(Class[] classType, Object obj) {
         for (Class className : classType) {
             if (className.equals(obj.getClass())) {
@@ -43,5 +44,9 @@ public abstract class ClassTypeUtil {
 
     public static boolean isPackClass(Class obj) {
         return isContain(classTypePack, obj);
+    }
+
+    public static boolean isArrayClass(Object obj) {
+        return obj instanceof Object[] || obj instanceof int[] || obj instanceof float[] || obj instanceof double[];
     }
 }
