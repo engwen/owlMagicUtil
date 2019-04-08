@@ -43,37 +43,6 @@ public class ObjectUtil {
     }
 
 
-    /*
-     * 将对象的所有属性赋值给另一个对象的对应属性，如果没有就跳过，以新的对象为主体
-     * @param oldObj 主要對象
-     * @param newObj 將要塞入的對象
-     * @return 返回原對象
-     */
-    public static <T, K> K getThisObjFromAnotherObj(T oldObj, K newObj) {
-        Field[] oldFields = getSupperClassProperties(oldObj, new Field[0]);
-        Field[] newFields = getSupperClassProperties(newObj, new Field[0]);
-        for (Field newField : newFields) {
-            for (Field oldField : oldFields) {
-                if (newField.getName().equals(oldField.getName())) {
-                    try {
-                        String methodStr = newField.getName().substring(0, 1).toUpperCase() + newField.getName().substring(1);
-                        String setMethodStr = "set" + methodStr;
-                        String getMethodStr = "get" + methodStr;
-                        Method getMethod = oldObj.getClass().getDeclaredMethod(getMethodStr);
-                        Object value = getMethod.invoke(oldObj);
-                        Method setMethod = newObj.getClass().getDeclaredMethod(setMethodStr, value.getClass());
-                        setMethod.invoke(newObj, value);
-                    } catch (Exception e) {
-                        System.out.println("旧的对象中不存在这个属性，直接跳过：name:" + (newField == null ? "空指针" : newField.getName()));
-                    }
-                }
-            }
-        }
-
-        return newObj;
-    }
-
-
     public static Field[] getSupperClassProperties(Object obj, Field[] fields) {
         for (Class<?> classTemp = obj.getClass(); classTemp != Object.class; classTemp = classTemp.getSuperclass()) {
             try {
@@ -132,7 +101,9 @@ public class ObjectUtil {
                     objectJSONValue(value, stringBuilder);
                     stringBuilder.append(",");
                 }
-                stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+                if (fields.length > 0) {
+                    stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+                }
                 stringBuilder.append("}");
             } catch (Exception e) {
                 System.out.println("转化出错。name:" + errorFiled.getName());
@@ -156,11 +127,17 @@ public class ObjectUtil {
             }
         } else if (temp instanceof Collection) {
             Object[] list = ((Collection) temp).toArray();
-            if (list.length > 0) {
-                stringBuilder.append(list);
-            } else {
-                stringBuilder.append("[").append("]");
+            stringBuilder.append("[");
+            for (Object o : list) {
+                objectJSONValue(o, stringBuilder);
+                stringBuilder.append(",");
             }
+            if (list.length > 0) {
+                stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            }
+            stringBuilder.append("]");
+        } else if (null == temp) {
+            stringBuilder.append("null");
         } else if (ClassTypeUtil.isPackClass(temp) || ClassTypeUtil.isBaseClass(temp)) {
             stringBuilder.append("\"");
             stringBuilder.append(temp);
