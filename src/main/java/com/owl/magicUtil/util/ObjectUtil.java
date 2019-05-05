@@ -1,10 +1,12 @@
 package com.owl.magicUtil.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * 对象工具类
@@ -13,6 +15,8 @@ import java.util.Map;
  * 2019/2/28.
  */
 public class ObjectUtil {
+    private static Logger logger = Logger.getLogger(ObjectUtil.class.getName());
+
     /*
      * 將一个对象的所有属性赋值给另一个对象的对应属性，以旧的属性为主体
      * @param oldObj 主要對象
@@ -34,7 +38,7 @@ public class ObjectUtil {
                         Method setMethod = newObj.getClass().getDeclaredMethod(setMethodStr, value.getClass());
                         setMethod.invoke(newObj, value);
                     } catch (Exception e) {
-                        System.out.println("新的对象中不存在这个属性，直接跳过。name:" + (oldField == null ? "空指针" : oldField.getName()));
+                        System.out.println("新的对象中不存在这个属性，直接跳过。name:" + oldField.getName());
                     }
                 }
             }
@@ -43,6 +47,12 @@ public class ObjectUtil {
     }
 
 
+    /*
+     * 獲取一個對象的全部屬性
+     * @param obj
+     * @param fields
+     * @return
+     */
     public static Field[] getSupperClassProperties(Object obj, Field[] fields) {
         for (Class<?> classTemp = obj.getClass(); classTemp != Object.class; classTemp = classTemp.getSuperclass()) {
             try {
@@ -55,6 +65,58 @@ public class ObjectUtil {
         }
         return fields;
     }
+
+    /*
+     * 獲取一個對象的指定的屬性
+     * @param proName
+     * @param obj
+     * @return
+     * @throws Exception
+     */
+    public static Object getProValue(String proName, Object obj) throws Exception {
+        String getMethodStr = "get" + proName.substring(0, 1).toUpperCase() + proName.substring(1);
+        Field[] fields = getSupperClassProperties(obj, new Field[0]);
+        for (Field field : fields) {
+            if (proName.equals(field.getName())) {
+                Method getMethod = obj.getClass().getDeclaredMethod(getMethodStr);
+                return getMethod.invoke(obj);
+            }
+        }
+        return null;
+    }
+
+    /*
+     * 設置一個對象的指定的屬性
+     * @param proName
+     * @param obj
+     * @return
+     * @throws Exception
+     */
+    public static boolean setProValue(String proName, Object proValue, Object obj) throws Exception {
+        String setMethodStr = "set" + proName.substring(0, 1).toUpperCase() + proName.substring(1);
+        Field[] fields = getSupperClassProperties(obj, new Field[0]);
+        for (Field field : fields) {
+            if (proName.equals(field.getName())) {
+                try {
+                    Method setMethod = obj.getClass().getDeclaredMethod(setMethodStr, proValue.getClass());
+                    setMethod.invoke(obj, proValue);
+                    return true;
+                } catch (Exception e) {
+                    logger.warning("没有查询到对应属性方法,尝试进行Object对象插入。此方法同样适用适用泛型对象");
+                    try {
+                        Method setMethod = obj.getClass().getDeclaredMethod(setMethodStr, Object.class);
+                        setMethod.invoke(obj, proValue);
+                        return true;
+                    } catch (NoSuchMethodException ex) {
+                        logger.warning(String.format("插入%s属性失败，请检查方法%s的返回类型，并确保类型一致", proName, setMethodStr));
+                        throw ex;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 
     /*
      * 将指定的一级对象转化为json字符串

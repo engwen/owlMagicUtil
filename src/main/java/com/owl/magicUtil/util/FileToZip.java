@@ -27,7 +27,7 @@ public abstract class FileToZip {
         FileOutputStream fos = null;
         ZipOutputStream zos = null;
 
-        if (sourceFile.exists() == false) {
+        if (!sourceFile.exists()) {
             System.out.println("待压缩的文件目录：" + sourceFilePath + "不存在.");
         } else {
             try {
