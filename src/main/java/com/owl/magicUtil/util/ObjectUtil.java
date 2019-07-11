@@ -126,7 +126,7 @@ public class ObjectUtil {
      */
     public static <T> String toJSON(T obj) {
         StringBuilder stringBuilder = new StringBuilder();
-        getObjectProperties(obj, stringBuilder);
+        objectJSONValue(obj, stringBuilder);
         return stringBuilder.toString();
     }
 
