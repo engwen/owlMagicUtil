@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 文件處理信息
  * @author engwen
  * email xiachanzou@outlook.com
  * 2019/5/23.
