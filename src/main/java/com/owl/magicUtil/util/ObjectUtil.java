@@ -33,12 +33,12 @@ public class ObjectUtil {
                         String methodStr = oldField.getName().substring(0, 1).toUpperCase() + oldField.getName().substring(1);
                         String setMethodStr = "set" + methodStr;
                         String getMethodStr = "get" + methodStr;
-                        Method getMethod = oldObj.getClass().getDeclaredMethod(getMethodStr);
+                        Method getMethod = oldObj.getClass().getMethod(getMethodStr);
                         Object value = getMethod.invoke(oldObj);
-                        Method setMethod = newObj.getClass().getDeclaredMethod(setMethodStr, value.getClass());
+                        Method setMethod = newObj.getClass().getMethod(setMethodStr, value.getClass());
                         setMethod.invoke(newObj, value);
                     } catch (Exception e) {
-                        System.out.println("新的对象中不存在这个属性，直接跳过。name:" + oldField.getName());
+                        System.out.println("对象中不存在这个属性，直接跳过。name:" + oldField.getName());
                     }
                 }
             }
@@ -78,7 +78,7 @@ public class ObjectUtil {
         Field[] fields = getSupperClassProperties(obj, new Field[0]);
         for (Field field : fields) {
             if (proName.equals(field.getName())) {
-                Method getMethod = obj.getClass().getDeclaredMethod(getMethodStr);
+                Method getMethod = obj.getClass().getMethod(getMethodStr);
                 return getMethod.invoke(obj);
             }
         }
@@ -98,13 +98,13 @@ public class ObjectUtil {
         for (Field field : fields) {
             if (proName.equals(field.getName())) {
                 try {
-                    Method setMethod = obj.getClass().getDeclaredMethod(setMethodStr, proValue.getClass());
+                    Method setMethod = obj.getClass().getMethod(setMethodStr, proValue.getClass());
                     setMethod.invoke(obj, proValue);
                     return true;
                 } catch (Exception e) {
                     logger.warning("没有查询到对应属性方法,尝试进行Object对象插入。此方法同样适用适用泛型对象");
                     try {
-                        Method setMethod = obj.getClass().getDeclaredMethod(setMethodStr, Object.class);
+                        Method setMethod = obj.getClass().getMethod(setMethodStr, Object.class);
                         setMethod.invoke(obj, proValue);
                         return true;
                     } catch (NoSuchMethodException ex) {
@@ -154,7 +154,7 @@ public class ObjectUtil {
                 for (Field field : fields) {
                     errorFiled = field;
                     String getMethodStr = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
-                    Method getMethod = obj.getClass().getDeclaredMethod(getMethodStr);
+                    Method getMethod = obj.getClass().getMethod(getMethodStr);
                     Object value = getMethod.invoke(obj);
                     stringBuilder.append("\"");
                     stringBuilder.append(field.getName());
@@ -168,7 +168,7 @@ public class ObjectUtil {
                 }
                 stringBuilder.append("}");
             } catch (Exception e) {
-                System.out.println("转化出错。name:" + errorFiled.getName());
+                System.out.println("转化出错。name:" + (errorFiled == null ? "" : errorFiled.getName()));
                 e.printStackTrace();
             }
         }

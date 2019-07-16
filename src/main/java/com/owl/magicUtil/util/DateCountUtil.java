@@ -19,6 +19,10 @@ public abstract class DateCountUtil {
     public static final SimpleDateFormat YMDHM = new SimpleDateFormat("yyyy/MM/dd HH:mm");
     public static final SimpleDateFormat YMDH = new SimpleDateFormat("yyyy/MM/dd HH");
     public static final SimpleDateFormat YMD = new SimpleDateFormat("yyyy/MM/dd");
+    public static final SimpleDateFormat YMDHMS4BAR = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final SimpleDateFormat YMDHM4BAR = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    public static final SimpleDateFormat YMDH4BAR = new SimpleDateFormat("yyyy-MM-dd HH");
+    public static final SimpleDateFormat YMD4BAR = new SimpleDateFormat("yyyy-MM-dd");
 
     public static final SimpleDateFormat HHMMSS = new SimpleDateFormat("HH:mm:ss");
     public static final SimpleDateFormat HHMM = new SimpleDateFormat("HH:mm");
@@ -116,9 +120,19 @@ public abstract class DateCountUtil {
         calendarNew.setTime(newDate);
         int backYears = calendarNew.get(Calendar.YEAR) - calendarOld.get(Calendar.YEAR);
         int backMonth = calendarNew.get(Calendar.MONTH) - calendarOld.get(Calendar.MONTH);
-
         return backYears >= 0 ? ((backYears * 12) + (backMonth + 1)) : 0;
     }
+
+    private static int getDateToDateByCount(Date oldDate, Date newDate, Float count) {
+        Calendar calendarOld = Calendar.getInstance();
+        calendarOld.clear();
+        calendarOld.setTime(oldDate);
+        Calendar calendarNew = Calendar.getInstance();
+        calendarNew.clear();
+        calendarNew.setTime(newDate);
+        return (int) Math.ceil((calendarNew.getTime().getTime() - calendarOld.getTime().getTime()) / count);
+    }
+
 
     /**
      * 计算两个日期之间的天数
@@ -127,13 +141,7 @@ public abstract class DateCountUtil {
      * @return int
      */
     public static int getDateToDateHowDate(Date oldDate, Date newDate) {
-        Calendar calendarOld = Calendar.getInstance();
-        calendarOld.clear();
-        calendarOld.setTime(oldDate);
-        Calendar calendarNew = Calendar.getInstance();
-        calendarNew.clear();
-        calendarNew.setTime(newDate);
-        return (int) Math.ceil((calendarNew.getTime().getTime() - calendarOld.getTime().getTime()) / (24 * 3600 * 1000F));
+        return getDateToDateByCount(oldDate, newDate, 24 * 3600 * 1000F);
     }
 
     /**
@@ -143,13 +151,7 @@ public abstract class DateCountUtil {
      * @return int
      */
     public static int getDateToDateHowHour(Date oldDate, Date newDate) {
-        Calendar calendarOld = Calendar.getInstance();
-        calendarOld.clear();
-        calendarOld.setTime(oldDate);
-        Calendar calendarNew = Calendar.getInstance();
-        calendarNew.clear();
-        calendarNew.setTime(newDate);
-        return (int) Math.ceil((calendarNew.getTime().getTime() - calendarOld.getTime().getTime()) / (3600 * 1000F));
+        return getDateToDateByCount(oldDate, newDate, 3600 * 1000F);
     }
 
     /**
@@ -159,13 +161,7 @@ public abstract class DateCountUtil {
      * @return int
      */
     public static int getDateToDateHowMinute(Date oldDate, Date newDate) {
-        Calendar calendarOld = Calendar.getInstance();
-        calendarOld.clear();
-        calendarOld.setTime(oldDate);
-        Calendar calendarNew = Calendar.getInstance();
-        calendarNew.clear();
-        calendarNew.setTime(newDate);
-        return (int) Math.ceil((calendarNew.getTime().getTime() - calendarOld.getTime().getTime()) / (60 * 1000F));
+        return getDateToDateByCount(oldDate, newDate, 60 * 1000F);
     }
 
 
@@ -311,7 +307,7 @@ public abstract class DateCountUtil {
      * @return map
      */
     public static Map getWeekDay() {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); // 获取本周一的日期
@@ -329,7 +325,7 @@ public abstract class DateCountUtil {
      * @return map
      */
     public static Map getMonthDate() {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         // 获取Calendar
         Calendar calendar = Calendar.getInstance();
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
