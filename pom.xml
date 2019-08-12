@@ -27,17 +27,6 @@
             <!-- 指定范围，在测试时才会加载 -->
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-ant</artifactId>
-            <version>${groovy.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>${groovy.version}</version>
-            <type>pom</type>
-        </dependency>
     </dependencies>
 
 
