@@ -1,7 +1,7 @@
-package com.owl.magicUtil.pattern.memento;
+package com.owl.pattern.memento;
 
-import com.owl.magicUtil.model.ModelPrototype;
-import com.owl.magicUtil.util.ObjectUtil;
+import com.owl.model.ModelPrototype;
+import com.owl.util.ObjectUtil;
 
 import java.util.ArrayList;
 import java.util.List;

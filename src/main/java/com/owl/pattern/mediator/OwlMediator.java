@@ -1,4 +1,4 @@
-package com.owl.magicUtil.pattern.mediator;
+package com.owl.pattern.mediator;
 
 /**
  * 中介者 模式 抽象

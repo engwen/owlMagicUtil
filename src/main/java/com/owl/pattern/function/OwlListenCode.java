@@ -1,4 +1,4 @@
-package com.owl.magicUtil.pattern.function;
+package com.owl.pattern.function;
 
 /**
  * @author engwen

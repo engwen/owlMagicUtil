@@ -1,4 +1,4 @@
-package com.owl.magicUtil.pattern.observer;
+package com.owl.pattern.observer;
 
 /**
  * @author engwen

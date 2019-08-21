@@ -1,9 +1,9 @@
-package com.owl.magicUtil.pattern.observer;
+package com.owl.pattern.observer;
 
 
 
-import com.owl.magicUtil.factory.OwlThreadPool;
-import com.owl.magicUtil.pattern.function.OwlListenCode;
+import com.owl.factory.OwlThreadPool;
+import com.owl.pattern.function.OwlListenCode;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

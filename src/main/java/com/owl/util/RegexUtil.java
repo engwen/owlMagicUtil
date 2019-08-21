@@ -1,6 +1,6 @@
-package com.owl.magicUtil.util;
+package com.owl.util;
 
-import com.owl.magicUtil.model.ModelPrototype;
+import com.owl.model.ModelPrototype;
 
 import java.beans.BeanInfo;
 import java.beans.Introspector;

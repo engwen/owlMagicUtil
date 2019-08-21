@@ -1,4 +1,4 @@
-package com.owl.magicUtil.factory;
+package com.owl.factory;
 
 
 import java.util.concurrent.ExecutorService;
