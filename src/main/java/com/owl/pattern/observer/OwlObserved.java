@@ -1,7 +1,6 @@
 package com.owl.pattern.observer;
 
 
-
 import com.owl.pattern.function.OwlListenCode;
 
 import java.util.Map;
@@ -29,6 +28,8 @@ public abstract class OwlObserved {
 
     /**
      * 被觀察者監聽事件
+     * @param event      事件
+     * @param listenCode 待执行代码
      */
     public void addEventListen(OwlObserverEvent event, OwlListenCode listenCode) {
         //注冊驅動
@@ -45,6 +46,7 @@ public abstract class OwlObserved {
 
     /**
      * 抛出
+     * @param owlObserverEvent 将要抛出的事件
      */
     public void dispatchEvent(OwlObserverEvent owlObserverEvent) {
         OwlObserverAB.dispatchEvent(owlObserverEvent);
@@ -52,6 +54,8 @@ public abstract class OwlObserved {
 
     /**
      * 抛出
+     * @param owlObserverEvent 将要抛出的事件
+     * @param classModel       响应的类
      */
     public void dispatchEvent(OwlObserverEvent owlObserverEvent, Class classModel) {
         OwlObserverAB.dispatchEvent(owlObserverEvent, classModel);
@@ -61,6 +65,7 @@ public abstract class OwlObserved {
 
     /**
      * 移除指定事件
+     * @param event 事件类型
      */
     void removeListenByEvent(OwlObserverEvent event) {
         if (null != consumerMap.get(event.getEventName())) {
@@ -78,6 +83,7 @@ public abstract class OwlObserved {
 
     /**
      * 被觀察者需要执行的代碼
+     * @param event 事件
      */
     void startDoing(OwlObserverEvent event) {
         OwlListenCode consumer = consumerMap.get(event.getEventName());
