@@ -37,7 +37,22 @@ public abstract class RegexUtil {
      * @param input 字符串
      * @return boolean
      */
-    public boolean isContainsStr(String reg, String input) {
+    public static String getContainsStr(String reg, String input) {
+        Pattern pattern = Pattern.compile(reg);
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            return matcher.group();
+        }
+        return null;
+    }
+
+    /**
+     * 驗證字符串中是否有符合正則的字串
+     * @param reg   正則
+     * @param input 字符串
+     * @return boolean
+     */
+    public static boolean isContainsStr(String reg, String input) {
         Pattern pattern = Pattern.compile(reg);
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
