@@ -1,4 +1,4 @@
-package com.owl.magicUtil.util;
+package com.owl.util;
 
 import java.io.File;
 import java.io.FileInputStream;

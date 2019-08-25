@@ -1,7 +1,7 @@
-package com.owl.magicUtil.model;
+package com.owl.model;
 
 
-import com.owl.magicUtil.util.ObjectUtil;
+import com.owl.util.ObjectUtil;
 
 import java.io.Serializable;
 

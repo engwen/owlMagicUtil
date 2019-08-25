@@ -6,7 +6,7 @@
 
     <groupId>com.github.engwen</groupId>
     <artifactId>owlMagicUtil</artifactId>
-    <version>2.3.9</version>
+    <version>2.4.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,17 +27,6 @@
             <!-- 指定范围，在测试时才会加载 -->
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-ant</artifactId>
-            <version>${groovy.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>${groovy.version}</version>
-            <type>pom</type>
-        </dependency>
     </dependencies>
 
 
@@ -54,12 +43,7 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    <scm>
-        <tag>master</tag>
-        <url>git@github.com:engwen/owlMagicUtil.git</url>
-        <connection>scm:git:git@github.com:engwen/owlMagicUtil.git</connection>
-        <developerConnection>scm:git:git@github.com:engwen/owlMagicUtil.git</developerConnection>
-    </scm>
+
     <developers>
         <developer>
             <name>engwen</name>
@@ -81,6 +65,7 @@
         <profile>
             <id>release</id>
             <build>
+				<pluginManagement>
                 <plugins>
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
@@ -144,6 +129,7 @@
                         </executions>
                     </plugin>
                 </plugins>
+				</pluginManagement>
             </build>
         </profile>
     </profiles>
