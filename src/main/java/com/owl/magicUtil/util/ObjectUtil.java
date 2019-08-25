@@ -38,7 +38,7 @@ public class ObjectUtil {
                         Method setMethod = newObj.getClass().getMethod(setMethodStr, value.getClass());
                         setMethod.invoke(newObj, value);
                     } catch (Exception e) {
-                        System.out.println("对象中不存在这个属性，直接跳过。name:" + oldField.getName());
+                        System.out.println("This property does not exist in the object.skip name:" + oldField.getName());
                     }
                 }
             }
