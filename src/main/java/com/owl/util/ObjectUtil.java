@@ -16,10 +16,13 @@ import java.util.logging.Logger;
 public class ObjectUtil {
     private static Logger logger = Logger.getLogger(ObjectUtil.class.getName());
 
-    /*
+    /**
+     *
      * 將一个对象的所有属性赋值给另一个对象的对应属性，以旧的属性为主体
      * @param oldObj 主要對象
      * @param newObj 將要塞入的對象
+     * @param <T> 类型
+     * @param <K> 类型
      * @return 返回原對象
      */
     public static <T, K> K setThisObjToAnotherObj(T oldObj, K newObj) {
