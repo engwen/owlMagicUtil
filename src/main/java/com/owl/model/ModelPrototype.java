@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public abstract class ModelPrototype implements Serializable {
     //序列化支持
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -6985636285761991122L;
 
     /**
      * 为了方便查看结果信息，直接使用JSON格式
