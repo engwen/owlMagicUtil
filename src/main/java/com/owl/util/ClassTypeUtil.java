@@ -1,5 +1,7 @@
 package com.owl.util;
 
+import java.util.Arrays;
+
 /**
  * class 类选择工具
  * @author engwen
@@ -13,21 +15,11 @@ public abstract class ClassTypeUtil {
 
 
     private static boolean isContain(Class[] classType, Object obj) {
-        for (Class className : classType) {
-            if (className.equals(obj.getClass())) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.asList(classType).contains(obj.getClass());
     }
 
     private static boolean isContain(Class[] classType, Class obj) {
-        for (Class className : classType) {
-            if (className.equals(obj)) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.asList(classType).contains(obj);
     }
 
     public static boolean isBaseClass(Object obj) {

@@ -85,7 +85,7 @@ public abstract class DateCountUtil {
      */
     public static int getDateToNowHowYears(Date date) {
         int backYears = getDateToDateHowYears(date, new Date());
-        return backYears > 0 ? backYears : 0;
+        return Math.max(backYears, 0);
     }
 
     /**
@@ -102,7 +102,7 @@ public abstract class DateCountUtil {
         calendarNew.clear();
         calendarNew.setTime(newDate);
         int backYears = calendarNew.get(Calendar.YEAR) - calendarOld.get(Calendar.YEAR);
-        return backYears > 0 ? backYears : 0;
+        return Math.max(backYears, 0);
     }
 
     /**
@@ -221,10 +221,10 @@ public abstract class DateCountUtil {
      * @return Date
      */
     public static Date addHour(Date date, float hour) {
-        Calendar Cal = Calendar.getInstance();
-        Cal.setTime(date);
-        Cal.add(Calendar.MINUTE, (int) (hour * 60));
-        return Cal.getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.MINUTE, (int) (hour * 60));
+        return calendar.getTime();
     }
 
     /**
@@ -273,10 +273,9 @@ public abstract class DateCountUtil {
      * @return date
      */
     public static Date getHHmmDate(String strdate) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = null;
         try {
-            date = format.parse(strdate);
+            date = YMDHM4BAR.parse(strdate);
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -6,7 +6,9 @@ import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -144,16 +146,8 @@ public abstract class RegexUtil {
      * @return 結果
      */
     public static boolean isParamsAllEmpty(Object... inputs) {
-        boolean result = true;
-        for (Object input : inputs) {
-            if (null == input || (input instanceof String && isEmpty((String) input))
-                    || (input instanceof Collection && ((Collection) input).size() <= 0)) {
-                continue;
-            }
-            result = false;
-            break;
-        }
-        return result;
+        return Arrays.stream(inputs).noneMatch(input -> null == input || (input instanceof String && !isEmpty((String) input))
+                || (input instanceof Collection && ((Collection) input).size() <= 0));
     }
 
     /**
@@ -162,15 +156,8 @@ public abstract class RegexUtil {
      * @return boolean
      */
     public static boolean isParamsHaveEmpty(Object... inputs) {
-        boolean result = false;
-        for (Object input : inputs) {
-            if (null == input || (input instanceof String && isEmpty((String) input))
-                    || (input instanceof Collection && ((Collection) input).size() <= 0)) {
-                result = true;
-                break;
-            }
-        }
-        return result;
+        return Arrays.stream(inputs).anyMatch(input -> null == input || (input instanceof String && !isEmpty((String) input))
+                || (input instanceof Collection && ((Collection) input).size() <= 0));
     }
 
     /**
@@ -189,9 +176,8 @@ public abstract class RegexUtil {
      * @return boolean
      */
     public static boolean isObjectHaveEmpty(ModelPrototype object) {
-        boolean result = false;
         if (object == null) {
-            result = true;
+            return true;
         } else {
             try {
                 BeanInfo beanInfo = Introspector.getBeanInfo(object.getClass(), ModelPrototype.class);
@@ -202,17 +188,16 @@ public abstract class RegexUtil {
                         Object obj = method.invoke(object);
                         //如果类型是String类型,需满足正则校验
                         if (obj == null || (obj instanceof String && isEmpty((String) obj))) {
-                            result = true;
-                            break;
+                            return true;
                         }
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                result = true;
+                return true;
             }
         }
-        return result;
+        return false;
     }
 
     /**
