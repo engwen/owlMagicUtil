@@ -23,6 +23,11 @@ public abstract class ModelPrototype implements Serializable {
         return ObjectUtil.toJSON(this);
     }
 
+    @Override
+    public String toString() {
+        return toJSON();
+    }
+
     public void print() {
         System.out.println(toJSON());
     }

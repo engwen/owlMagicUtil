@@ -1,7 +1,10 @@
 package com.owl.pattern.observer;
 
 
-import com.owl.pattern.function.OwlListenCode;
+import com.owl.pattern.function.ListenCodeMethod;
+import com.owl.pattern.function.ListenCodeNoParams;
+import com.owl.pattern.function.ListenCodeParams;
+import com.owl.pattern.function.base.OwlListenCodeBase;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,13 +19,13 @@ public abstract class OwlObserved {
     /**
      * 保證綫程安全
      */
-    private Map<String, OwlListenCode> consumerMap = new ConcurrentHashMap<>();
+    private Map<String, OwlListenCodeBase> consumerMap = new ConcurrentHashMap<>();
 
-    Map<String, OwlListenCode> getConsumerMap() {
+    Map<String, OwlListenCodeBase> getConsumerMap() {
         return consumerMap;
     }
 
-    void setConsumerMap(Map<String, OwlListenCode> consumerMap) {
+    void setConsumerMap(Map<String, OwlListenCodeBase> consumerMap) {
         this.consumerMap = consumerMap;
     }
 
@@ -31,9 +34,32 @@ public abstract class OwlObserved {
      * @param event      事件
      * @param listenCode 待执行代码
      */
-    public void addEventListen(OwlObserverEvent event, OwlListenCode listenCode) {
+    public void addEventListen(OwlObserverEvent event, ListenCodeNoParams listenCode) {
         //注冊驅動
         OwlObserverAB.addEventListen(event, this, listenCode);
+    }
+
+    /**
+     * 被觀察者監聽事件
+     * @param event      事件
+     * @param listenCode 待执行代码
+     */
+    public void addEventListen(OwlObserverEvent event, ListenCodeParams listenCode) {
+        //注冊驅動
+        OwlObserverAB.addEventListen(event, this, listenCode);
+    }
+
+    /**
+     * 被觀察者監聽事件
+     * @param event      事件
+     * @param methodName 待执行代码
+     */
+    public void addEventListen(OwlObserverEvent event, String methodName) {
+        //注冊驅動
+        ListenCodeMethod listenCodeMethod = new ListenCodeMethod();
+        listenCodeMethod.setOwlObserved(this);
+        listenCodeMethod.setMethodName(methodName);
+        OwlObserverAB.addEventListen(event, this, listenCodeMethod);
     }
 
     public void removeEventListen(OwlObserverEvent event) {
@@ -42,6 +68,15 @@ public abstract class OwlObserved {
 
     public void removeAllEventListen() {
         OwlObserverAB.removeAllEventListenByObserved(this);
+    }
+
+    /**
+     * 抛出
+     * @param owlObserverEvent 将要抛出的事件
+     * @param params           参数
+     */
+    public void dispatchEvent(OwlObserverEvent owlObserverEvent, Object... params) {
+        OwlObserverAB.dispatchEvent(owlObserverEvent, params);
     }
 
     /**
@@ -85,11 +120,17 @@ public abstract class OwlObserved {
      * 被觀察者需要执行的代碼
      * @param event 事件
      */
-    void startDoing(OwlObserverEvent event) {
-        OwlListenCode consumer = consumerMap.get(event.getEventName());
-        if (null != consumer) {
+    void startDoing(OwlObserverEvent event, Object... params) {
+        OwlListenCodeBase listenCode = consumerMap.get(event.getEventName());
+        if (null != listenCode) {
             //執行
-            consumer.startDoing();
+            if (listenCode instanceof ListenCodeNoParams) {
+                ((ListenCodeNoParams) listenCode).startDoing();
+            } else if (listenCode instanceof ListenCodeParams) {
+                ((ListenCodeParams) listenCode).startDoing(params);
+            } else if (listenCode instanceof ListenCodeMethod) {
+                ((ListenCodeMethod) listenCode).startDoing(params);
+            }
         }
     }
 }

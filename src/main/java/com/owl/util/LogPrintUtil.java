@@ -15,6 +15,11 @@ public abstract class LogPrintUtil {
         log(msg, "INFO");
     }
 
+    public static void info(Object msg) {
+        log(ObjectUtil.toJSON(msg), "INFO");
+    }
+
+
     public static void error(String msg) {
         log(msg, "ERROR");
     }
