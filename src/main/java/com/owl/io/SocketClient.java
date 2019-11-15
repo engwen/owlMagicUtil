@@ -4,9 +4,9 @@ import com.owl.util.LogPrintUtil;
 
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * author engwen
@@ -16,8 +16,10 @@ import java.nio.channels.SocketChannel;
 public class SocketClient {
     private String host;
     private int port;
-    private SocketChannel socketChannel;
-    private Selector selector;
+    private AsynchronousSocketChannel clientChannel;
+
+
+
 
     public SocketClient(String host, int port) {
         this.host = host;
@@ -26,13 +28,18 @@ public class SocketClient {
     }
 
     private void connect() {
-        try {
-            this.selector = Selector.open();
-            this.socketChannel = SocketChannel.open(new InetSocketAddress(this.host, this.port));
-            //非阻塞
-            this.socketChannel.configureBlocking(false);
-            this.socketChannel.register(selector, SelectionKey.OP_CONNECT);
 
+        try {
+            final ByteBuffer buff = ByteBuffer.allocate(1024);
+            // 创建一个线程池
+            ExecutorService executor = Executors.newFixedThreadPool(80);
+            // 以指定线程池来创建一个AsynchronousChannelGroup
+            AsynchronousChannelGroup channelGroup =
+                    AsynchronousChannelGroup.withThreadPool(executor);
+            // 以channelGroup作为组管理器来创建AsynchronousSocketChannel
+            clientChannel = AsynchronousSocketChannel.open(channelGroup);
+            // 让AsynchronousSocketChannel连接到指定IP、指定端口
+            clientChannel.connect(new InetSocketAddress(this.host, this.port));
 //        socketChannel.finishConnect();
         } catch (Exception e) {
             LogPrintUtil.error("connect error, information is  " + e);
@@ -41,8 +48,7 @@ public class SocketClient {
 
     public void disconnect() {
         try {
-            this.socketChannel.socket().close();
-            this.socketChannel.close();
+            this.clientChannel.close();
         } catch (Exception e) {
             LogPrintUtil.error("disconnect error, information is  " + e);
         }
@@ -50,12 +56,17 @@ public class SocketClient {
 
     public void emit(String event, String msg) {
         SocketModel model = new SocketModel(event, msg);
-        ByteBuffer buffer = ByteBuffer.wrap(model.toString().getBytes());
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+//        ByteBuffer.wrap();
+        buffer.put(model.toString().getBytes());
+        buffer.flip();
         try {
-            this.socketChannel.write(buffer);
-            ByteBuffer allocate = ByteBuffer.allocate(1024);
-            this.socketChannel.read(allocate);
-            LogPrintUtil.info("get server back  " + new String(allocate.array()).trim());
+            this.clientChannel.write(buffer);
+            buffer.flip();
+            ByteBuffer readBuff = ByteBuffer.allocate(1024);
+            this.clientChannel.read(readBuff);
+            readBuff.flip();
+            LogPrintUtil.info("get server back  " + new String(readBuff.array()).trim());
         } catch (Exception e) {
             LogPrintUtil.error("emit msg is Error :" + e);
         }

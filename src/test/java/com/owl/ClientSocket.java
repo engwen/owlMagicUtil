@@ -22,12 +22,16 @@ public class ClientSocket {
     @Test
     public void oepns() throws IOException, InterruptedException {
         SocketClient client = new SocketClient("localhost",8092);
-        client.emit("testEvent","aaaaaaaaaaa");
-        client.disconnect();
         SocketClient client2 = new SocketClient("localhost",8092);
+        client.emit("testEvent","aaaaaaaaaaa");
+
+
         client2.emit("testEvent","bbbbbbbbbbbbb");
-        client2.disconnect();
-        Thread.sleep(2000);
+        client.emit("testEvent","dddddddd");
+//        Thread.sleep(10000);
+//        client2.disconnect();
+//        client.disconnect();
+
 
 
 //        while (true) {
