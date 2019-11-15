@@ -1,5 +1,6 @@
-package com.owl.io;
+package com.owl;
 
+import com.owl.io.SocketModel;
 import com.owl.util.LogPrintUtil;
 
 import java.net.InetSocketAddress;
@@ -17,9 +18,6 @@ public class SocketClient {
     private String host;
     private int port;
     private AsynchronousSocketChannel clientChannel;
-
-
-
 
     public SocketClient(String host, int port) {
         this.host = host;
@@ -61,12 +59,12 @@ public class SocketClient {
         buffer.put(model.toString().getBytes());
         buffer.flip();
         try {
-            this.clientChannel.write(buffer);
+            this.clientChannel.write(buffer).get();
             buffer.flip();
-            ByteBuffer readBuff = ByteBuffer.allocate(1024);
-            this.clientChannel.read(readBuff);
-            readBuff.flip();
-            LogPrintUtil.info("get server back  " + new String(readBuff.array()).trim());
+            this.clientChannel.read(buffer).get();
+            buffer.flip();
+            buffer.clear();
+            LogPrintUtil.info("get server back  " + new String(buffer.array()).trim());
         } catch (Exception e) {
             LogPrintUtil.error("emit msg is Error :" + e);
         }

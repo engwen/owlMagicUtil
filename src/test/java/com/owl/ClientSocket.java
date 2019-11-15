@@ -1,17 +1,8 @@
 package com.owl;
 
-import com.owl.factory.OwlThreadPool;
-import com.owl.io.SocketClient;
-import com.owl.io.SocketServer;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.nio.ByteBuffer;
-import java.nio.channels.*;
-import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
 
 /**
  * author engwen
@@ -22,15 +13,16 @@ public class ClientSocket {
     @Test
     public void oepns() throws IOException, InterruptedException {
         SocketClient client = new SocketClient("localhost",8092);
-        SocketClient client2 = new SocketClient("localhost",8092);
+//        SocketClient client2 = new SocketClient("localhost",8092);
         client.emit("testEvent","aaaaaaaaaaa");
 
 
-        client2.emit("testEvent","bbbbbbbbbbbbb");
+//        client2.emit("testEvent","bbbbbbbbbbbbb");
         client.emit("testEvent","dddddddd");
+        client.disconnect();
 //        Thread.sleep(10000);
 //        client2.disconnect();
-//        client.disconnect();
+
 
 
 
