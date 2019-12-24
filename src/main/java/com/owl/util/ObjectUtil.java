@@ -1,10 +1,11 @@
 package com.owl.util;
 
+import com.owl.util.model.OwlStringPg;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
+import java.lang.reflect.Modifier;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -131,6 +132,7 @@ public class ObjectUtil {
         return stringBuilder.toString();
     }
 
+    @SuppressWarnings("unchecked")
     private static void getObjectProperties(Object obj, StringBuilder stringBuilder) {
         if (obj instanceof Map) {
             stringBuilder.append("{");
@@ -150,9 +152,14 @@ public class ObjectUtil {
         } else {
             Field[] fields = obj.getClass().getDeclaredFields();
             Field errorFiled = null;
-            try {
-                stringBuilder.append("{");
-                for (Field field : fields) {
+
+            stringBuilder.append("{");
+            for (Field field : fields) {
+                //跳过final修饰的属性
+                if (Modifier.isFinal(field.getModifiers())) {
+                    continue;
+                }
+                try {
                     errorFiled = field;
                     String getMethodStr = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
                     Method getMethod = obj.getClass().getMethod(getMethodStr);
@@ -163,15 +170,17 @@ public class ObjectUtil {
                     stringBuilder.append(":");
                     objectJSONValue(value, stringBuilder);
                     stringBuilder.append(",");
+                } catch (Exception e) {
+                    LogPrintUtil.error("属性转化出错。name:" + (errorFiled == null ? "" : errorFiled.getName()));
+                    LogPrintUtil.error("跳过该属性");
+                    e.printStackTrace();
                 }
-                if (fields.length > 0) {
-                    stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-                }
-                stringBuilder.append("}");
-            } catch (Exception e) {
-                System.out.println("转化出错。name:" + (errorFiled == null ? "" : errorFiled.getName()));
-                e.printStackTrace();
             }
+            if (fields.length > 0) {
+                stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            }
+            stringBuilder.append("}");
+
         }
     }
 
@@ -211,5 +220,109 @@ public class ObjectUtil {
         } else {
             getObjectProperties(temp, stringBuilder);
         }
+    }
+
+    /*
+     * 将指定的 String 对象转化为 Map
+     * @param obj
+     * @param <T>
+     * @return
+     */
+    public static Map<String, Object> StringToMap(String params) {
+        OwlStringPg msg = new OwlStringPg(params);
+        if (msg.startsWith("{")) {
+            Map<String, Object> map = new HashMap<>();
+            return keyValueToMap(map, msg);
+        }
+        return null;
+    }
+
+    /*
+     * 将指定的 String 对象转化为 List
+     * @param params
+     * @return
+     */
+    public static List<Object> StringToList(String params) {
+        OwlStringPg msg = new OwlStringPg(params);
+        if (msg.startsWith("[")) {
+            return valueToList(msg);
+        }
+        return null;
+    }
+
+    /*
+     * 鍵值轉換
+     * @param map
+     * @param msg
+     * @return
+     */
+    private static Map<String, Object> keyValueToMap(Map<String, Object> map, OwlStringPg msg) {
+        if (msg.startsWith("{")) {
+            msg.update(1);
+        }
+        while (msg.startsWith("\"")) {
+            String key = msg.substring(1, msg.indexOf(":")).replace("\"", "");
+            msg.update(":");
+            if (msg.startsWith("{")) {
+                //新對象
+                Map<String, Object> mapTemp = new HashMap<>();
+                map.put(key, keyValueToMap(mapTemp, msg));
+            } else if (msg.startsWith("[")) {
+                //數組對象
+                map.put(key, valueToList(msg));
+            } else if (msg.startsWith("\"")) {
+                //如為字符串，可直取值
+                msg.update("\"");
+                map.put(key, msg.substring(0, msg.indexOf("\"")).replace("\"", ""));
+                msg.update("\"");
+                if (msg.startsWith(",")) {
+                    msg.update(",");
+                } else {
+                    msg.update(1);
+                    break;
+                }
+            } else break;
+        }
+        if (msg.startsWith("}")) {
+            msg.update(1);
+        }
+        return map;
+    }
+
+    /*
+     * 值對象轉 list
+     * @param msg
+     * @return
+     */
+    private static List<Object> valueToList(OwlStringPg msg) {
+        List<Object> list = new ArrayList<>();
+        if (msg.startsWith("[")) {
+            msg.update(1);
+        }
+        while (true) {
+            if (msg.startsWith("{")) {
+                //為集合對象
+                Map<String, Object> mapTemp = new HashMap<>();
+                list.add(keyValueToMap(mapTemp, msg));
+                if (msg.startsWith(",")) {
+                    msg.update(1);
+                }
+            } else if (msg.startsWith("\"")) {
+                //如為字符串，可直取值
+                msg.update("\"");
+                list.add(msg.substring(0, msg.indexOf("\"")).replace("\"", ""));
+                msg.update("\"");
+                if (msg.startsWith(",")) {
+                    msg.update(1);
+                }
+            } else if (msg.startsWith("]")) {
+                msg.update(1);
+                break;
+            } else break;
+        }
+        if (msg.startsWith(",")) {//後面還有屬性需要更新
+            msg.update(1);
+        }
+        return list;
     }
 }
